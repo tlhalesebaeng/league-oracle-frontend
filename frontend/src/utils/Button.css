@@ -1,0 +1,30 @@
+.btn {
+    height: 100%;
+    width: 100%;
+    padding: 0px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color ease 0.15s;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.btn:active {
+    opacity: 0.6;
+}
+
+.no-bg {
+    color: rgb(34, 133, 245);
+    border: 1px solid rgb(34, 133, 245);
+    background-color: transparent;
+}
+
+.bg-blue {
+    color: rgb(255, 255, 255);
+    border: none;
+    background-color: rgb(34, 133, 245);
+}
