@@ -1,5 +1,3 @@
-import MyLeagues from '../../components/app/MyLeagues';
-
 const Home = () => {
     // this page should be protected
     return (
