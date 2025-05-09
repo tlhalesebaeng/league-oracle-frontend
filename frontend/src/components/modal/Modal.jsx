@@ -3,7 +3,7 @@ import Input from '../../utils/Input.jsx';
 import './Modal.css';
 import LeagueList from './LeagueList.jsx';
 
-const Modal = () => {
+const Modal = ({ onClose }) => {
     return ReactDOM.createPortal(
         <dialog open>
             <Input type="text" className="modal-input" />

@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import RootLayout from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
 import Landing from './pages/app/Landing.jsx';
+import Leagues from './pages/app/Leagues.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -13,6 +15,10 @@ const appRouter = createBrowserRouter([
             {
                 index: true,
                 element: <Landing />,
+            },
+            {
+                path: 'leagues/:leagueId',
+                element: <Leagues />,
             },
             {
                 path: 'login',

@@ -1,15 +1,19 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Modal from '../modal/Modal.jsx';
 import Backdrop from '../modal/Backdrop.jsx';
+import { uiActions } from '../../store/ui-slice.js';
 
 const SearchLeagues = () => {
-    const [showModal, setShowModal] = useState(false);
+    const dispatch = useDispatch();
+    const showModal = useSelector((state) => state.ui.leaguesModalShown);
+
     const handleSearch = () => {
-        setShowModal(true);
+        dispatch(uiActions.showLeaguesModal());
     };
 
     const handleCloseModal = () => {
-        setShowModal(false);
+        dispatch(uiActions.hideLeaguesModal());
     };
     return (
         <>
