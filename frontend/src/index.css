@@ -45,8 +45,13 @@ body,
     height: 100%;
 }
 
+body {
+    position: relative;
+}
+
 #root {
     width: 100%;
+    position: relative;
 }
 
 a {

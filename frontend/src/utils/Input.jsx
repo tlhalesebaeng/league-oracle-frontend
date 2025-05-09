@@ -1,10 +1,14 @@
 import './input.css';
 
-const Input = ({ placeholder, label, type }) => {
+const Input = ({ placeholder, label, type, className }) => {
     return (
         <>
-            <label>{label}</label>
-            <input className="input" type={type} placeholder={placeholder} />
+            {label && <label>{label}</label>}
+            <input
+                className={className || 'input'}
+                type={type}
+                placeholder={placeholder}
+            />
         </>
     );
 };

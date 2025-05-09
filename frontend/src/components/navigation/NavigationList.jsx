@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Button from '../../utils/Button';
 import './NavigationList.css';
+import SearchLeagues from './SearchLeagues';
 
 const NavigationList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -13,9 +14,7 @@ const NavigationList = () => {
     return (
         <ul className="nav-list">
             <li>
-                <div className="search-leagues">
-                    <p>Search for a league</p>
-                </div>
+                <SearchLeagues />
             </li>
             {!isAuth && showAuthButtons && (
                 <>
