@@ -4,7 +4,7 @@
     margin-top: 30px;
 }
 
-.league-standings th {
+.league-standings thead tr {
     display: flex;
 }
 

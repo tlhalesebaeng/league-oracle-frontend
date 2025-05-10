@@ -118,18 +118,25 @@ const Standings = () => {
     return (
         <section className="league-standings">
             <table>
-                <th>
-                    <td className="league-standings__header-field">#</td>
-                    <td className="league-standings__space-header"></td>
-                    {tableHeaderFields.map((fieldName) => (
-                        <td className="league-standings__header-field">
-                            {fieldName}
-                        </td>
+                <thead>
+                    <tr>
+                        <td className="league-standings__header-field">#</td>
+                        <td className="league-standings__space-header"></td>
+                        {tableHeaderFields.map((fieldName) => (
+                            <td
+                                key={fieldName}
+                                className="league-standings__header-field"
+                            >
+                                {fieldName}
+                            </td>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {teams.map((team) => (
+                        <Standing key={team.id} {...team} />
                     ))}
-                </th>
-                {teams.map((team) => (
-                    <Standing key={team.id} {...team} />
-                ))}
+                </tbody>
             </table>
         </section>
     );
