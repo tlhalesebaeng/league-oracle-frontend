@@ -1,11 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import Details from '../../components/league/Details';
+import Standings from '../../components/league/Standings';
 
 const Leagues = () => {
     const params = useParams();
+    const location = useLocation();
 
     return (
         <main>
-            <h2>Details of league {params.leagueId}</h2>
+            <Details {...location.state} />
+            <Standings />
         </main>
     );
 };

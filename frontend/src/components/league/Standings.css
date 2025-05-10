@@ -1,0 +1,24 @@
+.league-standings table {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.league-standings th {
+    display: flex;
+}
+
+.league-standings__space-header {
+    width: 350px;
+}
+
+.league-standings__header-field {
+    height: 20px;
+    width: 60px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+}
