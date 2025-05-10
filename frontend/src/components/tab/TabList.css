@@ -5,26 +5,6 @@
     justify-content: space-evenly;
 }
 
-.tab-list li {
-    height: 30px;
-    width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    font-size: 14px;
-    color: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    background-color: transparent;
-    transition: background-color 0.15s;
-}
-
-.tab-list li:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
 .tab-list .active {
     background-color: rgba(0, 0, 0, 0.05);
 }
