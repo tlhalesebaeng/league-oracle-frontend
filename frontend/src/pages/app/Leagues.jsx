@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import Details from '../../components/league/Details.jsx';
+import Details from '../../components/league/StandingDetails.jsx';
 import Standings from '../../components/league/Standings.jsx';
 import FixtureList from '../../components/fixture/FixtureList.jsx';
 import TabList from '../../components/tab/TabList.jsx';

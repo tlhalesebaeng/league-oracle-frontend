@@ -1,4 +1,4 @@
-import './Details.css';
+import './StandingDetails.css';
 
 const Details = ({ id, name, dateCreated }) => {
     return (

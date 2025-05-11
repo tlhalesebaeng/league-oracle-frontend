@@ -39,7 +39,7 @@ const ResultList = () => {
     return (
         <ul className="result-list">
             {results.map((result) => (
-                <ResultItem key={result.id} result={result} />
+                <ResultItem key={result.id} {...result} />
             ))}
         </ul>
     );

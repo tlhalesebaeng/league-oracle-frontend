@@ -1,5 +1,5 @@
-import './Standing.css';
-import StandingField from './StandingField';
+import StandingField from './StandingField.jsx';
+import './StandingItem.css';
 
 const Standing = ({
     name,

@@ -47,7 +47,7 @@ const FixtureList = () => {
     return (
         <ul className="fixture-list">
             {fixtures.map((fixture) => (
-                <FixtureItem key={fixture.id} fixture={fixture} />
+                <FixtureItem key={fixture.id} {...fixture} />
             ))}
         </ul>
     );

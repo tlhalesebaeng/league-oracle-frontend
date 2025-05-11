@@ -1,4 +1,4 @@
-import Standing from '../team/Standing';
+import StandingItem from './StandingItem.jsx';
 import './Standings.css';
 
 const Standings = () => {
@@ -134,7 +134,7 @@ const Standings = () => {
                 </thead>
                 <tbody>
                     {teams.map((team) => (
-                        <Standing key={team.id} {...team} />
+                        <StandingItem key={team.id} {...team} />
                     ))}
                 </tbody>
             </table>
