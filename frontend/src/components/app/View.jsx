@@ -10,24 +10,34 @@ import './View.css';
 
 // This is a shared component for standings, fixtures and results
 const View = ({
-    leagueDetails,
-    leagueStandings,
-    leagueFixtures,
-    leagueResults,
+    leagueDetails = {},
+    leagueStandings = [],
+    leagueFixtures = [],
+    leagueResults = [],
 }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const initialTab = searchParams.get('tab');
     const [tab, setTab] = useState(initialTab || 'standings');
 
+    const setTabParam = (value) => {
+        setSearchParams((prevParams) => {
+            searchParams.set('tab', value);
+            return prevParams;
+        });
+    };
+
     const handleStandingsTab = () => {
+        setTabParam('standings');
         setTab('standings');
     };
 
     const handleFixturesTab = () => {
+        setTabParam('fixtures');
         setTab('fixtures');
     };
 
     const handleResultsTab = () => {
+        setTabParam('results');
         setTab('results');
     };
 

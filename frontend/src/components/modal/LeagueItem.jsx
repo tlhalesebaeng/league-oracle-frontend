@@ -11,7 +11,7 @@ const LeagueItem = ({ id, name, dateCreated }) => {
     const handleShowLeague = () => {
         dispatch(uiActions.hideLeaguesModal());
         navigate(`/leagues/${id}`, {
-            state: { id, leaguename: name, dateCreated },
+            state: { id, leagueName: name, dateCreated },
         });
     };
 

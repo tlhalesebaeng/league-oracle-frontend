@@ -11,3 +11,7 @@
     font-size: 30px;
     margin-bottom: 10px;
 }
+
+.league-details h2:hover {
+    cursor: pointer;
+}

@@ -18,7 +18,9 @@ const Standing = ({
         <tr className="league-standings__row">
             <StandingField>1</StandingField>
             <StandingField className="league-standings__heading-field">
-                <Link to={`/teams/${id}`}>{name}</Link>
+                <Link to={`/teams/${id}`} state={name}>
+                    {name}
+                </Link>
             </StandingField>
             <StandingField>{playedGames}</StandingField>
             <StandingField>{wins}</StandingField>

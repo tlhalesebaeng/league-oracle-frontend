@@ -6,6 +6,7 @@ import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
 import Landing from './pages/app/Landing.jsx';
 import Leagues from './pages/app/Leagues.jsx';
+import Teams from './pages/app/Teams.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const appRouter = createBrowserRouter([
             {
                 path: 'leagues/:leagueId',
                 element: <Leagues />,
+            },
+            {
+                path: 'teams/:teamId',
+                element: <Teams />,
             },
             {
                 path: 'login',
