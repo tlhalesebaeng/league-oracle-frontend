@@ -1,9 +1,10 @@
 import './StandingDetails.css';
 
-const Details = ({ id, name, dateCreated }) => {
+const Details = ({ leaguename, dateCreated, teamName }) => {
     return (
         <section className="league-details">
-            <h2>{name}</h2>
+            <h2>{leaguename}</h2>
+            {teamName && <h3>{teamName}</h3>}
             <p>{dateCreated}</p>
         </section>
     );

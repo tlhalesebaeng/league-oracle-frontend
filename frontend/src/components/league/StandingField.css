@@ -16,6 +16,10 @@
     color: rgb(255, 255, 255);
     justify-content: start;
 }
+.league-standings__heading-field a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
 
 .league-standings__points-field {
     background-color: rgb(34, 133, 245);

@@ -1,119 +1,7 @@
 import StandingItem from './StandingItem.jsx';
 import './Standings.css';
 
-const Standings = () => {
-    // get this from the backend
-    const teams = [
-        {
-            id: 't1',
-            name: 'Sebaeng Team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't2',
-            name: 'Tlhalefo Sebaeng FC',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't3',
-            name: 'My Very Buff Team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't4',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't5',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't6',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't7',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't8',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        {
-            id: 't9',
-            name: 'TS team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-    ];
-
+const Standings = ({ standings }) => {
     const tableHeaderFields = ['P', 'W', 'D', 'L', 'F', 'A', '+-', 'PTS'];
     return (
         <section className="league-standings">
@@ -133,7 +21,7 @@ const Standings = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {teams.map((team) => (
+                    {standings.map((team) => (
                         <StandingItem key={team.id} {...team} />
                     ))}
                 </tbody>

@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import StandingField from './StandingField.jsx';
 import './StandingItem.css';
 
 const Standing = ({
+    id,
     name,
     wins,
     draws,
@@ -16,7 +18,7 @@ const Standing = ({
         <tr className="league-standings__row">
             <StandingField>1</StandingField>
             <StandingField className="league-standings__heading-field">
-                {name}
+                <Link to={`/teams/${id}`}>{name}</Link>
             </StandingField>
             <StandingField>{playedGames}</StandingField>
             <StandingField>{wins}</StandingField>
