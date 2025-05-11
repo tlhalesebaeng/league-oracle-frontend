@@ -5,6 +5,7 @@ import Details from '../../components/league/Details.jsx';
 import Standings from '../../components/league/Standings.jsx';
 import FixtureList from '../../components/fixture/FixtureList.jsx';
 import TabList from '../../components/tab/TabList.jsx';
+import ResultList from '../../components/result/ResultList.jsx';
 
 const Leagues = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -37,6 +38,7 @@ const Leagues = () => {
             </div>
             {tab === 'standings' && <Standings />}
             {tab === 'fixtures' && <FixtureList />}
+            {tab === 'results' && <ResultList />}
         </main>
     );
 };

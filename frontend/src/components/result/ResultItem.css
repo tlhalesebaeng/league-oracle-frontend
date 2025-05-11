@@ -1,30 +1,29 @@
-.fixture-list__item {
+.result-list__item {
     height: 60px;
     margin: 10px 0px;
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
 }
 
-.fixture-list__time,
-.fixture-list__date {
+.result-list__item p span {
+    margin: 0px 10px;
+}
+
+.result-list__item a {
+    text-decoration: none;
+}
+
+.result-list__date {
     display: flex;
     justify-content: center;
     font-size: 12px;
 }
 
-.fixture-list__details {
+.result-list__item section {
     display: flex;
     justify-content: space-between;
-}
-
-.fixture-list__details h3 {
-    color: rgb(34, 133, 245);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.fixture-list__details a {
-    text-decoration: none;
 }
