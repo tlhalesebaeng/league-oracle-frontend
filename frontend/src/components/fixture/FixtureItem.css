@@ -6,7 +6,8 @@
     background-color: rgb(255, 255, 255);
 }
 
-.fixture-list__number {
+.fixture-list__time,
+.fixture-list__date {
     display: flex;
     justify-content: center;
     font-size: 12px;
@@ -25,10 +26,4 @@
 
 .fixture-list__details a {
     text-decoration: none;
-}
-
-.fixture-list__date {
-    display: flex;
-    justify-content: center;
-    font-size: 12px;
 }
