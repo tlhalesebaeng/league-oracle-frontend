@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { uiActions } from '../../store/ui-slice.js';
+import { authActions } from '../../store/auth-slice.js';
+
 import Button from '../../utils/Button.jsx';
 import Input from '../../utils/Input.jsx';
 import Card from '../../components/app/Card.jsx';
 import Question from '../../components/auth/Question.jsx';
 import AuthForm from '../../components/auth/AuthForm.jsx';
-import { useDispatch } from 'react-redux';
-import { uiActions } from '../../store/ui-slice.js';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -15,6 +18,7 @@ const Login = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
+        dispatch(authActions.authenticate());
         navigate('/home');
     };
 

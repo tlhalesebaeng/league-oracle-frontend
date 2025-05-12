@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import Button from '../../utils/Button';
+import Button from '../../utils/Button.jsx';
+import SearchLeagues from './SearchLeagues.jsx';
+import NavigationLinks from './NavigationLinks.jsx';
 import './NavigationList.css';
-import SearchLeagues from './SearchLeagues';
 
 const NavigationList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -13,6 +14,9 @@ const NavigationList = () => {
 
     return (
         <ul className="nav-list">
+            <li className="nav-list__about-link">
+                <Link>About</Link>
+            </li>
             <li>
                 <SearchLeagues />
             </li>
@@ -30,6 +34,8 @@ const NavigationList = () => {
                     </li>
                 </>
             )}
+
+            {isAuth && <NavigationLinks />}
         </ul>
     );
 };

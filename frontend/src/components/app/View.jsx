@@ -20,10 +20,9 @@ const View = ({
     const [tab, setTab] = useState(initialTab || 'standings');
 
     const setTabParam = (value) => {
-        setSearchParams((prevParams) => {
-            searchParams.set('tab', value);
-            return prevParams;
-        });
+        // updating the url search params causes re rendering from the first component of the route
+        // searchParams.set('tab', value);
+        // setSearchParams(searchParams);
     };
 
     const handleStandingsTab = () => {

@@ -1,0 +1,14 @@
+.navigation-link {
+    width: 50px;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.navigation-link:hover {
+    cursor: pointer;
+}
+
+.navigation-link svg {
+    opacity: 0.5;
+}

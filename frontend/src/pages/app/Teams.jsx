@@ -160,7 +160,7 @@ const Teams = () => {
     const details = {
         leagueName: 'My Buff League',
         dateCreated: '30-06-2023',
-        teamName: location.state,
+        teamName: location.state || 'yoh',
     };
 
     return (

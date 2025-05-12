@@ -6,4 +6,10 @@
 .nav-list li {
     height: 30px;
     margin: 0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list__about-link a {
+    text-decoration: none;
 }
