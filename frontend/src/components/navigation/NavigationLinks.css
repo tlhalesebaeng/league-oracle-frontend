@@ -1,14 +1,21 @@
-.navigation-link {
-    width: 50px;
+.navigation-link__create,
+.navigation-link__logout {
+    padding: 0px 15px;
     justify-content: center;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 5px;
 }
 
-.navigation-link:hover {
+.navigation-link__logout {
+    color: rgba(0, 0, 0);
+    font-size: 14px;
+}
+
+.navigation-link__create:hover,
+.navigation-link__logout:hover {
     cursor: pointer;
 }
 
-.navigation-link svg {
+.navigation-link__create svg {
     opacity: 0.5;
 }

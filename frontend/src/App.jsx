@@ -5,8 +5,10 @@ import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
 import Landing from './pages/app/Landing.jsx';
-import Leagues from './pages/app/Leagues.jsx';
+import About from './pages/app/About.jsx';
 import Teams from './pages/app/Teams.jsx';
+import CreateLeague from './pages/league/CreateLeague.jsx';
+import ViewLeague from './pages/league/ViewLeague.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -18,12 +20,29 @@ const appRouter = createBrowserRouter([
                 element: <Landing />,
             },
             {
-                path: 'leagues/:leagueId',
-                element: <Leagues />,
+                path: 'home',
+                element: <Home />,
+            },
+            {
+                path: 'leagues',
+                children: [
+                    {
+                        path: ':leagueId',
+                        element: <ViewLeague />,
+                    },
+                    {
+                        path: 'create',
+                        element: <CreateLeague />,
+                    },
+                ],
             },
             {
                 path: 'teams/:teamId',
                 element: <Teams />,
+            },
+            {
+                path: 'about',
+                element: <About />,
             },
             {
                 path: 'login',
@@ -32,10 +51,6 @@ const appRouter = createBrowserRouter([
             {
                 path: 'signup',
                 element: <Signup />,
-            },
-            {
-                path: 'home',
-                element: <Home />,
             },
         ],
     },

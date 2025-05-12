@@ -1,9 +1,27 @@
+import { useNavigate } from 'react-router-dom';
 import './NavigationLinks.css';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice';
 
 const NavigationLinks = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleCreateLeague = () => {
+        navigate('/leagues/create');
+    };
+
+    const handleLogout = () => {
+        dispatch(authActions.logout());
+        navigate('/');
+    };
+
     return (
         <>
-            <li className="navigation-link">
+            <li
+                onClick={handleCreateLeague}
+                className="navigation-link__create"
+            >
                 <svg
                     aria-hidden="true"
                     height="25"
@@ -14,6 +32,9 @@ const NavigationLinks = () => {
                 >
                     <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
                 </svg>
+            </li>
+            <li onClick={handleLogout} className="navigation-link__logout">
+                <p>Logout</p>
             </li>
         </>
     );

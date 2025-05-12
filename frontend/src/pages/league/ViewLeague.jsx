@@ -1,9 +1,14 @@
 import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { uiActions } from '../../store/ui-slice.js';
+
 import View from '../../components/app/View';
 
 const Leagues = () => {
     const params = useParams();
     const location = useLocation();
+    const dispatch = useDispatch();
+    dispatch(uiActions.showAuthButtons());
 
     // we will get the league standings, fixtures and results
     // from the backend using the leagueId that comes from the params
