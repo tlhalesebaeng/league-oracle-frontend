@@ -27,17 +27,17 @@ const LeagueForm = ({ onSubmit }) => {
 
     return (
         <form className="league-form">
-            <section className="league-name">
+            <section className="league-form__name">
                 <Input label="League name" placeholder="My ultimate league" />
             </section>
-            <p className="message">
+            <p className="league-form__message">
                 Please add teams below. At least 2 teams are required.
             </p>
             {teams.map((team, index) => {
                 // Don't show delete buttons for first 2 teams since they are compulsory
                 const deleteTeam = () => handleDeleteTeam(index);
                 return (
-                    <section key={index} className="teams">
+                    <section key={index} className="league-form__teams">
                         <Input
                             onInputChange={(event) =>
                                 handleChange(index, event.target.value)
@@ -50,7 +50,7 @@ const LeagueForm = ({ onSubmit }) => {
                     </section>
                 );
             })}
-            <section className="buttons">
+            <section className="league-form__buttons">
                 <div className="btn-add-team">
                     <Button onClick={handleAddTeam} type="no-bg">
                         Add team
