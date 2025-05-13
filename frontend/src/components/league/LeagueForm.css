@@ -1,0 +1,41 @@
+.league-form {
+    width: 100%;
+    margin: 30px 0px;
+}
+
+.league-form .league-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.league-form .message {
+    margin: 30px 0px 20px 0px;
+}
+
+.league-form .teams {
+    margin: 15px 0px;
+    width: 100%;
+    position: relative;
+}
+
+.buttons {
+    height: 35px;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons .btn-add-team {
+    width: 15%;
+    min-width: 130px;
+}
+
+.buttons div {
+    width: 30%;
+}
+
+.btn-create button {
+    background-color: rgb(37, 192, 81);
+    color: rgb(255, 255, 255);
+}
