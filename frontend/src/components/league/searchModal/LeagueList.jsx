@@ -1,4 +1,4 @@
-import LeagueItem from './LeagueItem';
+import LeagueItem from './LeagueItem.jsx';
 import './LeagueList.css';
 
 const LeagueList = ({ onClose }) => {
