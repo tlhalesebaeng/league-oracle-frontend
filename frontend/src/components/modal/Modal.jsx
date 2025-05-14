@@ -1,9 +1,11 @@
 import ReactDOM from 'react-dom';
 import './Modal.css';
 
-const Modal = ({ children }) => {
+const Modal = ({ children, className }) => {
     return ReactDOM.createPortal(
-        <dialog open>{children}</dialog>,
+        <dialog className={`modal${className ? ' ' + className : ''}`} open>
+            {children}
+        </dialog>,
         document.getElementById('modal-hook')
     );
 };
