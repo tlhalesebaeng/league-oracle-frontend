@@ -8,7 +8,7 @@ import './LeagueForm.css';
 const LeagueForm = ({ onSubmit }) => {
     const [teams, setTeams] = useState(['', '']);
 
-    const handleChange = (index, value) => {
+    const handleInputChange = (index, value) => {
         setTeams((prevTeams) => {
             const newTeams = [...prevTeams];
             newTeams[index] = value;
@@ -40,7 +40,7 @@ const LeagueForm = ({ onSubmit }) => {
                     <section key={index} className="league-form__teams">
                         <Input
                             onInputChange={(event) =>
-                                handleChange(index, event.target.value)
+                                handleInputChange(index, event.target.value)
                             }
                             value={team}
                             imgSrc={index > 1 ? binImg : undefined}
