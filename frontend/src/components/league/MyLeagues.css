@@ -1,0 +1,42 @@
+.my-leagues {
+    width: 20%;
+    padding: 10px;
+    background-color: rgb(245, 248, 250);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.my-leagues h3 {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.my-leagues ul {
+    list-style: none;
+    margin: 10px 0px;
+}
+
+.my-leagues ul li {
+    margin: 5px 0px;
+    padding: 5px 10px;
+    border: none;
+    transition: background-color 0.15s;
+}
+
+.my-leagues ul li:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+/* styles for when no leagues are found */
+.no-leagues {
+    justify-content: center;
+    align-items: center;
+}
+
+.no-leagues section {
+    height: 30px;
+    margin: 15px 0px;
+}

@@ -1,1 +1,7 @@
-
+/* this styles the container of the home page */
+.layout-content {
+    height: 100%;
+    width: 100%;
+    flex: 1;
+    display: flex;
+}
