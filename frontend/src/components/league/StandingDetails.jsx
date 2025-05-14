@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+
+import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
 
 const Details = ({ leagueName, dateCreated, teamName }) => {
@@ -10,9 +12,20 @@ const Details = ({ leagueName, dateCreated, teamName }) => {
         });
     };
 
+    const handleEditLeague = () => {
+        navigate('/leagues/edit');
+    };
+
     return (
         <section className="league-details">
-            <h2 onClick={handleLeagueNameClick}>{leagueName}</h2>
+            <div className="header">
+                <h2 onClick={handleLeagueNameClick}>{leagueName}</h2>
+                <div className="btn-update">
+                    <Button onClick={handleEditLeague} type="no-bg">
+                        Edit
+                    </Button>
+                </div>
+            </div>
             {teamName && <h3>{teamName} page</h3>}
             {!teamName && <p>{dateCreated}</p>}
         </section>

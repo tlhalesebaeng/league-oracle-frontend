@@ -9,6 +9,7 @@ import About from './pages/app/About.jsx';
 import Teams from './pages/app/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 import ViewLeague from './pages/league/ViewLeague.jsx';
+import EditLeague from './pages/league/EditLeague.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'create',
                         element: <CreateLeague />,
+                    },
+                    {
+                        path: 'edit',
+                        element: <EditLeague />,
                     },
                 ],
             },

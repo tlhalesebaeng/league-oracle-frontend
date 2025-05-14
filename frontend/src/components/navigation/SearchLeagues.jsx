@@ -21,7 +21,7 @@ const SearchLeagues = () => {
         <>
             {showModal && <Backdrop onClose={handleCloseModal} />}
             {showModal && (
-                <Modal>
+                <Modal className="search-modal">
                     <SearchModal />
                 </Modal>
             )}

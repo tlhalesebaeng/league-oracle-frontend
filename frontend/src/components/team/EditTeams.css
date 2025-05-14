@@ -1,0 +1,40 @@
+.edit-teams {
+    width: 100%;
+}
+
+.edit-teams__input {
+    width: 100%;
+    margin: 15px 0px;
+    position: relative;
+}
+
+.edit-teams__buttons {
+    height: 35px;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-teams__buttons .btn-add-team {
+    width: 130px;
+}
+
+.edit-teams__buttons .edit-teams__changes {
+    display: flex;
+}
+
+.edit-teams__buttons .edit-teams__changes div {
+    margin: 0px 10px;
+}
+
+.edit-teams__buttons .edit-teams__changes .btn-save button {
+    background-color: rgb(37, 192, 81);
+    color: rgb(255, 255, 255);
+}
+
+.edit-teams__buttons .edit-teams__changes .btn-cancel button {
+    background-color: transparent;
+    border-color: red;
+    color: red;
+}
