@@ -1,0 +1,16 @@
+.edit-field {
+    margin: 2px 0px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.edit-field img {
+    max-height: 40px;
+    max-width: 40x;
+    margin-left: 20px;
+}
+
+.edit-field img:hover {
+    cursor: pointer;
+}

@@ -1,18 +1,4 @@
-.league-name {
-    display: flex;
-    align-items: center;
-}
-
-.league-name img {
+.edit-league-name img {
     height: 20px;
     width: 20px;
-    margin-left: 20px;
-}
-
-.league-name img:hover {
-    cursor: pointer;
-}
-
-.league-name input {
-    width: 300px;
 }

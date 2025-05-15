@@ -83,7 +83,7 @@ const EditLeague = () => {
     return (
         <main>
             <Card className="large-width">
-                <LeagueName name={leagueName} />
+                <LeagueName leagueName={leagueName} />
                 <EditTeams teams={leagueTeams} />
             </Card>
         </main>
