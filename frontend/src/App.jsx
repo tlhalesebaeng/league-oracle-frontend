@@ -10,6 +10,7 @@ import Teams from './pages/app/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 import ViewLeague from './pages/league/ViewLeague.jsx';
 import EditLeague from './pages/league/EditLeague.jsx';
+import ViewFixture from './pages/fixture/ViewFixture.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -38,6 +39,15 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'edit',
                         element: <EditLeague />,
+                    },
+                ],
+            },
+            {
+                path: 'fixtures',
+                children: [
+                    {
+                        path: ':fixtureId',
+                        element: <ViewFixture />,
                     },
                 ],
             },

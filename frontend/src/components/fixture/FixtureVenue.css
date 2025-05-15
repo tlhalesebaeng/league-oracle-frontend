@@ -1,0 +1,10 @@
+.fixture-venue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fixture-venue img {
+    height: 14px;
+    width: 14px;
+}

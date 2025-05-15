@@ -1,0 +1,22 @@
+.fixture-details__buttons {
+    width: 80%;
+    height: 30px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.fixture-details__buttons .fixture-details__btn-add,
+.fixture-details__buttons .fixture-details__btn-save,
+.fixture-details__buttons .fixture-details__btn-cancel {
+    margin: 0px 10px;
+}
+
+.fixture-details__buttons .fixture-details__btn-save button {
+    background-color: rgb(37, 192, 81);
+}
+
+.fixture-details__buttons .fixture-details__btn-cancel button {
+    border-color: rgb(255, 0, 0);
+    color: rgb(255, 0, 0);
+}

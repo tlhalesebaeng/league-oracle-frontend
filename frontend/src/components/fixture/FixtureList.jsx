@@ -9,11 +9,12 @@ const FixtureList = ({ fixtures }) => {
 
     return (
         <ul className="fixture-list">
-            {fixtures.length !== 0 &&
+            {fixtures &&
+                fixtures.length !== 0 &&
                 fixtures.map((fixture) => (
                     <FixtureItem key={fixture.id} {...fixture} />
                 ))}
-            {fixtures.length === 0 && (
+            {(!fixtures || fixtures.length === 0) && (
                 <li className="no-fixtures">
                     <p>No fixtures found</p>
                     <div>

@@ -1,0 +1,17 @@
+.fixture-teams {
+    width: 80%;
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.fixture-teams p {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.fixture-teams a {
+    text-decoration: none;
+}

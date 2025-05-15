@@ -17,6 +17,13 @@
 .fixture-list__details {
     display: flex;
     justify-content: space-between;
+    position: relative;
+}
+
+.fixture-list__versus {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .fixture-list__details h3 {

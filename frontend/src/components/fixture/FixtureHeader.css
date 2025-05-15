@@ -1,0 +1,39 @@
+.fixture-header {
+    width: 35%;
+    padding: 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.fixture-header__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fixture-header h2 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.fixture-header h2:hover {
+    cursor: pointer;
+}
+
+.fixture-header p {
+    display: flex;
+}
+
+.fixture-header p span {
+    margin: 0px 10px;
+}
+
+.fixture-header .edit-field img {
+    height: 14px;
+    width: 14px;
+    margin-right: 10px;
+}
+
+.fixture-header .edit-field p span {
+    margin: 0px;
+}
