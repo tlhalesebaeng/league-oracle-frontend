@@ -4,16 +4,18 @@ import './ResultList.css';
 
 const ResultList = ({ results }) => {
     const handleAddResults = () => {
-        // navigate to the add results page
+        // guide the user on how to add a result using a modal
+        // navigate to the fixtures page afterwards
     };
 
     return (
         <ul className="result-list">
-            {results.length !== 0 &&
+            {results &&
+                results.length !== 0 &&
                 results.map((result) => (
-                    <ResultItem key={result.id} {...result} />
+                    <ResultItem key={result.id} result={result} />
                 ))}
-            {results.length === 0 && (
+            {(!results || results.length === 0) && (
                 <li className="no-results">
                     <p>No results found</p>
                     <div>

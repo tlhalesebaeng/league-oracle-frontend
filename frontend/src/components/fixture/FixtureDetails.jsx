@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './FixtureDetails.css';
 import FixtureHeader from './FixtureHeader';
 import FixtureTeams from './FixtureTeams';
@@ -6,9 +6,13 @@ import FixtureVenue from './FixtureVenue';
 import Button from '../../utils/Button';
 
 const FixtureDetails = ({ league, leagueFixture }) => {
+    const navigate = useNavigate();
+
     const { awayTeam, homeTeam } = leagueFixture;
 
-    const handleAddResult = () => {};
+    const handleAddResult = () => {
+        navigate('/results/r2');
+    };
     const handleSaveChanges = () => {};
     const handleCancelChanges = () => {};
 

@@ -23,7 +23,17 @@
     font-size: 12px;
 }
 
-.result-list__item section {
+.result-list__teams {
     display: flex;
     justify-content: space-between;
+}
+
+.result-list__edit-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.result-list__edit-btn button {
+    width: 60px;
+    font-size: 12px;
 }
