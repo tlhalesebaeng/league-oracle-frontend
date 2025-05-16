@@ -27,11 +27,3 @@
 .result-details__btn-cancel {
     margin-left: 15px;
 }
-
-.result-details__btn-save button {
-    background-color: rgb(37, 192, 81);
-}
-.result-details__btn-cancel button {
-    border-color: rgb(255, 0, 0);
-    color: rgb(255, 0, 0);
-}

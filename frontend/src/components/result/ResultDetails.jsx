@@ -22,10 +22,10 @@ const ResultDetails = ({ result }) => {
             <TeamScore teamName={awayTeam} teamScore={awayScore} />
             <section className="result-details__buttons">
                 <div className="result-details__btn-save">
-                    <Button>Save</Button>
+                    <Button type="save">Save</Button>
                 </div>
                 <div className="result-details__btn-cancel">
-                    <Button type="no-bg">Cancel</Button>
+                    <Button type="cancel">Cancel</Button>
                 </div>
             </section>
         </Card>
