@@ -1,20 +1,31 @@
-.confirm-modal {
-    padding: 0px 20px 20px 20px;
+.edit-teams-modal {
+    padding: 10px;
 }
-.confirm-modal h2 {
-    margin: 10px 0px;
+
+.edit-teams-modal h2 {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.confirm-modal span {
+.edit-teams-modal span {
     font-weight: 600;
     margin: 0px 20px;
 }
 
-.confirm-modal__btn {
-    margin-top: 25px;
+.edit-teams-modal__buttons {
     height: 30px;
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: end;
+}
+
+.edit-teams-modal__buttons .btn-confirm-edit-teams {
+    margin-right: 10px;
+}
+
+.edit-teams-modal__buttons .btn-cancel-edit-teams {
+    margin-left: 10px;
 }

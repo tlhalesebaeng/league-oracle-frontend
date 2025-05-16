@@ -13,8 +13,12 @@ const ConfirmModal = ({ oldItems, newItems }) => {
         navigate('/leagues/l3');
     };
 
+    const handleCancel = () => {
+        dispatch(uiActions.hideConfirmModal());
+    };
+
     return (
-        <div className="confirm-modal">
+        <div className="edit-teams-modal">
             <h2>Confirm changes</h2>
             {oldItems.map((item, index) => {
                 const oldName = item.name;
@@ -28,9 +32,18 @@ const ConfirmModal = ({ oldItems, newItems }) => {
                     );
                 }
             })}
-            <section className="confirm-modal__btn">
-                <Button onClick={handleConfirm}>Confirm</Button>
-            </section>
+            <div className="edit-teams-modal__buttons">
+                <div className="btn-confirm-edit-teams">
+                    <Button onClick={handleConfirm} type="confirm">
+                        Confirm
+                    </Button>
+                </div>
+                <div className="btn-cancel-edit-teams">
+                    <Button onClick={handleCancel} type="cancel">
+                        Cancel
+                    </Button>
+                </div>
+            </div>
         </div>
     );
 };
