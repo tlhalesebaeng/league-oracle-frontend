@@ -9,8 +9,17 @@ const InstructionModal = ({ onClose }) => {
                 Please click <span>versus</span> on the fixture you want to add
                 a result for.
             </p>
-            <div>
-                <Button onClick={onClose}>Okay</Button>
+            <div className="instruction-modal__buttons">
+                <div className="btn-confirm-instruction">
+                    <Button type="confirm" onClick={onClose}>
+                        Okay
+                    </Button>
+                </div>
+                <div className="btn-cancel-instruction">
+                    <Button type="cancel" onClick={onClose}>
+                        Cancel
+                    </Button>
+                </div>
             </div>
         </section>
     );

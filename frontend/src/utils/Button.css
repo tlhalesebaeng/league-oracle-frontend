@@ -17,14 +17,27 @@
     opacity: 0.6;
 }
 
+.bg-blue {
+    color: rgb(255, 255, 255);
+    border: none;
+    background-color: rgb(34, 133, 245);
+}
+
 .no-bg {
     color: rgb(34, 133, 245);
     border: 1px solid rgb(34, 133, 245);
     background-color: transparent;
 }
 
-.bg-blue {
+.save,
+.confirm {
+    border: 1px solid rgb(37, 192, 81);
+    background-color: rgb(37, 192, 81);
     color: rgb(255, 255, 255);
-    border: none;
-    background-color: rgb(34, 133, 245);
+}
+
+.cancel {
+    background-color: transparent;
+    border: 1px solid rgb(255, 0, 0);
+    color: rgb(255, 0, 0);
 }

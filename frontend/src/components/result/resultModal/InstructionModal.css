@@ -13,7 +13,7 @@
     font-weight: 600;
 }
 
-.instruction-modal__content div {
+.instruction-modal__buttons {
     width: 100%;
     height: 30px;
     margin: 10px 0px;
@@ -21,6 +21,10 @@
     justify-content: end;
 }
 
-.instruction-modal__content div button {
-    width: 100px;
+.instruction-modal__buttons .btn-confirm-instruction {
+    margin-right: 10px;
+}
+
+.instruction-modal__buttons .btn-cancel-instruction {
+    margin-left: 10px;
 }

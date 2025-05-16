@@ -74,11 +74,13 @@ const EditTeams = ({ teams }) => {
                     </Button>
                 </div>
                 <div className="edit-teams__changes">
-                    <div className="btn-save">
-                        <Button onClick={handleSaveChanges}>Save</Button>
+                    <div className="btn-save-edit-teams">
+                        <Button onClick={handleSaveChanges} type="save">
+                            Save
+                        </Button>
                     </div>
-                    <div className="btn-cancel">
-                        <Button onClick={handleCancelChanges} type="no-bg">
+                    <div className="btn-cancel-edit-teams">
+                        <Button onClick={handleCancelChanges} type="cancel">
                             Cancel
                         </Button>
                     </div>
