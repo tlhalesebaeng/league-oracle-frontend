@@ -1,3 +1,4 @@
+.disabled-btn,
 .btn {
     height: 100%;
     width: 100%;
@@ -8,12 +9,17 @@
     transition: background-color ease 0.15s;
 }
 
-.btn:hover {
+.btn:hover,
+.disabled-btn:hover {
     cursor: pointer;
+}
+
+.btn:hover {
     opacity: 0.85;
 }
 
-.btn:active {
+.btn:active,
+.disabled-btn:disabled {
     opacity: 0.6;
 }
 
