@@ -24,8 +24,12 @@
     display: flex;
 }
 
-.edit-teams__buttons .edit-teams__changes div {
-    margin: 0px 10px;
+.edit-teams__buttons .edit-teams__changes .btn-save {
+    margin-right: 10px;
+}
+
+.edit-teams__buttons .edit-teams__changes .btn-cancel {
+    margin-left: 10px;
 }
 
 .edit-teams__buttons .edit-teams__changes .btn-save button {
