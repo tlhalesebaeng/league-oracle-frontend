@@ -1,0 +1,27 @@
+.confirm-fixture-gen {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.confirm-fixture-gen p {
+    margin: 10px 0px;
+    text-align: center;
+}
+
+.confirm-fixture-gen section {
+    height: 30px;
+    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: end;
+}
+
+.btn-confirm-gen {
+    margin-right: 10px;
+}
+
+.btn-cancel-gen {
+    margin-left: 10px;
+}
