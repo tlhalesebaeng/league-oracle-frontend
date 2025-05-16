@@ -1,0 +1,26 @@
+.instruction-modal__content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instruction-modal__content p {
+    margin: 10px 0px;
+}
+
+.instruction-modal__content p span {
+    font-weight: 600;
+}
+
+.instruction-modal__content div {
+    width: 100%;
+    height: 30px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: end;
+}
+
+.instruction-modal__content div button {
+    width: 100px;
+}

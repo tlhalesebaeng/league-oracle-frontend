@@ -123,87 +123,89 @@ const Leagues = () => {
         },
     ];
 
-    const fixtures = [
-        {
-            id: 'f1',
-            number: '#123',
-            awayTeam: 'Team A',
-            homeTeam: 'Team B',
-            date: '10-01-2024',
-            time: '15:00',
-            venue: 'All nation field',
-            field: 'Field A',
-        },
-        {
-            id: 'f2',
-            number: '#123',
-            awayTeam: 'Team A',
-            homeTeam: 'Team B',
-            date: '10-01-2024',
-            time: '15:00',
-            venue: 'All nation field',
-            field: 'Field A',
-        },
-        {
-            id: 'f3',
-            number: '#123',
-            awayTeam: 'Team A',
-            homeTeam: 'Team B',
-            date: '10-01-2024',
-            time: '15:00',
-            venue: 'All nation field',
-            field: 'Field A',
-        },
-        {
-            id: 'f4',
-            number: '#123',
-            awayTeam: 'Team A',
-            homeTeam: 'Team B',
-            date: '10-01-2024',
-            time: '15:00',
-            venue: 'All nation field',
-            field: 'Field A',
-        },
-    ];
+    // const fixtures = [
+    //     {
+    //         id: 'f1',
+    //         number: '#123',
+    //         awayTeam: 'Team A',
+    //         homeTeam: 'Team B',
+    //         date: '10-01-2024',
+    //         time: '15:00',
+    //         venue: 'All nation field',
+    //         field: 'Field A',
+    //     },
+    //     {
+    //         id: 'f2',
+    //         number: '#123',
+    //         awayTeam: 'Team A',
+    //         homeTeam: 'Team B',
+    //         date: '10-01-2024',
+    //         time: '15:00',
+    //         venue: 'All nation field',
+    //         field: 'Field A',
+    //     },
+    //     {
+    //         id: 'f3',
+    //         number: '#123',
+    //         awayTeam: 'Team A',
+    //         homeTeam: 'Team B',
+    //         date: '10-01-2024',
+    //         time: '15:00',
+    //         venue: 'All nation field',
+    //         field: 'Field A',
+    //     },
+    //     {
+    //         id: 'f4',
+    //         number: '#123',
+    //         awayTeam: 'Team A',
+    //         homeTeam: 'Team B',
+    //         date: '10-01-2024',
+    //         time: '15:00',
+    //         venue: 'All nation field',
+    //         field: 'Field A',
+    //     },
+    // ];
 
-    // const fixtures = [];
+    const fixtures = [];
 
-    const results = [
-        {
-            id: 'r1',
-            homeTeam: 'Team A',
-            homeScore: 4,
-            awayTeam: 'Team B',
-            awayScore: 1,
-            date: '10-01-2024',
-        },
-        {
-            id: 'r2',
-            homeTeam: 'Team A',
-            homeScore: 4,
-            awayTeam: 'Team B',
-            awayScore: 1,
-            date: '10-01-2024',
-        },
-        {
-            id: 'r3',
-            homeTeam: 'Team A',
-            homeScore: 4,
-            awayTeam: 'Team B',
-            awayScore: 1,
-            date: '10-01-2024',
-        },
-        {
-            id: 'r4',
-            homeTeam: 'Team A',
-            homeScore: 4,
-            awayTeam: 'Team B',
-            awayScore: 1,
-            date: '10-01-2024',
-        },
-    ];
+    // const results = [
+    //     {
+    //         id: 'r1',
+    //         homeTeam: 'Team A',
+    //         homeScore: 4,
+    //         awayTeam: 'Team B',
+    //         awayScore: 1,
+    //         date: '10-01-2024',
+    //     },
+    //     {
+    //         id: 'r2',
+    //         homeTeam: 'Team A',
+    //         homeScore: 4,
+    //         awayTeam: 'Team B',
+    //         awayScore: 1,
+    //         date: '10-01-2024',
+    //     },
+    //     {
+    //         id: 'r3',
+    //         homeTeam: 'Team A',
+    //         homeScore: 4,
+    //         awayTeam: 'Team B',
+    //         awayScore: 1,
+    //         date: '10-01-2024',
+    //     },
+    //     {
+    //         id: 'r4',
+    //         homeTeam: 'Team A',
+    //         homeScore: 4,
+    //         awayTeam: 'Team B',
+    //         awayScore: 1,
+    //         date: '10-01-2024',
+    //     },
+    // ];
 
     // const results = [];
+
+    const results = [];
 
     return (
         <View
