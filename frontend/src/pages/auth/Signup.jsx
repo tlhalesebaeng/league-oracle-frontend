@@ -84,6 +84,54 @@ const Signup = () => {
     }
 
     const desc = 'Fill in details below to create a new account';
+
+    const inputFields = [
+        {
+            type: 'text',
+            label: 'Firstname',
+            placeholder: 'Your first name',
+            value: data.firstName,
+            inputChangeHandler: (event) =>
+                handleInputChange('firstName', event.target.value),
+        },
+        {
+            type: 'text',
+            label: 'Lastname',
+            placeholder: 'Your last name',
+            value: data.lastName,
+            inputChangeHandler: (event) =>
+                handleInputChange('lastName', event.target.value),
+        },
+        {
+            type: 'email',
+            label: 'Email',
+            placeholder: 'email@example.com',
+            value: data.email,
+            inputChangeHandler: (event) =>
+                handleInputChange('email', event.target.value),
+        },
+        {
+            type: passwordToggle.passwordType,
+            label: 'Password',
+            placeholder: 'Enter your password',
+            value: data.password,
+            imgSrc: passwordToggle.passwordIsShown ? closedEye : openEye,
+            imageClickHandler: () => handlePasswordToggle('password'),
+            inputChangeHandler: (event) =>
+                handleInputChange('password', event.target.value),
+        },
+        {
+            type: passwordToggle.confirmType,
+            label: 'Confirm password',
+            placeholder: 'Confirm your password',
+            value: data.passwordConfirm,
+            imgSrc: passwordToggle.confirmIsShown ? closedEye : openEye,
+            imageClickHandler: () => handlePasswordToggle('confirm-password'),
+            inputChangeHandler: (event) =>
+                handleInputChange('passwordConfirm', event.target.value),
+        },
+    ];
+
     return (
         <main>
             <Card>
@@ -92,89 +140,19 @@ const Signup = () => {
                     heading="Get started"
                     description={desc}
                 >
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange(
-                                    'firstName',
-                                    event.target.value
-                                )
-                            }
-                            value={data.firstName || ''}
-                            type="text"
-                            placeholder="Your first name"
-                            label="Firstname"
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange(
-                                    'lastName',
-                                    event.target.value
-                                )
-                            }
-                            value={data.lastName || ''}
-                            type="text"
-                            placeholder="Your last name"
-                            label="Lastname"
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange('email', event.target.value)
-                            }
-                            value={data.email || ''}
-                            type="email"
-                            placeholder="email@example.com"
-                            label="Email"
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange(
-                                    'password',
-                                    event.target.value
-                                )
-                            }
-                            value={data.password || ''}
-                            type={passwordToggle.passwordType}
-                            placeholder="Enter your password"
-                            label="Password"
-                            imgSrc={
-                                passwordToggle.passwordIsShown
-                                    ? closedEye
-                                    : openEye
-                            }
-                            onImageClick={() =>
-                                handlePasswordToggle('password')
-                            }
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange(
-                                    'passwordConfirm',
-                                    event.target.value
-                                )
-                            }
-                            value={data.passwordConfirm || ''}
-                            type={passwordToggle.confirmType}
-                            placeholder="Confirm your password"
-                            label="Confirm password"
-                            imgSrc={
-                                passwordToggle.confirmIsShown
-                                    ? closedEye
-                                    : openEye
-                            }
-                            onImageClick={() =>
-                                handlePasswordToggle('confirm-password')
-                            }
-                        />
-                    </section>
+                    {inputFields.map((field) => (
+                        <section key={field.label}>
+                            <Input
+                                type={field.type}
+                                label={field.label}
+                                placeholder={field.placeholder}
+                                value={field.value || ''}
+                                imgSrc={field.imgSrc}
+                                onImageClick={field.imageClickHandler}
+                                onInputChange={field.inputChangeHandler}
+                            />
+                        </section>
+                    ))}
                     {error && <p className="error-message">{error}</p>}
                     <div className="btn-submit-container">
                         <Button

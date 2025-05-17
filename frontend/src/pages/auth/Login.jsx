@@ -60,39 +60,45 @@ const Login = () => {
     }
 
     const description = 'Enter your details below to access your account';
+
+    const inputFields = [
+        {
+            type: 'email',
+            label: 'Email',
+            placeholder: 'email@example.com',
+            value: data.email,
+            inputChangeHandler: (event) =>
+                handleInputChange('email', event.target.value),
+        },
+        {
+            type: passwordToggle.type,
+            label: 'Password',
+            placeholder: 'Enter your password',
+            value: data.password,
+            imgSrc: passwordToggle.isShown ? closedEye : openEye,
+            imageClickHandler: handlePasswordToggle,
+            inputChangeHandler: (event) =>
+                handleInputChange('password', event.target.value),
+        },
+    ];
+
     return (
         <main>
             <Card>
                 <AuthForm heading="Welcome back" description={description}>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange('email', event.target.value)
-                            }
-                            value={data.email || ''}
-                            type="email"
-                            placeholder="email@example.com"
-                            label="Email"
-                        />
-                    </section>
-                    <section>
-                        <Input
-                            onInputChange={(event) =>
-                                handleInputChange(
-                                    'password',
-                                    event.target.value
-                                )
-                            }
-                            value={data.password || ''}
-                            type={passwordToggle.type}
-                            placeholder="Enter your password"
-                            label="Password"
-                            imgSrc={
-                                passwordToggle.isShown ? closedEye : openEye
-                            }
-                            onImageClick={handlePasswordToggle}
-                        />
-                    </section>
+                    {inputFields.map((field) => (
+                        <section key={field.label}>
+                            <Input
+                                type={field.type}
+                                label={field.label}
+                                placeholder={field.placeholder}
+                                value={field.value || ''}
+                                imgSrc={field.imgSrc}
+                                onImageClick={field.imageClickHandler}
+                                onInputChange={field.inputChangeHandler}
+                            />
+                        </section>
+                    ))}
                     {error && <p className="error-message">{error}</p>}
                     <div className="btn-submit-container">
                         <Button

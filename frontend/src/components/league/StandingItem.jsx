@@ -2,36 +2,48 @@ import { Link } from 'react-router-dom';
 import StandingField from './StandingField.jsx';
 import './StandingItem.css';
 
-const Standing = ({
-    id,
-    name,
-    wins,
-    draws,
-    loses,
-    goalsFoward,
-    goalsAgainst,
-    playedGames,
-    points,
-    goalDifference,
-}) => {
+const Standing = (props) => {
+    const items = [
+        { id: 'i1', value: 1 },
+        {
+            id: 'i2',
+            value: props.name,
+            type: 'name',
+            class: 'league-standings__heading-field',
+        },
+        { id: 'i3', value: props.playedGames },
+        { id: 'i4', value: props.wins },
+        { id: 'i5', value: props.draws },
+        { id: 'i6', value: props.loses },
+        { id: 'i7', value: props.goalsFoward },
+        { id: 'i8', value: props.goalsAgainst },
+        { id: 'i9', value: props.goalDifference },
+        {
+            id: 'i10',
+            value: props.points,
+            class: 'league-standings__points-field',
+        },
+    ];
+
     return (
         <tr className="league-standings__row">
-            <StandingField>1</StandingField>
-            <StandingField className="league-standings__heading-field">
-                <Link to={`/teams/${id}`} state={name}>
-                    {name}
-                </Link>
-            </StandingField>
-            <StandingField>{playedGames}</StandingField>
-            <StandingField>{wins}</StandingField>
-            <StandingField>{draws}</StandingField>
-            <StandingField>{loses}</StandingField>
-            <StandingField>{goalsFoward}</StandingField>
-            <StandingField>{goalsAgainst}</StandingField>
-            <StandingField>{goalDifference}</StandingField>
-            <StandingField className="league-standings__points-field">
-                {points}
-            </StandingField>
+            {items.map((item) => {
+                if (item.type === 'name') {
+                    return (
+                        <StandingField key={item.id} className={item.class}>
+                            <Link to={`/teams/${props.id}`} state={item.value}>
+                                {item.value}
+                            </Link>
+                        </StandingField>
+                    );
+                }
+
+                return (
+                    <StandingField key={item.id} className={item.class || ''}>
+                        {item.value}
+                    </StandingField>
+                );
+            })}
         </tr>
     );
 };
