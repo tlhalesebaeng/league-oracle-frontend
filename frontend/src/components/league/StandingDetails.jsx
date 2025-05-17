@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
 
 const Details = ({ leagueName, dateCreated, teamName }) => {
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
 
     const handleLeagueNameClick = () => {
@@ -20,11 +22,14 @@ const Details = ({ leagueName, dateCreated, teamName }) => {
         <section className="league-details">
             <div className="header">
                 <h2 onClick={handleLeagueNameClick}>{leagueName}</h2>
-                <div className="btn-update">
-                    <Button onClick={handleEditLeague} type="no-bg">
-                        Edit
-                    </Button>
-                </div>
+                {/* will verify the league creator later */}
+                {isAuth && (
+                    <div className="btn-update">
+                        <Button onClick={handleEditLeague} type="no-bg">
+                            Edit
+                        </Button>
+                    </div>
+                )}
             </div>
             {teamName && <h3>{teamName} page</h3>}
             {!teamName && <p>{dateCreated}</p>}

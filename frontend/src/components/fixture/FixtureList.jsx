@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Button from '../../utils/Button.jsx';
 import FixtureItem from './FixtureItem.jsx';
 import Modal from '../modal/Modal.jsx';
 import Backdrop from '../modal/Backdrop.jsx';
+import GeneratorModal from './generatorModal/GeneratorModal.jsx';
 import './FixtureList.css';
-import GeneratorModal from './generatorModal.jsx/generatorModal';
 
 const FixtureList = ({ fixtures }) => {
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const [showModal, setShowModal] = useState(false);
 
     const handleGenerateFixtures = () => {
@@ -35,11 +38,14 @@ const FixtureList = ({ fixtures }) => {
                 {(!fixtures || fixtures.length === 0) && (
                     <li className="no-fixtures">
                         <p>No fixtures found</p>
-                        <div>
-                            <Button onClick={handleGenerateFixtures}>
-                                Generate
-                            </Button>
-                        </div>
+                        {/* will verify the league creator later */}
+                        {isAuth && (
+                            <div>
+                                <Button onClick={handleGenerateFixtures}>
+                                    Generate
+                                </Button>
+                            </div>
+                        )}
                     </li>
                 )}
             </ul>

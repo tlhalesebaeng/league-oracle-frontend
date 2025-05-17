@@ -1,10 +1,13 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Button from '../../utils/Button.jsx';
 import './ResultItem.css';
 
 const ResultItem = ({ result }) => {
-    const { id, homeTeam, homeScore, awayScore, awayTeam, date } = result;
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
+
+    const { id, homeTeam, homeScore, awayScore, awayTeam, date } = result;
 
     const handleEditResult = () => {
         navigate(`/results/${id}`);
@@ -21,11 +24,14 @@ const ResultItem = ({ result }) => {
                 </p>
                 <NavLink>{awayTeam}</NavLink>
             </section>
-            <section className="result-list__edit-btn">
-                <Button onClick={handleEditResult} type="no-bg">
-                    Edit
-                </Button>
-            </section>
+            {/* will verify the league creator later */}
+            {isAuth && (
+                <section className="result-list__edit-btn">
+                    <Button onClick={handleEditResult} type="no-bg">
+                        Edit
+                    </Button>
+                </section>
+            )}
         </li>
     );
 };

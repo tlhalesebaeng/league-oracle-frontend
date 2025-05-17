@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import ResultItem from './ResultItem.jsx';
 import Button from '../../utils/Button.jsx';
 import Modal from '../modal/Modal.jsx';
@@ -7,6 +9,7 @@ import InstructionModal from './resultModal/instructionModal.jsx';
 import './ResultList.css';
 
 const ResultList = ({ results }) => {
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const [showModal, setShowModal] = useState(false);
 
     const handleAddResults = () => {
@@ -37,9 +40,12 @@ const ResultList = ({ results }) => {
                 {(!results || results.length === 0) && (
                     <li className="no-results">
                         <p>No results found</p>
-                        <div>
-                            <Button onClick={handleAddResults}>Add</Button>
-                        </div>
+                        {/* will verify the league creator later */}
+                        {isAuth && (
+                            <div>
+                                <Button onClick={handleAddResults}>Add</Button>
+                            </div>
+                        )}
                     </li>
                 )}
             </ul>
