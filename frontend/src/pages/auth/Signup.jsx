@@ -12,18 +12,50 @@ import Input from '../../utils/Input.jsx';
 import Card from '../../components/app/Card.jsx';
 import AuthForm from '../../components/auth/AuthForm.jsx';
 import Question from '../../components/auth/Question.jsx';
+import closedEye from '../../assets/closed-eye.png';
+import openEye from '../../assets/open-eye.png';
 
 const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({});
     const { error, setError, request, isLoading } = useFetch();
+    const [passwordToggle, setPasswordToggle] = useState({
+        passwordType: 'password',
+        confirmType: 'password',
+        passwordIsShown: false,
+        confirmIsShown: false,
+    }); // password and confirm password toggle state
 
     dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
 
     const handleInputChange = (type, value) => {
         setError(''); // reset the error if any
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
+    };
+
+    const handlePasswordToggle = (type) => {
+        if (type === 'password') {
+            setPasswordToggle((prevState) => {
+                const newState = { ...prevState };
+                if (prevState.passwordType === 'password')
+                    newState['passwordType'] = 'text';
+                else newState['passwordType'] = 'password';
+                newState['passwordIsShown'] = !prevState.passwordIsShown;
+                return newState;
+            });
+        }
+
+        if (type === 'confirm-password') {
+            setPasswordToggle((prevState) => {
+                const newState = { ...prevState };
+                if (prevState.confirmType === 'password')
+                    newState['confirmType'] = 'text';
+                else newState['confirmType'] = 'password';
+                newState['confirmIsShown'] = !prevState.confirmIsShown;
+                return newState;
+            });
+        }
     };
 
     const handleSignup = async (event) => {
@@ -108,9 +140,17 @@ const Signup = () => {
                                 )
                             }
                             value={data.password || ''}
-                            type="password"
+                            type={passwordToggle.passwordType}
                             placeholder="Enter your password"
                             label="Password"
+                            imgSrc={
+                                passwordToggle.passwordIsShown
+                                    ? closedEye
+                                    : openEye
+                            }
+                            onImageClick={() =>
+                                handlePasswordToggle('password')
+                            }
                         />
                     </section>
                     <section>
@@ -122,9 +162,17 @@ const Signup = () => {
                                 )
                             }
                             value={data.passwordConfirm || ''}
-                            type="password"
+                            type={passwordToggle.confirmType}
                             placeholder="Confirm your password"
                             label="Confirm password"
+                            imgSrc={
+                                passwordToggle.confirmIsShown
+                                    ? closedEye
+                                    : openEye
+                            }
+                            onImageClick={() =>
+                                handlePasswordToggle('confirm-password')
+                            }
                         />
                     </section>
                     {error && <p className="error-message">{error}</p>}

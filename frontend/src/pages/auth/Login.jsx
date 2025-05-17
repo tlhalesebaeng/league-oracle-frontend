@@ -12,18 +12,34 @@ import Input from '../../utils/Input.jsx';
 import Card from '../../components/app/Card.jsx';
 import Question from '../../components/auth/Question.jsx';
 import AuthForm from '../../components/auth/AuthForm.jsx';
+import closedEye from '../../assets/closed-eye.png';
+import openEye from '../../assets/open-eye.png';
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({});
     const { error, setError, request, isLoading } = useFetch();
+    const [passwordToggle, setPasswordToggle] = useState({
+        type: 'password',
+        isShown: false,
+    }); // password toggle state
 
     dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
 
     const handleInputChange = (type, value) => {
         setError(''); // reset the error if any
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
+    };
+
+    const handlePasswordToggle = () => {
+        setPasswordToggle((prevState) => {
+            const newState = {};
+            if (prevState.type === 'password') newState['type'] = 'text';
+            else newState['type'] = 'password';
+            newState['isShown'] = !prevState.isShown;
+            return newState;
+        });
     };
 
     const handleLogin = async (event) => {
@@ -68,9 +84,13 @@ const Login = () => {
                                 )
                             }
                             value={data.password || ''}
-                            type="password"
+                            type={passwordToggle.type}
                             placeholder="Enter your password"
                             label="Password"
+                            imgSrc={
+                                passwordToggle.isShown ? closedEye : openEye
+                            }
+                            onImageClick={handlePasswordToggle}
                         />
                     </section>
                     {error && <p className="error-message">{error}</p>}
