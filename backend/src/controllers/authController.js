@@ -80,6 +80,15 @@ export const login = asyncHandler(async (req, res, next) => {
     sendToken(res, 200, user);
 });
 
+export const logout = asyncHandler(async (req, res, next) => {
+    const cookieOptions = {
+        expires: new Date(Date.now() - 24 * 60 * 60 * 1000),
+        httpOnly: true,
+    };
+    res.cookie('access_jwt', '', cookieOptions);
+    res.status(204).json(null);
+});
+
 export const protect = asyncHandler(async (req, res, next) => {
     // check if the token exists and get it
     if (!req.cookies || !req.cookies.access_jwt) {

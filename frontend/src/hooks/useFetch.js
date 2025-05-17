@@ -3,6 +3,9 @@ import api from '../utils/functions/axiosInstance.js';
 
 // an object with functions for performing http requests
 const functions = {
+    get: (url) => {
+        return api.get(url);
+    },
     post: (url, data) => {
         return api.post(url, data);
     },

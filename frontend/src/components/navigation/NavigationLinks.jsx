@@ -1,19 +1,25 @@
 import { useNavigate } from 'react-router-dom';
-import './NavigationLinks.css';
 import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/auth-slice';
+import { authActions } from '../../store/auth-slice.js';
+import { useFetch } from '../../hooks/useFetch.js';
+import './NavigationLinks.css';
 
 const NavigationLinks = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { request } = useFetch();
 
     const handleCreateLeague = () => {
         navigate('/leagues/create');
     };
 
-    const handleLogout = () => {
-        dispatch(authActions.logout());
-        navigate('/');
+    const handleLogout = async () => {
+        // remove the access token
+        const response = await request('/auth/logout', 'get');
+        if (response) {
+            dispatch(authActions.logout());
+            navigate('/');
+        }
     };
 
     return (
