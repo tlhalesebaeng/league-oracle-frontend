@@ -1,8 +1,8 @@
 import './AuthForm.css';
 
-const AuthForm = ({ onSubmit, heading, description, children }) => {
+const AuthForm = ({ heading, description, children }) => {
     return (
-        <form onSubmit={onSubmit} className="auth-form">
+        <form className="auth-form">
             <h1>{heading}</h1>
             <p className="description">{description}</p>
             {children}

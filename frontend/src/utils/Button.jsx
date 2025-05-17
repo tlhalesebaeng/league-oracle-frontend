@@ -11,7 +11,7 @@ const Button = ({ onClick, children, type, disabled }) => {
     else className += 'bg-blue';
 
     return (
-        <button disabled onClick={onClick} className={className}>
+        <button disabled={disabled} onClick={onClick} className={className}>
             {children}
         </button>
     );

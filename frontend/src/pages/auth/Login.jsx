@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../store/ui-slice.js';
 import { authActions } from '../../store/auth-slice.js';
-import { isValidEmail } from '../../utils/utilityFunctions.js';
+import { useFetch } from '../../hooks/useFetch.js';
+import isValidEmail from '../../utils/functions/validEmail.js';
 
 import Button from '../../utils/Button.jsx';
 import Input from '../../utils/Input.jsx';
@@ -16,18 +17,24 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({});
+    const { error, setError, request, isLoading } = useFetch();
 
     dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
 
     const handleInputChange = (type, value) => {
+        setError(''); // reset the error if any
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
     };
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault(); // prevent browser reload
 
-        // dispatch(authActions.authenticate());
-        // navigate('/home');
+        const response = await request('/auth/login', 'post', data);
+
+        if (response && response.data) {
+            dispatch(authActions.authenticate(response.data.user));
+            navigate('/home');
+        }
     };
 
     // input data validation (no need for state because every input change reloads the component)
@@ -40,17 +47,13 @@ const Login = () => {
     return (
         <main>
             <Card>
-                <AuthForm
-                    onSubmit={handleLogin}
-                    heading="Welcome back"
-                    description={description}
-                >
+                <AuthForm heading="Welcome back" description={description}>
                     <section>
                         <Input
                             onInputChange={(event) =>
                                 handleInputChange('email', event.target.value)
                             }
-                            value={data.email}
+                            value={data.email || ''}
                             type="email"
                             placeholder="email@example.com"
                             label="Email"
@@ -64,14 +67,20 @@ const Login = () => {
                                     event.target.value
                                 )
                             }
-                            value={data.password}
+                            value={data.password || ''}
                             type="password"
                             placeholder="Enter your password"
                             label="Password"
                         />
                     </section>
+                    {error && <p className="error-message">{error}</p>}
                     <div className="btn-submit-container">
-                        <Button disabled={disabled}>Login</Button>
+                        <Button
+                            onClick={handleLogin}
+                            disabled={isLoading ? true : disabled}
+                        >
+                            {isLoading ? 'Loading...' : 'Login'}
+                        </Button>
                     </div>
                 </AuthForm>
                 <Question link="/signup" linkText="Signup">

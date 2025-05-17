@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../store/ui-slice.js';
 import { authActions } from '../../store/auth-slice.js';
-import { isValidEmail } from '../../utils/utilityFunctions.js';
+import isValidEmail from '../../utils/functions/validEmail.js';
 
 import Button from '../../utils/Button.jsx';
 import Input from '../../utils/Input.jsx';
@@ -60,7 +60,7 @@ const Signup = () => {
                                     event.target.value
                                 )
                             }
-                            value={data.fullname}
+                            value={data.fullname || ''}
                             type="text"
                             placeholder="name and surname"
                             label="Fullname"
@@ -71,7 +71,7 @@ const Signup = () => {
                             onInputChange={(event) =>
                                 handleInputChange('email', event.target.value)
                             }
-                            value={data.email}
+                            value={data.email || ''}
                             type="email"
                             placeholder="email@example.com"
                             label="Email"
@@ -85,7 +85,7 @@ const Signup = () => {
                                     event.target.value
                                 )
                             }
-                            value={data.password}
+                            value={data.password || ''}
                             type="password"
                             placeholder="Enter your password"
                             label="Password"
@@ -99,7 +99,7 @@ const Signup = () => {
                                     event.target.value
                                 )
                             }
-                            value={data.passwordConfirm}
+                            value={data.passwordConfirm || ''}
                             type="password"
                             placeholder="Confirm your password"
                             label="Confirm password"
