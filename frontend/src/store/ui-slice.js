@@ -6,6 +6,7 @@ const uiSlice = createSlice({
         authButtonsShown: false,
         leaguesModalShown: false,
         confirmModalShown: false,
+        alert: { isShown: false, message: '', type: '' },
     },
     reducers: {
         showAuthButtons(state) {
@@ -25,6 +26,16 @@ const uiSlice = createSlice({
         },
         hideConfirmModal(state) {
             state.confirmModalShown = false;
+        },
+        showAlert(state, action) {
+            state.alert.isShown = true;
+            state.alert.message = action.payload.message;
+            state.alert.type = action.payload.type;
+        },
+        hideAlert(state) {
+            state.alert.isShown = false;
+            state.alert.message = '';
+            state.alert.type = '';
         },
     },
 });

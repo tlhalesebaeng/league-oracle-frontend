@@ -3,20 +3,38 @@ import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import './NavigationLinks.css';
+import { uiActions } from '../../store/ui-slice.js';
+import { useEffect } from 'react';
 
 const NavigationLinks = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { request } = useFetch();
+    const { request, error, setError, isLoading } = useFetch();
+
+    const showAlert = (type, message) => {
+        dispatch(uiActions.showAlert({ type, message }));
+
+        // remove the alert after 5 seconds
+        setTimeout(() => {
+            dispatch(uiActions.hideAlert());
+        }, 5 * 1000);
+    };
+
+    useEffect(() => {
+        if (error) {
+            showAlert('error', 'Logout failed');
+            setError(''); // reset the error to avoid an infinite loop
+        }
+    }, [error]);
 
     const handleCreateLeague = () => {
         navigate('/leagues/create');
     };
 
     const handleLogout = async () => {
-        // remove the access token
-        const response = await request('/auth/logout', 'get');
+        const response = await request('/auth/logout', 'get'); // remove the access token
         if (response) {
+            showAlert('success', 'Logout successful');
             dispatch(authActions.logout());
             navigate('/');
         }
@@ -40,7 +58,7 @@ const NavigationLinks = () => {
                 </svg>
             </li>
             <li onClick={handleLogout} className="navigation-link__logout">
-                <p>Logout</p>
+                <p>{isLoading ? 'Loading...' : 'Logout'}</p>
             </li>
         </>
     );
