@@ -1,7 +1,11 @@
-import MyLeagues from '../../components/league/MyLeagues';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
+import MyLeagues from '../../components/league/MyLeagues.jsx';
 
 const Home = () => {
-    // this page should be protected
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
+
     const leagues = [
         {
             id: 'l1',
@@ -19,6 +23,8 @@ const Home = () => {
             created: '20-01-2024',
         },
     ];
+
+    if (!isAuth) return <Navigate to="/" />; // this will help us to avoid loading the jsx which happens when using useEffect
 
     return (
         <div className="layout-content">
