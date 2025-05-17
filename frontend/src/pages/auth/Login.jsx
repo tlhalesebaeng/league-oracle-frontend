@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -25,7 +25,9 @@ const Login = () => {
         isShown: false,
     }); // password toggle state
 
-    dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
+    useEffect(() => {
+        dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
+    }, []);
 
     const handleInputChange = (type, value) => {
         setError(''); // reset the error if any
