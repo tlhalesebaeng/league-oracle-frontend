@@ -1,6 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { uiActions } from '../../store/ui-slice.js';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import View from '../../components/app/View';
 

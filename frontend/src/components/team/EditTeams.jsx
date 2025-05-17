@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import Input from '../../utils/Input.jsx';
 import Button from '../../utils/Button.jsx';
@@ -8,7 +9,6 @@ import Modal from '../modal/Modal.jsx';
 import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import binImg from '../../assets/bin.png';
 import './EditTeams.css';
-import { uiActions } from '../../store/ui-slice';
 
 const EditTeams = ({ teams }) => {
     const showModal = useSelector((state) => state.ui.confirmModalShown);
@@ -37,8 +37,6 @@ const EditTeams = ({ teams }) => {
     };
 
     const handleCancelChanges = () => {
-        console.log('Prop teams', teams);
-        console.log('State teams', leagueTeams);
         setLeagueTeams(teams);
     };
 

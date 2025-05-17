@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { uiActions } from '../../store/ui-slice';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 const Landing = () => {
     const dispatch = useDispatch();

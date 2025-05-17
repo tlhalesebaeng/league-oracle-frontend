@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { uiActions } from '../../store/ui-slice.js';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import Modal from '../modal/Modal.jsx';
 import Backdrop from '../modal/Backdrop.jsx';
-import './SearchLeagues.css';
 import SearchModal from '../league/searchModal/SearchModal.jsx';
+import './SearchLeagues.css';
 
 const SearchLeagues = () => {
     const dispatch = useDispatch();

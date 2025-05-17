@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import { authActions } from '../../store/auth-slice.js';
 import { useFetch } from '../../hooks/useFetch.js';
+import { alertActions } from '../../store/ui/alert-slice.js';
+
 import './NavigationLinks.css';
-import { uiActions } from '../../store/ui-slice.js';
-import { useEffect } from 'react';
 
 const NavigationLinks = () => {
     const navigate = useNavigate();
@@ -12,11 +14,11 @@ const NavigationLinks = () => {
     const { request, error, setError, isLoading } = useFetch();
 
     const showAlert = (type, message) => {
-        dispatch(uiActions.showAlert({ type, message }));
+        dispatch(alertActions.showAlert({ type, message }));
 
         // remove the alert after 5 seconds
         setTimeout(() => {
-            dispatch(uiActions.hideAlert());
+            dispatch(alertActions.hideAlert());
         }, 5 * 1000);
     };
 

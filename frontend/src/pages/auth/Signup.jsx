@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { uiActions } from '../../store/ui-slice.js';
+import { uiActions } from '../../store/ui/ui-slice.js';
 import { authActions } from '../../store/auth-slice.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import isValidEmail from '../../utils/functions/validEmail.js';

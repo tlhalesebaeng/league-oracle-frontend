@@ -1,17 +1,17 @@
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { uiActions } from '../../store/ui-slice.js';
+import { alertActions } from '../../store/ui/alert-slice.js';
 import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
 import './RootLayout.css';
 
 const RootLayout = () => {
-    const alert = useSelector((state) => state.ui.alert);
+    const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch();
 
     const handleCloseAlert = () => {
         // the timeout that removes the alert is still running and this does not clear it
-        dispatch(uiActions.hideAlert());
+        dispatch(alertActions.hideAlert());
     };
 
     return (

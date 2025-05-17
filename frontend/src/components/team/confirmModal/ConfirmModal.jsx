@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { uiActions } from '../../../store/ui-slice.js';
+import { uiActions } from '../../../store/ui/ui-slice.js';
 
 import Button from '../../../utils/Button.jsx';
 import './ConfirmModal.css';
