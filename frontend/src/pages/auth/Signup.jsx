@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../store/ui-slice.js';
 import { authActions } from '../../store/auth-slice.js';
+import { useFetch } from '../../hooks/useFetch.js';
 import isValidEmail from '../../utils/functions/validEmail.js';
 
 import Button from '../../utils/Button.jsx';
@@ -16,18 +17,24 @@ const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({});
+    const { error, setError, request, isLoading } = useFetch();
 
     dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
 
     const handleInputChange = (type, value) => {
+        setError(''); // reset the error if any
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
     };
 
-    const handleSignup = (event) => {
+    const handleSignup = async (event) => {
         event.preventDefault(); // prevent browser reload
 
-        // dispatch(authActions.authenticate());
-        // navigate('/home');
+        const response = await request('/auth/signup', 'post', data);
+
+        if (response && response.data) {
+            dispatch(authActions.authenticate(response.data.user));
+            navigate('/home');
+        }
     };
 
     // input data validation (no need for state because every input change reloads the component)
@@ -35,7 +42,8 @@ const Signup = () => {
     if (
         !data.email ||
         !isValidEmail(data.email) ||
-        !data.fullname ||
+        !data.firstName ||
+        !data.lastName ||
         !data.password ||
         !data.passwordConfirm ||
         data.password !== data.passwordConfirm
@@ -56,14 +64,28 @@ const Signup = () => {
                         <Input
                             onInputChange={(event) =>
                                 handleInputChange(
-                                    'fullname',
+                                    'firstName',
                                     event.target.value
                                 )
                             }
-                            value={data.fullname || ''}
+                            value={data.firstName || ''}
                             type="text"
-                            placeholder="name and surname"
-                            label="Fullname"
+                            placeholder="Your first name"
+                            label="Firstname"
+                        />
+                    </section>
+                    <section>
+                        <Input
+                            onInputChange={(event) =>
+                                handleInputChange(
+                                    'lastName',
+                                    event.target.value
+                                )
+                            }
+                            value={data.lastName || ''}
+                            type="text"
+                            placeholder="Your last name"
+                            label="Lastname"
                         />
                     </section>
                     <section>
@@ -105,9 +127,13 @@ const Signup = () => {
                             label="Confirm password"
                         />
                     </section>
+                    {error && <p className="error-message">{error}</p>}
                     <div className="btn-submit-container">
-                        <Button disabled={disabled} onClick={handleSignup}>
-                            Create Account
+                        <Button
+                            disabled={isLoading ? true : disabled}
+                            onClick={handleSignup}
+                        >
+                            {isLoading ? 'Loading...' : 'Create account'}
                         </Button>
                     </div>
                 </AuthForm>
