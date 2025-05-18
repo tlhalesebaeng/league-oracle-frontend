@@ -19,4 +19,19 @@ const alertSlice = createSlice({
 
 export const alertActions = alertSlice.actions;
 
+export let alertTimeout = null;
+
+// an action creator to show the alert message and remove it after some time
+export const showAlert = (type, message) => {
+    return (dispatch) => {
+        dispatch(alertActions.showAlert({ type, message }));
+
+        // remove the alert after 5 seconds
+        alertTimeout = setTimeout(() => {
+            dispatch(alertActions.hideAlert());
+            console.log('alert removed');
+        }, 5 * 1000);
+    };
+};
+
 export default alertSlice;

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { authActions } from '../../store/auth-slice.js';
 import { useFetch } from '../../hooks/useFetch.js';
-import { alertActions } from '../../store/ui/alert-slice.js';
+import { showAlert } from '../../store/ui/alert-slice.js';
 
 import './NavigationLinks.css';
 
@@ -13,18 +13,9 @@ const NavigationLinks = () => {
     const dispatch = useDispatch();
     const { request, error, setError, isLoading } = useFetch();
 
-    const showAlert = (type, message) => {
-        dispatch(alertActions.showAlert({ type, message }));
-
-        // remove the alert after 5 seconds
-        setTimeout(() => {
-            dispatch(alertActions.hideAlert());
-        }, 5 * 1000);
-    };
-
     useEffect(() => {
         if (error) {
-            showAlert('error', 'Logout failed');
+            dispatch(showAlert('error', 'Logout failed'));
             setError(''); // reset the error to avoid an infinite loop
         }
     }, [error]);
@@ -36,7 +27,7 @@ const NavigationLinks = () => {
     const handleLogout = async () => {
         const response = await request('/auth/logout', 'get'); // remove the access token
         if (response) {
-            showAlert('success', 'Logout successful');
+            dispatch(showAlert('success', 'Logout successful'));
             dispatch(authActions.logout());
             navigate('/');
         }
