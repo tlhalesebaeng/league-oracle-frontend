@@ -1,16 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
 
-const Details = ({ leagueName, dateCreated, teamName }) => {
+const StandingDetails = ({ teamName }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
+    const { league } = useLoaderData();
 
     const handleLeagueNameClick = () => {
-        navigate('/leagues/l3', {
-            state: { leagueName: 'My buff league', dateCreated: '10-04-2020' },
+        navigate({
+            pathname: `/leagues/${league._id}`,
+            search: '?/tab=standings',
         });
     };
 
@@ -21,7 +23,7 @@ const Details = ({ leagueName, dateCreated, teamName }) => {
     return (
         <section className="league-details">
             <div className="header">
-                <h2 onClick={handleLeagueNameClick}>{leagueName}</h2>
+                <h2 onClick={handleLeagueNameClick}>{league.name}</h2>
                 {/* will verify the league creator later */}
                 {isAuth && (
                     <div className="btn-update">
@@ -32,9 +34,9 @@ const Details = ({ leagueName, dateCreated, teamName }) => {
                 )}
             </div>
             {teamName && <h3>{teamName} page</h3>}
-            {!teamName && <p>{dateCreated}</p>}
+            {!teamName && <p>{'10-20-2020'}</p>}
         </section>
     );
 };
 
-export default Details;
+export default StandingDetails;
