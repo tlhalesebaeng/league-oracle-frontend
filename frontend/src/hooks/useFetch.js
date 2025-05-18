@@ -20,13 +20,19 @@ export function useFetch() {
         const response = await functions[method](url, data);
         setIsLoading(false);
 
+        if (response.status === 404) {
+            // the url we are sending a request to is not found (developer error)
+            setError('An error occurred');
+            return undefined;
+        }
+
         if (response.status < 200 || response.status >= 300) {
             // set the error
             const responseData = response.data;
             if (responseData) {
                 setError(responseData.message);
             } else {
-                setError('Something went wrong! Please try again later.');
+                setError('Something went wrong! Please try again later');
             }
 
             return undefined;
