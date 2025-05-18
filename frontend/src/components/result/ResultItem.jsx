@@ -6,8 +6,10 @@ import './ResultItem.css';
 const ResultItem = ({ result }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
+    console.log(result);
 
-    const { id, homeTeam, homeScore, awayScore, awayTeam, date } = result;
+    const { id, homeTeam, homeTeamScore, awayTeam, awayTeamScore, date } =
+        result;
 
     const handleEditResult = () => {
         navigate(`/results/${id}`);
@@ -15,14 +17,14 @@ const ResultItem = ({ result }) => {
 
     return (
         <li className="result-list__item">
-            <p className="result-list__date">{date}</p>
+            <p className="result-list__date">{date || 'TBC'}</p>
             <section className="result-list__teams">
-                <NavLink>{homeTeam}</NavLink>
+                <NavLink>{homeTeam.name}</NavLink>
                 <p>
-                    <span>{homeScore}</span>
-                    <span>{awayScore}</span>
+                    <span>{homeTeamScore}</span>
+                    <span>{awayTeamScore}</span>
                 </p>
-                <NavLink>{awayTeam}</NavLink>
+                <NavLink>{awayTeam.name}</NavLink>
             </section>
             {/* will verify the league creator later */}
             {isAuth && (

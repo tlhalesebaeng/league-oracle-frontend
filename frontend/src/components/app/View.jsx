@@ -9,12 +9,7 @@ import ResultList from '../result/ResultList.jsx';
 import './View.css';
 
 // This is a shared component for standings, fixtures and results
-const View = ({
-    leagueDetails = {},
-    leagueStandings = [],
-    leagueFixtures = [],
-    leagueResults = [],
-}) => {
+const View = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const initialTab = searchParams.get('tab');
     const [tab, setTab] = useState(initialTab || 'standings');
@@ -49,12 +44,12 @@ const View = ({
     return (
         <main>
             <div className="view__header">
-                <StandingDetails {...leagueDetails} />
+                <StandingDetails />
                 <TabList tab={tab} {...tabHandlers} />
             </div>
-            {tab === 'standings' && <Standings standings={leagueStandings} />}
-            {tab === 'fixtures' && <FixtureList fixtures={leagueFixtures} />}
-            {tab === 'results' && <ResultList results={leagueResults} />}
+            {tab === 'standings' && <Standings />}
+            {tab === 'fixtures' && <FixtureList />}
+            {tab === 'results' && <ResultList />}
         </main>
     );
 };

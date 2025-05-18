@@ -1,7 +1,11 @@
+import { useLoaderData } from 'react-router-dom';
 import StandingItem from './StandingItem.jsx';
 import './Standings.css';
 
-const Standings = ({ standings }) => {
+const Standings = () => {
+    const data = useLoaderData();
+    const standings = data.league.teams;
+
     const tableHeaderFields = ['P', 'W', 'D', 'L', 'F', 'A', '+-', 'PTS'];
     return (
         <section className="league-standings">

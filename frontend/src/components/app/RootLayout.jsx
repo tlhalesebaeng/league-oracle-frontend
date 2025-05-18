@@ -1,6 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { alertActions, alertTimeout } from '../../store/ui/alert-slice.js';
+
 import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
 import './RootLayout.css';
@@ -8,6 +10,7 @@ import './RootLayout.css';
 const RootLayout = () => {
     const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch();
+    const navigation = useNavigation();
 
     const handleCloseAlert = () => {
         dispatch(alertActions.hideAlert());
@@ -24,6 +27,7 @@ const RootLayout = () => {
                 />
             )}
             <Navigation />
+            {navigation.state === 'loading' && <p>Loading...</p>}
             <Outlet />
         </>
     );

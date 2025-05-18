@@ -8,7 +8,7 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import Teams from './pages/app/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
-import ViewLeague from './pages/league/ViewLeague.jsx';
+import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
 import EditLeague from './pages/league/EditLeague.jsx';
 import ViewFixture from './pages/fixture/ViewFixture.jsx';
 import EditResult from './pages/result/EditResult.jsx';
@@ -32,6 +32,7 @@ const appRouter = createBrowserRouter([
                     {
                         path: ':leagueId',
                         element: <ViewLeague />,
+                        loader: leagueDataLoader,
                     },
                     {
                         path: 'create',

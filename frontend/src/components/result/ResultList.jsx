@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLoaderData } from 'react-router-dom';
 
 import ResultItem from './ResultItem.jsx';
 import Button from '../../utils/Button.jsx';
@@ -8,9 +9,10 @@ import Backdrop from '../modal/Backdrop.jsx';
 import InstructionModal from './resultModal/instructionModal.jsx';
 import './ResultList.css';
 
-const ResultList = ({ results }) => {
+const ResultList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const [showModal, setShowModal] = useState(false);
+    const { results } = useLoaderData();
 
     const handleAddResults = () => {
         // guide the user on how to add a result using a modal
@@ -35,7 +37,7 @@ const ResultList = ({ results }) => {
                 {results &&
                     results.length !== 0 &&
                     results.map((result) => (
-                        <ResultItem key={result.id} result={result} />
+                        <ResultItem key={result._id} result={result} />
                     ))}
                 {(!results || results.length === 0) && (
                     <li className="no-results">
