@@ -6,7 +6,6 @@ import './ResultItem.css';
 const ResultItem = ({ result }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
-    console.log(result);
 
     const { id, homeTeam, homeTeamScore, awayTeam, awayTeamScore, date } =
         result;
