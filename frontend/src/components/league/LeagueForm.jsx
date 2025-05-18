@@ -5,30 +5,51 @@ import Button from '../../utils/Button.jsx';
 import binImg from '../../assets/bin.png';
 import './LeagueForm.css';
 
-const LeagueForm = ({ onSubmit }) => {
-    const [teams, setTeams] = useState(['', '']);
+const LeagueForm = ({ onSubmit, loading }) => {
+    const [teams, setTeams] = useState([{ name: '' }, { name: '' }]); // each team should have a name property, this makes it easy to send the request
+    const [leagueName, setLeagueName] = useState('');
 
     const handleInputChange = (index, value) => {
         setTeams((prevTeams) => {
             const newTeams = [...prevTeams];
-            newTeams[index] = value;
+            newTeams[index] = { name: value };
             return newTeams;
         });
     };
 
     const handleAddTeam = (event) => {
         event.preventDefault();
-        setTeams((prevTeams) => [...prevTeams, '']);
+        setTeams((prevTeams) => [...prevTeams, { name: '' }]);
     };
 
     const handleDeleteTeam = (index) => {
+        // filter the team using the index only
         setTeams((prevTeams) => prevTeams.filter((_, i) => i !== index));
     };
+
+    // check if there is an empty field in the teams array and disable the create button
+    // but do so only if the league name is not empty
+    let disabled = false;
+    if (!leagueName) {
+        disabled = true;
+    } else {
+        for (let i = 0; i < teams.length; i++) {
+            if (!teams[i].name.trim()) {
+                disabled = true;
+                break;
+            }
+        }
+    }
 
     return (
         <form className="league-form">
             <section className="league-form__name">
-                <Input label="League name" placeholder="My ultimate league" />
+                <Input
+                    onInputChange={(event) => setLeagueName(event.target.value)}
+                    label="League name"
+                    placeholder="My ultimate league"
+                    value={leagueName}
+                />
             </section>
             <p className="league-form__message">
                 Please add teams below. At least 2 teams are required.
@@ -42,7 +63,7 @@ const LeagueForm = ({ onSubmit }) => {
                             onInputChange={(event) =>
                                 handleInputChange(index, event.target.value)
                             }
-                            value={team}
+                            value={team.name}
                             imgSrc={index > 1 ? binImg : undefined}
                             onImageClick={index > 1 ? deleteTeam : undefined}
                             placeholder={`Team ${index + 1}`}
@@ -57,8 +78,11 @@ const LeagueForm = ({ onSubmit }) => {
                     </Button>
                 </div>
                 <div className="btn-create">
-                    <Button onClick={(event) => onSubmit(event, teams)}>
-                        Create
+                    <Button
+                        disabled={disabled}
+                        onClick={(event) => onSubmit(event, teams, leagueName)}
+                    >
+                        {loading ? 'Loading...' : 'Create'}
                     </Button>
                 </div>
             </section>
