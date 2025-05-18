@@ -111,11 +111,6 @@ export const getAllLeagueFixtures = asyncHandler(async (req, res, next) => {
 
     const leagueAndFixtures = await Promise.all([fixturesQuery, leagueQuery]);
 
-    // if (!fixtures) {
-    //     const error = new AppError(400, 'No fixtures found for this league.');
-    //     return next(error);
-    // }
-
     const leagueName = leagueAndFixtures[1].name;
     const teams = leagueAndFixtures[1].teams;
     const dbFixtures = leagueAndFixtures[0];
@@ -129,8 +124,6 @@ export const getAllLeagueFixtures = asyncHandler(async (req, res, next) => {
 
         fixtures.push(fixture);
     });
-
-    console.log(fixtures);
 
     res.status(200).json({ name: leagueName, fixtures });
 });
