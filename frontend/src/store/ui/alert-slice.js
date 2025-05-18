@@ -29,7 +29,6 @@ export const showAlert = (type, message) => {
         // remove the alert after 5 seconds
         alertTimeout = setTimeout(() => {
             dispatch(alertActions.hideAlert());
-            console.log('alert removed');
         }, 5 * 1000);
     };
 };
