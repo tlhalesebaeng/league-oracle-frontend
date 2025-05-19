@@ -160,7 +160,11 @@ export const getLeagueFixture = asyncHandler(async (req, res, next) => {
 
     replaceTeams(dbFixture, teams, fixture);
 
-    res.status(200).json({ name: league.name, fixture });
+    res.status(200).json({
+        name: league.name,
+        creator: league.creator,
+        fixture,
+    });
 });
 
 export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
