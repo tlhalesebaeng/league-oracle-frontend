@@ -9,9 +9,6 @@ import MyLeagues from '../../components/league/MyLeagues.jsx';
 const Home = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
 
-    // navigating this way will help us to avoid loading the jsx which happens when using useEffect
-    if (!isAuth) return <Navigate to="/" />;
-
     const { request, error, isLoading } = useFetch();
     const [leagues, setLeagues] = useState();
     const dispatch = useDispatch();
@@ -29,6 +26,9 @@ const Home = () => {
 
         getMyLeague();
     }, [error]);
+
+    // navigating this way will help us to avoid loading the jsx which happens when using useEffect
+    if (!isAuth) return <Navigate to="/" />;
 
     // the styles for layout content class are stored in the RootLayout.css
     return (
