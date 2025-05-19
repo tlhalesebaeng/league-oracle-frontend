@@ -27,8 +27,8 @@ const MyLeagues = ({ leagues }) => {
             <ul>
                 {leagues.map((league) => (
                     <li
-                        onClick={() => navigate(`/leagues/${league.id}`)}
-                        key={league.id}
+                        onClick={() => navigate(`/leagues/${league._id}`)}
+                        key={league._id}
                     >
                         {league.name}
                     </li>

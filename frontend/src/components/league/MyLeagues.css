@@ -20,6 +20,7 @@
 .my-leagues ul li {
     margin: 5px 0px;
     padding: 5px 10px;
+    font-size: 14px;
     border: none;
     transition: background-color 0.15s;
 }
