@@ -6,7 +6,7 @@ import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
 import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
-import Teams from './pages/app/Teams.jsx';
+import Teams from './pages/team/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
 import EditLeague from './pages/league/EditLeague.jsx';
@@ -30,9 +30,19 @@ const appRouter = createBrowserRouter([
                 path: 'leagues',
                 children: [
                     {
+                        id: 'league-route',
                         path: ':leagueId',
-                        element: <ViewLeague />,
                         loader: leagueDataLoader,
+                        children: [
+                            {
+                                index: true,
+                                element: <ViewLeague />,
+                            },
+                            {
+                                path: 'teams/:teamId',
+                                element: <Teams />,
+                            },
+                        ],
                     },
                     {
                         path: 'create',
@@ -61,10 +71,6 @@ const appRouter = createBrowserRouter([
                         element: <EditResult />,
                     },
                 ],
-            },
-            {
-                path: 'teams/:teamId',
-                element: <Teams />,
             },
             {
                 path: 'about',

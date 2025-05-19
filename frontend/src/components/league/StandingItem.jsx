@@ -31,7 +31,10 @@ const Standing = (props) => {
                 if (item.type === 'name') {
                     return (
                         <StandingField key={item.id} className={item.class}>
-                            <Link to={`/teams/${props.id}`} state={item.value}>
+                            <Link
+                                to={`/leagues/${props.leagueId}/teams/${props.id}`}
+                                state={item.value}
+                            >
                                 {item.value}
                             </Link>
                         </StandingField>

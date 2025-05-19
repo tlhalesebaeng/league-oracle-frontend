@@ -1,13 +1,27 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
 
-const StandingDetails = ({ teamName }) => {
+const StandingDetails = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
-    const { league } = useLoaderData();
+    const { league } = useRouteLoaderData('league-route');
+    const params = useParams();
+
+    let team = null;
+    if (params.teamId) {
+        // we are looking at a team so we should show team details instead of league details
+        const teams = league.teams;
+        for (let i = 0; i < teams.length; i++) {
+            // TODO: Improve this (linear) search algorithm
+            if (teams[i]._id === params.teamId) {
+                team = teams[i];
+                break;
+            }
+        }
+    }
 
     const handleLeagueNameClick = () => {
         navigate({
@@ -33,8 +47,8 @@ const StandingDetails = ({ teamName }) => {
                     </div>
                 )}
             </div>
-            {teamName && <h3>{teamName} page</h3>}
-            {!teamName && <p>{'10-20-2020'}</p>}
+            {team && <h3>{team.name} page</h3>}
+            {!team && <p>{'10-20-2020'}</p>}
         </section>
     );
 };

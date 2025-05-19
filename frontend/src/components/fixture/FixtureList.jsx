@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLoaderData } from 'react-router-dom';
+import { useParams, useRouteLoaderData } from 'react-router-dom';
 
 import Button from '../../utils/Button.jsx';
 import FixtureItem from './FixtureItem.jsx';
@@ -12,7 +12,18 @@ import './FixtureList.css';
 const FixtureList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const [showModal, setShowModal] = useState(false);
-    const { fixtures } = useLoaderData();
+    let { fixtures } = useRouteLoaderData('league-route');
+    const params = useParams();
+
+    if (params.teamId) {
+        // we are looking at the team so we should only show fixtures for this team
+        fixtures = fixtures.filter((fixture) => {
+            const homeTeam = fixture.homeTeam;
+            const awayTeam = fixture.awayTeam;
+            const id = params.teamId;
+            return homeTeam._id === id || awayTeam._id === id;
+        });
+    }
 
     const handleGenerateFixtures = () => {
         // verify the league creator and generate league fixtures if there are no results

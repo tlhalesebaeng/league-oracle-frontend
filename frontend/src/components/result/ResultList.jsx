@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLoaderData } from 'react-router-dom';
+import { useParams, useRouteLoaderData } from 'react-router-dom';
 
 import ResultItem from './ResultItem.jsx';
 import Button from '../../utils/Button.jsx';
@@ -12,7 +12,18 @@ import './ResultList.css';
 const ResultList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const [showModal, setShowModal] = useState(false);
-    const { results } = useLoaderData();
+    let { results } = useRouteLoaderData('league-route');
+    const params = useParams();
+
+    if (params.teamId) {
+        // we are looking at the team so we should only show results for this team
+        results = results.filter((result) => {
+            const homeTeam = result.homeTeam;
+            const awayTeam = result.awayTeam;
+            const id = params.teamId;
+            return homeTeam._id === id || awayTeam._id === id;
+        });
+    }
 
     const handleAddResults = () => {
         // guide the user on how to add a result using a modal

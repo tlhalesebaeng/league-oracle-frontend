@@ -1,9 +1,10 @@
-import { useLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 import StandingItem from './StandingItem.jsx';
 import './Standings.css';
 
 const Standings = () => {
-    const data = useLoaderData();
+    const data = useRouteLoaderData('league-route');
+    const leagueId = data.league._id;
     const standings = data.league.teams;
 
     const tableHeaderFields = ['P', 'W', 'D', 'L', 'F', 'A', '+-', 'PTS'];
@@ -26,7 +27,11 @@ const Standings = () => {
                 </thead>
                 <tbody>
                     {standings.map((team) => (
-                        <StandingItem key={team.id} {...team} />
+                        <StandingItem
+                            key={team.id}
+                            leagueId={leagueId}
+                            {...team}
+                        />
                     ))}
                 </tbody>
             </table>
