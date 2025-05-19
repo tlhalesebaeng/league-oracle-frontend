@@ -5,17 +5,17 @@ const LeagueList = ({ onClose }) => {
     // keep the list of all leagues in the redux store
     const leagues = [
         {
-            id: 'l1',
+            id: '6810de853c7623120c8a1b20',
             name: 'Tlhalefos League',
             created: '10-04-2025',
         },
         {
-            id: 'l2',
+            id: '6811247715cd9def4c25913c',
             name: 'Sebaeng League',
             created: '07-09-2020',
         },
         {
-            id: 'l3',
+            id: '6829982b04d94bb16f3a787c',
             name: 'Kagiso League',
             created: '20-01-2024',
         },
