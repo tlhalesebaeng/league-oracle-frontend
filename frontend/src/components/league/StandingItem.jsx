@@ -4,7 +4,7 @@ import './StandingItem.css';
 
 const Standing = (props) => {
     const items = [
-        { id: 'i1', value: 1 },
+        { id: 'i1', value: props.teamPosition },
         {
             id: 'i2',
             value: props.name,
