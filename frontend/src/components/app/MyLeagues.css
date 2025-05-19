@@ -1,9 +1,0 @@
-.my-leagues {
-    height: 100%;
-    max-width: 250px;
-    border-right: 1px solid black;
-}
-
-.test {
-    width: calc(100% - 250px);
-}
