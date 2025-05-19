@@ -10,7 +10,9 @@ import Teams from './pages/team/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
 import EditLeague from './pages/league/EditLeague.jsx';
-import ViewFixture from './pages/fixture/ViewFixture.jsx';
+import ViewFixture, {
+    fixtureDataLoader,
+} from './pages/fixture/ViewFixture.jsx';
 import EditResult from './pages/result/EditResult.jsx';
 
 const appRouter = createBrowserRouter([
@@ -55,7 +57,9 @@ const appRouter = createBrowserRouter([
                 ],
             },
             {
+                id: 'fixture-route',
                 path: 'fixtures',
+                loader: fixtureDataLoader,
                 children: [
                     {
                         path: ':fixtureId',

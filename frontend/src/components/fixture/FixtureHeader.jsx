@@ -5,16 +5,20 @@ import './FixtureHeader.css';
 
 const FixtureHeader = ({ league, fixtureDate, fixtureTime }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
+    const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
 
-    // allow editing the date and time when we're logged in (will check for league creator later)
-    let paragraph = <p></p>;
-    if (isAuth) {
+    // check if the user is the league creator to be able to edit the fixture date and time
+    const isCreator = league.creator === user._id;
+
+    // allow editing the date and time when the user is logged in and is the league creator
+    let paragraph = null;
+    if (isAuth && isCreator) {
         paragraph = (
-            <p>
+            <div className="fixture-header__paragraph">
                 <EditField tag="span" name={fixtureDate} />|
                 <EditField tag="span" name={fixtureTime} />
-            </p>
+            </div>
         );
     } else {
         paragraph = (
@@ -27,7 +31,7 @@ const FixtureHeader = ({ league, fixtureDate, fixtureTime }) => {
     return (
         <section className="fixture-header">
             <div className="fixture-header__container">
-                <h2 onClick={() => navigate(`/leagues/${league.id}`)}>
+                <h2 onClick={() => navigate(`/leagues/${league._id}`)}>
                     {league.name}
                 </h2>
                 {paragraph}

@@ -20,11 +20,13 @@
     cursor: pointer;
 }
 
-.fixture-header p {
+.fixture-header p,
+.fixture-header__paragraph {
     display: flex;
 }
 
-.fixture-header p span {
+.fixture-header p span,
+.fixture-header__paragraph span {
     margin: 0px 10px;
 }
 

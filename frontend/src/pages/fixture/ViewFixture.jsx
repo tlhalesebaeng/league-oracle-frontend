@@ -1,44 +1,24 @@
-import FixtureDetails from '../../components/fixture/FixtureDetails';
+import FixtureDetails from '../../components/fixture/FixtureDetails.jsx';
+import api from '../../utils/functions/axiosInstance.js';
 
 const ViewFixture = () => {
-    const fixture = {
-        id: 'f4',
-        number: '#123',
-        awayTeam: {
-            id: 't1',
-            name: 'Sebaeng Team',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        homeTeam: {
-            id: 't2',
-            name: 'Tlhalefo Sebaeng FC',
-            wins: 8,
-            draws: 2,
-            loses: 0,
-            goalsFoward: 16,
-            goalsAgainst: 4,
-            playedGames: 10,
-            points: 20,
-            goalDifference: 12,
-        },
-        date: '10-01-2024',
-        time: '15:00',
-        venue: 'All nation field',
-        field: 'Field A',
-    };
+    return <FixtureDetails />;
+};
 
-    const league = {
-        id: 'l1',
-        name: 'Most massive league',
-    };
-    return <FixtureDetails league={league} leagueFixture={fixture} />;
+export const fixtureDataLoader = async ({ request, params }) => {
+    // get the league id from the url
+    const url = new URL(request.url);
+    const searchParams = new URLSearchParams(url.search);
+    const leagueId = searchParams.get('leagueId');
+
+    // get the league fixture
+    const response = await api.get(`/fixtures/${params.fixtureId}`, {
+        params: { leagueId },
+    });
+
+    // TODO: Handle errors of this request
+
+    return response.data;
 };
 
 export default ViewFixture;
