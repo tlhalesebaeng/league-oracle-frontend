@@ -35,7 +35,10 @@ const StandingDetails = () => {
     };
 
     const handleEditLeague = () => {
-        navigate('/leagues/edit');
+        navigate({
+            pathname: '/leagues/edit',
+            search: `?leagueId=${league._id}`,
+        });
     };
 
     return (

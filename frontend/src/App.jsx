@@ -1,4 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
+import EditLeague, {
+    editLeagueDataLoader,
+} from './pages/league/EditLeague.jsx';
+import ViewFixture, {
+    fixtureDataLoader,
+} from './pages/fixture/ViewFixture.jsx';
 
 import RootLayout from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
@@ -8,11 +15,6 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import Teams from './pages/team/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
-import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
-import EditLeague from './pages/league/EditLeague.jsx';
-import ViewFixture, {
-    fixtureDataLoader,
-} from './pages/fixture/ViewFixture.jsx';
 import EditResult from './pages/result/EditResult.jsx';
 
 const appRouter = createBrowserRouter([
@@ -52,6 +54,7 @@ const appRouter = createBrowserRouter([
                     },
                     {
                         path: 'edit',
+                        loader: editLeagueDataLoader,
                         element: <EditLeague />,
                     },
                 ],

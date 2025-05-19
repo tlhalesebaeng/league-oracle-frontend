@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLoaderData } from 'react-router-dom';
+
 import { uiActions } from '../../store/ui/ui-slice.js';
 
 import Input from '../../utils/Input.jsx';
@@ -10,10 +12,11 @@ import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import binImg from '../../assets/bin.png';
 import './EditTeams.css';
 
-const EditTeams = ({ teams }) => {
+const EditTeams = () => {
     const showModal = useSelector((state) => state.ui.confirmModalShown);
     const dispatch = useDispatch();
-    const [leagueTeams, setLeagueTeams] = useState([...(teams || [])]);
+    const league = useLoaderData();
+    const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
 
     const handleInputChange = (index, value) => {
         setLeagueTeams((prevTeams) => {
@@ -28,7 +31,10 @@ const EditTeams = ({ teams }) => {
     };
 
     const handleAddTeam = () => {
-        setLeagueTeams((prevTeams) => [...prevTeams, {}]);
+        setLeagueTeams((prevTeams) => [
+            ...prevTeams,
+            { _id: `t${prevTeams.length}` }, // we need this dummy id to help react to render a list properly
+        ]);
     };
 
     const handleSaveChanges = () => {
@@ -37,7 +43,7 @@ const EditTeams = ({ teams }) => {
     };
 
     const handleCancelChanges = () => {
-        setLeagueTeams(teams);
+        setLeagueTeams(league.teams);
     };
 
     const handleCloseModal = () => {
@@ -49,11 +55,14 @@ const EditTeams = ({ teams }) => {
             {showModal && <Backdrop onClose={handleCloseModal} />}
             {showModal && (
                 <Modal>
-                    <ConfirmModal oldItems={teams} newItems={leagueTeams} />
+                    <ConfirmModal
+                        oldItems={league.teams}
+                        newItems={leagueTeams}
+                    />
                 </Modal>
             )}
             {leagueTeams.map((leagueTeam, index) => (
-                <div key={leagueTeam.id} className="edit-teams__input">
+                <div key={leagueTeam._id} className="edit-teams__input">
                     <Input
                         onInputChange={(event) =>
                             handleInputChange(index, event.target.value)
