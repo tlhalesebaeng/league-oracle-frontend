@@ -6,6 +6,7 @@ import './StandingDetails.css';
 
 const StandingDetails = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
+    const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
     const { league } = useRouteLoaderData('league-route');
     const params = useParams();
@@ -23,6 +24,9 @@ const StandingDetails = () => {
         }
     }
 
+    // check if the user is the league creator to be able to edit the league
+    const isCreator = league.creator === user._id;
+
     const handleLeagueNameClick = () => {
         navigate({
             pathname: `/leagues/${league._id}`,
@@ -38,8 +42,7 @@ const StandingDetails = () => {
         <section className="league-details">
             <div className="header">
                 <h2 onClick={handleLeagueNameClick}>{league.name}</h2>
-                {/* will verify the league creator later */}
-                {isAuth && (
+                {isAuth && isCreator && (
                     <div className="btn-update">
                         <Button onClick={handleEditLeague} type="no-bg">
                             Edit
