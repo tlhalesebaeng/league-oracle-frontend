@@ -19,7 +19,6 @@ const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
                 </p>
                 <NavLink>{awayTeam.name}</NavLink>
             </section>
-            {/* will verify the league creator later */}
             {isAuth && isCreator && (
                 <section className="result-list__edit-btn">
                     <Button onClick={() => onEdit(_id)} type="no-bg">
