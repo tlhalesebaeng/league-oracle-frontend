@@ -6,6 +6,8 @@
 }
 
 .edit-field img {
+    height: 20px;
+    width: 20px;
     max-height: 40px;
     max-width: 40x;
     margin-left: 20px;

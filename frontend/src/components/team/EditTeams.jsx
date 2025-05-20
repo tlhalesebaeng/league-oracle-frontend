@@ -12,10 +12,9 @@ import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import binImg from '../../assets/bin.png';
 import './EditTeams.css';
 
-const EditTeams = () => {
+const EditTeams = ({ league }) => {
     const showModal = useSelector((state) => state.ui.confirmModalShown);
     const dispatch = useDispatch();
-    const league = useLoaderData();
     const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
 
     const handleInputChange = (index, value) => {
