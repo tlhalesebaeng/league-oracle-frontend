@@ -6,6 +6,9 @@ import EditLeague, {
 import ViewFixture, {
     fixtureDataLoader,
 } from './pages/fixture/ViewFixture.jsx';
+import EditResult, {
+    editResultDataLoader,
+} from './pages/result/EditResult.jsx';
 
 import RootLayout from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
@@ -15,7 +18,6 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import Teams from './pages/team/Teams.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
-import EditResult from './pages/result/EditResult.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -71,10 +73,12 @@ const appRouter = createBrowserRouter([
                 ],
             },
             {
+                id: 'result-route',
                 path: 'results',
+                loader: editResultDataLoader,
                 children: [
                     {
-                        path: ':resultId',
+                        path: 'edit',
                         element: <EditResult />,
                     },
                 ],

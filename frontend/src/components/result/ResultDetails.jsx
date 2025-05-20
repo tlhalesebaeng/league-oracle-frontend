@@ -1,25 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import Card from '../app/Card.jsx';
 import TeamScore from './TeamScore.jsx';
 import Button from '../../utils/Button.jsx';
 import './ResultDetails.css';
 
-const ResultDetails = ({ result }) => {
+const ResultDetails = () => {
+    const { result, name } = useRouteLoaderData('result-route');
     const navigate = useNavigate();
-    const { id, homeTeam, homeScore, awayTeam, awayScore } = result;
+
+    const { homeTeam, homeTeamScore, awayTeam, awayTeamScore } = result;
+
     const handleNameClick = () => {
-        navigate(`/leagues/l3`);
+        navigate(`/leagues/${result.league}`);
     };
+
     return (
         <Card>
             <h2
                 onClick={handleNameClick}
                 className="result-details__league-name"
             >
-                Most massive league
+                {name}
             </h2>
-            <TeamScore teamName={homeTeam} teamScore={homeScore} />
-            <TeamScore teamName={awayTeam} teamScore={awayScore} />
+            <TeamScore team={homeTeam} teamScore={homeTeamScore} />
+            <TeamScore team={awayTeam} teamScore={awayTeamScore} />
             <section className="result-details__buttons">
                 <div className="result-details__btn-save">
                     <Button type="save">Save</Button>

@@ -1,18 +1,12 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useNavigate, useRouteLoaderData } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
 import './ResultItem.css';
 
-const ResultItem = ({ result }) => {
-    const isAuth = useSelector((state) => state.auth.isAuthenticated);
-    const navigate = useNavigate();
-
-    const { id, homeTeam, homeTeamScore, awayTeam, awayTeamScore, date } =
+const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
+    // this component is rendered in a list so to improve performace accessing state
+    // and function definitions are put in the component that renders this component
+    const { _id, homeTeam, homeTeamScore, awayTeam, awayTeamScore, date } =
         result;
-
-    const handleEditResult = () => {
-        navigate(`/results/${id}`);
-    };
 
     return (
         <li className="result-list__item">
@@ -26,9 +20,9 @@ const ResultItem = ({ result }) => {
                 <NavLink>{awayTeam.name}</NavLink>
             </section>
             {/* will verify the league creator later */}
-            {isAuth && (
+            {isAuth && isCreator && (
                 <section className="result-list__edit-btn">
-                    <Button onClick={handleEditResult} type="no-bg">
+                    <Button onClick={() => onEdit(_id)} type="no-bg">
                         Edit
                     </Button>
                 </section>

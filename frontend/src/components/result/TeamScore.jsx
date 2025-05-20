@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../utils/Input';
 import './TeamScore.css';
 
-const TeamScore = ({ teamName, teamScore }) => {
+const TeamScore = ({ team, teamScore }) => {
     const [score, setScore] = useState(teamScore);
 
     const handleInputChange = (value) => {
@@ -12,7 +12,7 @@ const TeamScore = ({ teamName, teamScore }) => {
 
     return (
         <section className="team-score">
-            <Link to="/teams/t2">{teamName} </Link>
+            <Link to="/teams/t2">{team.name} </Link>
             <p>:</p>
             <Input
                 onInputChange={(event) => handleInputChange(event.target.value)}
