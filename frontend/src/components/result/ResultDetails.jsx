@@ -22,8 +22,16 @@ const ResultDetails = () => {
             >
                 {name}
             </h2>
-            <TeamScore team={homeTeam} teamScore={homeTeamScore} />
-            <TeamScore team={awayTeam} teamScore={awayTeamScore} />
+            <TeamScore
+                leagueId={result.league}
+                team={homeTeam}
+                teamScore={homeTeamScore}
+            />
+            <TeamScore
+                leagueId={result.league}
+                team={awayTeam}
+                teamScore={awayTeamScore}
+            />
             <section className="result-details__buttons">
                 <div className="result-details__btn-save">
                     <Button type="save">Save</Button>
