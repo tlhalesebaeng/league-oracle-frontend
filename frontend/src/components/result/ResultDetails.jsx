@@ -14,6 +14,10 @@ const ResultDetails = () => {
         navigate(`/leagues/${result.league}`);
     };
 
+    const handleCancelChanges = () => {
+        navigate(`/leagues/${result.league}`);
+    };
+
     return (
         <Card>
             <h2
@@ -37,7 +41,9 @@ const ResultDetails = () => {
                     <Button type="save">Save</Button>
                 </div>
                 <div className="result-details__btn-cancel">
-                    <Button type="cancel">Cancel</Button>
+                    <Button onClick={handleCancelChanges} type="cancel">
+                        Cancel
+                    </Button>
                 </div>
             </section>
         </Card>
