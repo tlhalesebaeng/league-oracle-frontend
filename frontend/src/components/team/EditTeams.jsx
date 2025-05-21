@@ -12,7 +12,7 @@ import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import binImg from '../../assets/bin.png';
 import './EditTeams.css';
 
-const EditTeams = ({ league }) => {
+const EditTeams = ({ league, onSave, onConfirm, error, isLoading }) => {
     const showModal = useSelector((state) => state.ui.confirmModalShown);
     const dispatch = useDispatch();
     const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
@@ -30,15 +30,12 @@ const EditTeams = ({ league }) => {
     };
 
     const handleAddTeam = () => {
+        // TODO: If there is a new team with the same name as the old one then just use the data
+        // of the old team because we cannot have teams of similar names
         setLeagueTeams((prevTeams) => [
             ...prevTeams,
             { _id: `t${prevTeams.length}` }, // we need this dummy id to help react to render a list properly
         ]);
-    };
-
-    const handleSaveChanges = () => {
-        // open a modal and ask the user for confirmation of changes
-        dispatch(uiActions.showConfirmModal());
     };
 
     const handleCancelChanges = () => {
@@ -49,12 +46,26 @@ const EditTeams = ({ league }) => {
         dispatch(uiActions.hideConfirmModal());
     };
 
+    // disable the save button when there is an empty name field or number of teams are less than 2
+    let disableSave = false;
+    if (leagueTeams.length < 2) disableSave = true;
+    else {
+        // TODO: Improve this (linear) search algorithm
+        for (let i = 0; i < leagueTeams.length; i++) {
+            if (!leagueTeams[i].name) {
+                disableSave = true;
+                break;
+            }
+        }
+    }
+
     return (
         <section className="edit-teams">
             {showModal && <Backdrop onClose={handleCloseModal} />}
             {showModal && (
                 <Modal>
                     <ConfirmModal
+                        onConfirm={onConfirm}
                         oldItems={league.teams}
                         newItems={leagueTeams}
                     />
@@ -73,6 +84,11 @@ const EditTeams = ({ league }) => {
                     />
                 </div>
             ))}
+            {error && (
+                <div className="edit-teams__error">
+                    <p className="error-message">{error}</p>
+                </div>
+            )}
             <section className="edit-teams__buttons">
                 <div className="btn-add-team">
                     <Button onClick={handleAddTeam} type="no-bg">
@@ -81,8 +97,12 @@ const EditTeams = ({ league }) => {
                 </div>
                 <div className="edit-teams__changes">
                     <div className="btn-save-edit-teams">
-                        <Button onClick={handleSaveChanges} type="save">
-                            Save
+                        <Button
+                            disabled={disableSave}
+                            onClick={onSave}
+                            type="save"
+                        >
+                            {isLoading ? 'Loading...' : 'Save'}
                         </Button>
                     </div>
                     <div className="btn-cancel-edit-teams">

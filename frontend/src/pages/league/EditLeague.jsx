@@ -1,18 +1,39 @@
 import { useLoaderData } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { getSearchParams } from '../../utils/functions/searchParams.js';
 
+import { uiActions } from '../../store/ui/ui-slice.js';
+import { useFetch } from '../../hooks/useFetch.js';
 import api from '../../utils/functions/axiosInstance.js';
+
 import Card from '../../components/app/Card.jsx';
 import EditTeams from '../../components/team/EditTeams.jsx';
 import EditField from '../../components/app/EditField.jsx';
 
 const EditLeague = () => {
     const league = useLoaderData();
+    const dispatch = useDispatch();
+    const { request, error, isLoading } = useFetch();
+
+    // persist the changes to the backend
+    const handlePersistChanges = (data) => {};
+
+    const handleConfirmChanges = () => {
+        // open a modal and ask the user for confirmation of changes
+        dispatch(uiActions.showConfirmModal());
+    };
+
     return (
         <main>
             <Card className="large-width">
                 <EditField tag="h2" name={league.name} />
-                <EditTeams league={league} />
+                <EditTeams
+                    isLoading={isLoading}
+                    error={error}
+                    onSave={handleConfirmChanges} // this handler runs when we click changes
+                    onConfirm={handlePersistChanges} // this handler runs when we click confirm on the modal
+                    league={league}
+                />
             </Card>
         </main>
     );

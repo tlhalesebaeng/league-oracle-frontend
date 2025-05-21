@@ -48,4 +48,5 @@ export default app;
  * Allow other users to invite others to co-handle the league
  * Allow users to update fixture results
  * Delete fixtures and results associated with the league when deleting a league
+ * Add a route to update, delete, and add more than one team
  */

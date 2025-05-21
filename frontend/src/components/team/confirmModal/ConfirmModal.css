@@ -1,15 +1,28 @@
 .edit-teams-modal {
-    padding: 10px;
+    padding: 0px 10px;
 }
 
 .edit-teams-modal h2 {
     width: 100%;
+    margin: 10px 0px;
+    line-height: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.edit-teams-modal span {
+.edit-teams-modal__changes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-teams-modal li {
+    margin: 5px 0px;
+}
+
+.edit-teams-modal li span {
     font-weight: 600;
     margin: 0px 20px;
 }
@@ -17,7 +30,7 @@
 .edit-teams-modal__buttons {
     height: 30px;
     width: 100%;
-    margin: 10px 0px;
+    margin: 20px 0px 10px 0px;
     display: flex;
     justify-content: end;
 }
