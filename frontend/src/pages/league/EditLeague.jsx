@@ -27,12 +27,14 @@ const EditLeague = () => {
                 await request(`/leagues/${league._id}`, 'patch', requestData);
             }
 
-            // this will only execute when the heading tag is shown
-            if (leagueNameRef.current.innerText) {
+            // this will only execute when the heading field is shown
+            if (leagueNameRef.current.innerText !== league.name) {
                 const requestData = { name: leagueNameRef.current.innerText };
                 await request(`/leagues/${league._id}`, 'patch', requestData);
             }
         }
+
+        console.log(data.renamed);
     };
 
     const handleConfirmChanges = () => {
