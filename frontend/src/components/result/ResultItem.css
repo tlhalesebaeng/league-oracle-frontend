@@ -24,8 +24,17 @@
 }
 
 .result-list__teams {
+    width: 100%;
+    position: relative;
     display: flex;
     justify-content: space-between;
+}
+
+.result-list__teams p {
+    position: absolute;
+    right: 50%;
+    top: 0px;
+    transform: translate(50%, 0%);
 }
 
 .result-list__edit-btn {

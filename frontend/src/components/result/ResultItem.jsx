@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
 import './ResultItem.css';
 
