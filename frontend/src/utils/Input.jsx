@@ -1,30 +1,21 @@
 import './input.css';
 
-const Input = ({
-    placeholder,
-    label,
-    type,
-    value,
-    className,
-    onImageClick,
-    onInputChange,
-    imgSrc,
-}) => {
+const Input = (props) => {
     return (
         <>
-            {label && <label>{label}</label>}
+            {props.label && <label>{props.label}</label>}
             <input
-                onChange={onInputChange}
-                className={className || 'input'}
-                type={type}
-                placeholder={placeholder}
-                value={value}
+                onChange={props.onInputChange}
+                className={props.className || 'input'}
+                type={props.type}
+                placeholder={props.placeholder}
+                value={props.value}
             />
-            {imgSrc && (
+            {props.imgSrc && (
                 <img
                     className="input-img"
-                    onClick={onImageClick}
-                    src={imgSrc}
+                    onClick={props.onImageClick}
+                    src={props.imgSrc}
                 />
             )}
         </>
