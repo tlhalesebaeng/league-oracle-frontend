@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 import { uiActions } from '../../store/ui/ui-slice.js';
 
@@ -15,6 +15,7 @@ import './EditTeams.css';
 const EditTeams = ({ league, onSave, onConfirm, error, isLoading }) => {
     const showModal = useSelector((state) => state.ui.confirmModalShown);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
 
     const handleInputChange = (index, value) => {
@@ -39,7 +40,7 @@ const EditTeams = ({ league, onSave, onConfirm, error, isLoading }) => {
     };
 
     const handleCancelChanges = () => {
-        setLeagueTeams(league.teams);
+        navigate(`/leagues/${league._id}`);
     };
 
     const handleCloseModal = () => {
