@@ -20,21 +20,15 @@ const EditLeague = () => {
 
     // persist the changes to the backend
     const handlePersistChanges = async (data) => {
-        if (leagueNameRef.current) {
-            // this will only execute when the input field is shown
-            if (leagueNameRef.current.value !== league.name) {
-                const requestData = { name: leagueNameRef.current.value };
-                await request(`/leagues/${league._id}`, 'patch', requestData);
-            }
+        const currElement = leagueNameRef.current; // will always be available, it cannot be falsy
+        const newLeagueName = currElement.value || currElement.innerText; // this ensures that we always have a new league name, this cannot be falsy
 
-            // this will only execute when the heading field is shown
-            if (leagueNameRef.current.innerText !== league.name) {
-                const requestData = { name: leagueNameRef.current.innerText };
-                await request(`/leagues/${league._id}`, 'patch', requestData);
-            }
+        if (newLeagueName !== league.name) {
+            // the league name was changed
+            await request(`/leagues/${league._id}`, 'patch', {
+                name: newLeagueName,
+            });
         }
-
-        console.log(data.renamed);
     };
 
     const handleConfirmChanges = () => {

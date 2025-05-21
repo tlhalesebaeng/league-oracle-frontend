@@ -98,7 +98,7 @@ const EditTeams = ({ league, onSave, onConfirm, error, isLoading }) => {
                 <div className="edit-teams__changes">
                     <div className="btn-save-edit-teams">
                         <Button
-                            disabled={disableSave}
+                            disabled={isLoading || disableSave}
                             onClick={onSave}
                             type="save"
                         >
