@@ -29,7 +29,7 @@ const EditField = ({ name, tag: Tag = 'p', ref }) => {
 
     return (
         <div className="edit-field">
-            <Tag>{inputValue || name}</Tag>
+            <Tag ref={ref}>{inputValue || name}</Tag>
             <img onClick={() => setShowInput(true)} src={pencilImg} />
         </div>
     );

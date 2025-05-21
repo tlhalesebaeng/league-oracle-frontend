@@ -20,15 +20,22 @@ const EditLeague = () => {
 
     // persist the changes to the backend
     const handlePersistChanges = async (data) => {
-        if (leagueNameRef.current.value !== league.name) {
-            // league name was changes
-            const requestData = { name: leagueNameRef.current.value };
-            await request(`/leagues/${league._id}`, 'patch', requestData);
+        if (leagueNameRef.current) {
+            // this will only execute when the input field is shown
+            if (leagueNameRef.current.value !== league.name) {
+                const requestData = { name: leagueNameRef.current.value };
+                await request(`/leagues/${league._id}`, 'patch', requestData);
+            }
+
+            // this will only execute when the heading tag is shown
+            if (leagueNameRef.current.innerText) {
+                const requestData = { name: leagueNameRef.current.innerText };
+                await request(`/leagues/${league._id}`, 'patch', requestData);
+            }
         }
     };
 
     const handleConfirmChanges = () => {
-        // open a modal and ask the user for confirmation of changes
         dispatch(uiActions.showConfirmModal());
     };
 
