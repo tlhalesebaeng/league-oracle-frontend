@@ -5,7 +5,7 @@ import closeImg from '../../assets/close.png';
 import './EditField.css';
 
 // tag allows us to render an dynamic jsx tag
-const EditField = ({ name, tag: Tag = 'p' }) => {
+const EditField = ({ name, tag: Tag = 'p', ref }) => {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState(name);
 
@@ -17,6 +17,7 @@ const EditField = ({ name, tag: Tag = 'p' }) => {
         return (
             <section className="edit-field">
                 <Input
+                    ref={ref}
                     onInputChange={(event) => handleChange(event.target.value)}
                     placeholder={name}
                     value={inputValue}

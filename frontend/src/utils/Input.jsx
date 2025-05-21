@@ -5,6 +5,7 @@ const Input = (props) => {
         <>
             {props.label && <label>{props.label}</label>}
             <input
+                ref={props.ref}
                 onChange={props.onInputChange}
                 className={props.className || 'input'}
                 type={props.type}

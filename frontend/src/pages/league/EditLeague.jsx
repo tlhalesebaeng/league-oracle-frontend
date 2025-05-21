@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSearchParams } from '../../utils/functions/searchParams.js';
@@ -10,13 +11,21 @@ import Card from '../../components/app/Card.jsx';
 import EditTeams from '../../components/team/EditTeams.jsx';
 import EditField from '../../components/app/EditField.jsx';
 
+// this page should be protected and only accessible to league creators
 const EditLeague = () => {
     const league = useLoaderData();
     const dispatch = useDispatch();
     const { request, error, isLoading } = useFetch();
+    const leagueNameRef = useRef();
 
     // persist the changes to the backend
-    const handlePersistChanges = (data) => {};
+    const handlePersistChanges = async (data) => {
+        if (leagueNameRef.current.value !== league.name) {
+            // league name was changes
+            const requestData = { name: leagueNameRef.current.value };
+            await request(`/leagues/${league._id}`, 'patch', requestData);
+        }
+    };
 
     const handleConfirmChanges = () => {
         // open a modal and ask the user for confirmation of changes
@@ -26,7 +35,7 @@ const EditLeague = () => {
     return (
         <main>
             <Card className="large-width">
-                <EditField tag="h2" name={league.name} />
+                <EditField ref={leagueNameRef} tag="h2" name={league.name} />
                 <EditTeams
                     isLoading={isLoading}
                     error={error}
