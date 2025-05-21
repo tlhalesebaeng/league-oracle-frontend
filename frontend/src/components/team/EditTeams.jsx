@@ -77,7 +77,7 @@ const EditTeams = ({ league, onSave, onConfirm, error, isLoading }) => {
                         onInputChange={(event) =>
                             handleInputChange(index, event.target.value)
                         }
-                        value={leagueTeam.name}
+                        value={leagueTeam.name || ''}
                         imgSrc={binImg}
                         onImageClick={() => handleDeleteTeam(index)}
                         placeholder={`Team ${index + 1}`}

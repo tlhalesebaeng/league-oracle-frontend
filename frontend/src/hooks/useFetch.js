@@ -12,6 +12,9 @@ const functions = {
     patch: (url, data) => {
         return api.patch(url, data);
     },
+    delete: (url) => {
+        return api.delete(url);
+    },
 };
 
 export function useFetch() {

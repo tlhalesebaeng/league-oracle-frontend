@@ -20,15 +20,57 @@ const EditLeague = () => {
 
     // persist the changes to the backend
     const handlePersistChanges = async (data) => {
-        const currElement = leagueNameRef.current; // will always be available, it cannot be falsy
-        const newLeagueName = currElement.value || currElement.innerText; // this ensures that we always have a new league name, this cannot be falsy
+        // use an async functions so that we can rename, delete and add without awaiting for each one of this to finish firstly
 
-        if (newLeagueName !== league.name) {
-            // the league name was changed
-            await request(`/leagues/${league._id}`, 'patch', {
-                name: newLeagueName,
-            });
-        }
+        const updateLeagueName = async () => {
+            const currElement = leagueNameRef.current; // will always be available, it cannot be falsy
+            const newLeagueName = currElement.value || currElement.innerText; // this ensures that we always have a new league name, this cannot be falsy
+            if (newLeagueName !== league.name) {
+                // the league name was changed
+                await request(`/leagues/${league._id}`, 'patch', {
+                    name: newLeagueName,
+                });
+            }
+        };
+
+        const changeNames = async () => {
+            // change the team names if any names were changed
+            const renamedTeams = data.renamed;
+            for (let i = 0; i < renamedTeams.length; i++) {
+                const data = { name: renamedTeams[i].newName };
+                await request(
+                    `/leagues/${league._id}/teams/${renamedTeams[i]._id}`,
+                    'patch',
+                    data
+                );
+            }
+        };
+
+        const addTeams = async () => {
+            // add teams if there are teams to add
+            const addedTeams = data.added;
+            for (let i = 0; i < addedTeams.length; i++) {
+                const data = { name: addedTeams[i].name };
+                await request(`/leagues/${league._id}/teams/`, 'post', data);
+            }
+        };
+
+        const deleteTeams = async () => {
+            // delete teams if there are teams to be deleted
+            const deletedTeams = data.deleted;
+            for (let i = 0; i < deletedTeams.length; i++) {
+                await request(
+                    `/leagues/${league._id}/teams/${deletedTeams[i]._id}`,
+                    'delete'
+                );
+            }
+        };
+
+        // finished defining functions execute this fuctions
+        addTeams();
+        changeNames();
+        updateLeagueName();
+        deleteTeams();
     };
 
     const handleConfirmChanges = () => {
