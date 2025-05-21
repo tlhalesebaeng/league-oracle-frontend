@@ -130,7 +130,7 @@ export const getAllFixtureResults = asyncHandler(async (req, res, next) => {
     const leagueQuery = League.findById(leagueId);
     const [dbResults, league] = await Promise.all([resultsQuery, leagueQuery]);
 
-    if (!dbResults || dbResults.length === 0 || !league) {
+    if (!dbResults || !league) {
         const error = new AppError(
             400,
             'Could not get results! Please try again later.'
