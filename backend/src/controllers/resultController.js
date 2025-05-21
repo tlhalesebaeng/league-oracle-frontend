@@ -121,7 +121,7 @@ export const getAllFixtureResults = asyncHandler(async (req, res, next) => {
             400,
             'League ID required! Please provide a league ID.'
         );
-        next(error);
+        return next(error);
     }
 
     const leagueId = req.query.leagueId;
@@ -135,7 +135,7 @@ export const getAllFixtureResults = asyncHandler(async (req, res, next) => {
             400,
             'Could not get results! Please try again later.'
         );
-        next(error);
+        return next(error);
     }
 
     // replace the teams ids with the actual teams
