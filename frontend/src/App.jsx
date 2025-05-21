@@ -99,6 +99,10 @@ const appRouter = createBrowserRouter([
     },
 ]);
 
+// TODO: Updating fixtures and results with clicking versus and edit is okay and very easy
+// but for many updates this becomes slow and time consuming. Find a way to do this in a quicker way
+// for example we might wanna use drag and drop to add fixtures under the same date and venue, etc..
+
 function App() {
     return <RouterProvider router={appRouter} />;
 }
