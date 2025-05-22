@@ -187,11 +187,15 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
     const fixtureId = req.params.fixtureId;
     const { date, venue, field } = req.body;
 
-    const fixture = await Fixture.findByIdAndUpdate(fixtureId, {
-        date,
-        venue,
-        field,
-    });
+    const fixture = await Fixture.findByIdAndUpdate(
+        fixtureId,
+        {
+            date,
+            venue,
+            field,
+        },
+        { new: true }
+    );
 
     res.status(200).json({ fixture });
 });
