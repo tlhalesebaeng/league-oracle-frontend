@@ -177,7 +177,7 @@ export const getLeagueFixture = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         name: league.name,
         creator: league.creator,
-        fixture,
+        fixture: fixtureObj,
     });
 });
 
@@ -223,7 +223,7 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         name: req.league.name,
         creator: req.league.creator,
-        fixture,
+        fixture: fixtureObj,
     });
 });
 
