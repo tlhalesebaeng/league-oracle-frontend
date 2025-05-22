@@ -203,11 +203,7 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
 
     const fixture = await Fixture.findByIdAndUpdate(
         fixtureId,
-        {
-            date,
-            venue,
-            field,
-        },
+        { date, venue, field },
         { new: true }
     );
 
@@ -219,7 +215,16 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
         return next(error);
     }
 
-    res.status(200).json({ fixture });
+    const teams = req.league.teams;
+    const fixtureObj = { ...fixture.toObject() };
+
+    replaceTeams(fixture, teams, fixtureObj);
+
+    res.status(200).json({
+        name: req.league.name,
+        creator: req.league.creator,
+        fixture,
+    });
 });
 
 export const deleteLeagueFixture = asyncHandler(async (req, res, next) => {
