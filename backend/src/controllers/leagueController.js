@@ -79,7 +79,7 @@ export const verifyLeagueCreator = asyncHandler(async (req, res, next) => {
     const league = await League.findById(leagueId);
     if (!league) {
         const error = new AppError(
-            404,
+            400,
             'League not found! Please check league ID and try again.'
         );
         return next(error);
