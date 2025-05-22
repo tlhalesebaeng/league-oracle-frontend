@@ -211,6 +211,14 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
         { new: true }
     );
 
+    if (!fixture) {
+        const error = new AppError(
+            404,
+            'Could not update fixture! Please try again later.'
+        );
+        return next(error);
+    }
+
     res.status(200).json({ fixture });
 });
 
