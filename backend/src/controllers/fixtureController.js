@@ -151,14 +151,28 @@ export const getLeagueFixture = asyncHandler(async (req, res, next) => {
     const fixtureQuery = Fixture.findOne({ _id: fixtureId, league: leagueId });
     const leagueQuery = League.findById(leagueId);
 
-    const leagueAndFixture = await Promise.all([leagueQuery, fixtureQuery]);
+    const [league, fixture] = await Promise.all([leagueQuery, fixtureQuery]);
 
-    const league = leagueAndFixture[0];
+    if (!league) {
+        const error = new AppError(
+            404,
+            'League not found! Please check league ID and try again.'
+        );
+        return next(error);
+    }
+
+    if (!fixture) {
+        const error = new AppError(
+            404,
+            'Fixture not found! Please check fixture ID and try again.'
+        );
+        return next(error);
+    }
+
     const teams = league.teams;
-    const dbFixture = leagueAndFixture[1];
-    const fixture = { ...dbFixture.toObject() };
+    const fixtureObj = { ...fixture.toObject() };
 
-    replaceTeams(dbFixture, teams, fixture);
+    replaceTeams(fixture, teams, fixtureObj);
 
     res.status(200).json({
         name: league.name,
