@@ -3,17 +3,17 @@ import api from '../utils/functions/axiosInstance.js';
 
 // an object with functions for performing http requests
 const functions = {
-    get: (url) => {
-        return api.get(url);
+    get: (url, options) => {
+        return api.get(url, options);
     },
-    post: (url, data) => {
-        return api.post(url, data);
+    post: (url, data, options) => {
+        return api.post(url, data, options);
     },
-    patch: (url, data) => {
-        return api.patch(url, data);
+    patch: (url, data, options) => {
+        return api.patch(url, data, options);
     },
-    delete: (url) => {
-        return api.delete(url);
+    delete: (url, options) => {
+        return api.delete(url, options);
     },
 };
 
@@ -21,9 +21,9 @@ export function useFetch() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    async function request(url, method, data = {}) {
+    async function request(url, method, data = {}, options = {}) {
         setIsLoading(true);
-        const response = await functions[method](url, data);
+        const response = await functions[method](url, data, options);
         setIsLoading(false);
 
         if (response.status === 404) {
