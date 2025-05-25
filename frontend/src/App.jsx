@@ -10,7 +10,7 @@ import EditResult, {
     editResultDataLoader,
 } from './pages/result/EditResult.jsx';
 
-import RootLayout from './components/app/RootLayout.jsx';
+import RootLayout, { authLoader } from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
@@ -23,6 +23,7 @@ const appRouter = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout />,
+        loader: authLoader,
         children: [
             {
                 index: true,
