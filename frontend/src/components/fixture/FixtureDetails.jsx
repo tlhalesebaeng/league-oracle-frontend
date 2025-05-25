@@ -25,7 +25,7 @@ const FixtureDetails = () => {
         time: data.fixture.time,
         venue: data.fixture.venue,
         field: data.fixture.field,
-    });
+    }); // TODO: date and time should be date and time pickers respectively and not edit fields
 
     const { _id, awayTeam, homeTeam, formattedDate, time, venue, field } =
         data.fixture;
