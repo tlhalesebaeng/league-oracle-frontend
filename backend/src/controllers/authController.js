@@ -89,6 +89,32 @@ export const logout = asyncHandler(async (req, res, next) => {
     res.status(204).json(null);
 });
 
+export const checkAuth = asyncHandler(async (req, res, next) => {
+    if (!req.cookies || !req.cookies.access_jwt) {
+        res.status(400).json({
+            isAuth: false,
+        });
+    }
+
+    const token = req.cookies.access_jwt;
+
+    // verify the token and get the payload
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+    // check if the user still exists
+    const user = await User.findById(decoded.id).select('-password');
+    if (!user) {
+        res.status(400).json({
+            isAuth: false,
+        });
+    }
+
+    res.status(200).json({
+        isAuth: true,
+        user,
+    });
+});
+
 export const protect = asyncHandler(async (req, res, next) => {
     // check if the token exists and get it
     if (!req.cookies || !req.cookies.access_jwt) {
