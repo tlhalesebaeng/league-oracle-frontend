@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getSearchParams } from '../../utils/functions/searchParams.js';
@@ -16,19 +16,17 @@ const EditLeague = () => {
     const league = useLoaderData();
     const dispatch = useDispatch();
     const { request, error, isLoading } = useFetch();
-    const leagueNameRef = useRef();
+    const [leagueName, setLeagueName] = useState(league.name);
 
     // persist the changes to the backend
     const handlePersistChanges = async (data) => {
-        // use an async functions so that we can rename, delete and add without awaiting for each one of this to finish firstly
+        // use async functions so that we can rename, delete and add without awaiting for each one of this to finish firstly
 
         const updateLeagueName = async () => {
-            const currElement = leagueNameRef.current; // will always be available, it cannot be falsy
-            const newLeagueName = currElement.value || currElement.innerText; // this ensures that we always have a new league name, this cannot be falsy
-            if (newLeagueName !== league.name) {
+            if (leagueName !== league.name) {
                 // the league name was changed
                 await request(`/leagues/${league._id}`, 'patch', {
-                    name: newLeagueName,
+                    name: leagueName,
                 });
             }
         };
@@ -80,7 +78,12 @@ const EditLeague = () => {
     return (
         <main>
             <Card className="large-width">
-                <EditField ref={leagueNameRef} tag="h2" name={league.name} />
+                <EditField
+                    onInputChange={(value) => setLeagueName(value)}
+                    tag="h2"
+                    placeholder={league.name}
+                    value={leagueName}
+                />
                 <EditTeams
                     isLoading={isLoading}
                     error={error}

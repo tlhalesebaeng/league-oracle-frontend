@@ -4,23 +4,17 @@ import pencilImg from '../../assets/pencil.png';
 import closeImg from '../../assets/close.png';
 import './EditField.css';
 
-// tag allows us to render an dynamic jsx tag
-const EditField = ({ name, tag: Tag = 'p', ref }) => {
+// tag allows us to render a dynamic jsx tag
+const EditField = ({ value, tag: Tag = 'p', onInputChange, placeholder }) => {
     const [showInput, setShowInput] = useState(false);
-    const [inputValue, setInputValue] = useState(name);
-
-    const handleChange = (value) => {
-        setInputValue(value);
-    };
 
     if (showInput) {
         return (
             <section className="edit-field">
                 <Input
-                    ref={ref}
-                    onInputChange={(event) => handleChange(event.target.value)}
-                    placeholder={name}
-                    value={inputValue}
+                    onInputChange={(event) => onInputChange(event.target.value)}
+                    placeholder={placeholder}
+                    value={value}
                 />
                 <img onClick={() => setShowInput(false)} src={closeImg} />
             </section>
@@ -29,7 +23,7 @@ const EditField = ({ name, tag: Tag = 'p', ref }) => {
 
     return (
         <div className="edit-field">
-            <Tag ref={ref}>{inputValue || name}</Tag>
+            <Tag>{value || placeholder}</Tag>
             <img onClick={() => setShowInput(true)} src={pencilImg} />
         </div>
     );
