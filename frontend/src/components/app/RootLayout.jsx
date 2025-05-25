@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
 import { Outlet, useNavigation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { alertActions, alertTimeout } from '../../store/ui/alert-slice.js';
+import { authActions } from '../../store/auth-slice.js';
+import { useFetch } from '../../hooks/useFetch.js';
 
 import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
@@ -11,6 +14,18 @@ const RootLayout = () => {
     const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const { request } = useFetch();
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const response = await request('/auth/check', 'get');
+            if (response && response.data && response.data.isAuth) {
+                dispatch(authActions.authenticate(response.data.user));
+            }
+        };
+
+        checkAuth();
+    }, []);
 
     const handleCloseAlert = () => {
         dispatch(alertActions.hideAlert());
