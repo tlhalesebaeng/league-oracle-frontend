@@ -199,11 +199,16 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
     }
 
     const fixtureId = req.params.fixtureId;
-    const { date, venue, field } = req.body;
+    const { date, time, venue, field } = req.body;
+
+    let changedDate = date;
+    if (changedDate) {
+        changedDate = new Date(date);
+    }
 
     const fixture = await Fixture.findByIdAndUpdate(
         fixtureId,
-        { date, venue, field },
+        { date: changedDate, venue, field },
         { new: true }
     );
 
