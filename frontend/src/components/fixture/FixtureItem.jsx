@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import './FixtureItem.css';
 
 const FixtureItem = ({ leagueId, fixture }) => {
-    const { _id, homeTeam, awayTeam, date, time } = fixture;
+    const { _id, homeTeam, awayTeam, formattedDate, time } = fixture;
     return (
         <li className="fixture-list__item">
-            <p className="fixture-list__date">{date || 'TBC'}</p>
+            <p className="fixture-list__date">{formattedDate || 'TBC'}</p>
             <section className="fixture-list__details">
                 <Link to={`/teams/${homeTeam._id}`}>{homeTeam.name}</Link>
                 <Link
