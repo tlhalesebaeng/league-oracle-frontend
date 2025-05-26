@@ -1,0 +1,23 @@
+.edit-league__buttons {
+    height: 35px;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-league__buttons .btn-add-team {
+    width: 130px;
+}
+
+.edit-league__buttons .edit-league__changes {
+    display: flex;
+}
+
+.edit-league__buttons .edit-league__changes .btn-save-league {
+    margin-right: 10px;
+}
+
+.edit-league__buttons .edit-league__changes .btn-cancel-edit-league {
+    margin-left: 10px;
+}

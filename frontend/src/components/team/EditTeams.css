@@ -8,30 +8,6 @@
     position: relative;
 }
 
-.edit-teams__buttons {
-    height: 35px;
-    width: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.edit-teams__buttons .btn-add-team {
-    width: 130px;
-}
-
-.edit-teams__buttons .edit-teams__changes {
-    display: flex;
-}
-
-.edit-teams__buttons .edit-teams__changes .btn-save-edit-teams {
-    margin-right: 10px;
-}
-
-.edit-teams__buttons .edit-teams__changes .btn-cancel-edit-teams {
-    margin-left: 10px;
-}
-
 .edit-teams__error {
     width: 100%;
     display: flex;
