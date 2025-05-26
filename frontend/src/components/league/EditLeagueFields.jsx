@@ -123,7 +123,7 @@ const EditLeagueFields = () => {
     const handlers = {
         onConfirm: handlePersistChanges,
         onInputChange: handleInputChange,
-        onDeleteTeam: handlePersistChanges,
+        onDeleteTeam: handleDeleteTeam,
     };
 
     return (
