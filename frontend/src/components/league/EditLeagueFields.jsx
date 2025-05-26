@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
 import { useFetch } from '../../hooks/useFetch.js';
@@ -8,6 +8,9 @@ import { uiActions } from '../../store/ui/ui-slice.js';
 import EditField from '../app/EditField.jsx';
 import EditTeams from '../team/EditTeams.jsx';
 import Button from '../../utils/Button.jsx';
+import Backdrop from '../modal/Backdrop.jsx';
+import Modal from '../modal/Modal.jsx';
+import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import './EditLeagueFields.css';
 
 const EditLeagueFields = () => {
@@ -16,6 +19,7 @@ const EditLeagueFields = () => {
     const navigate = useNavigate();
     const { request, error, isLoading } = useFetch();
     const [leagueName, setLeagueName] = useState(league.name);
+    const showModal = useSelector((state) => state.ui.confirmModalShown);
     const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
 
     const handleInputChange = (index, value) => {
@@ -41,6 +45,9 @@ const EditLeagueFields = () => {
 
     // persist the changes to the backend
     const handlePersistChanges = async (data) => {
+        // close the confirm modal so that the loading state can be shown on this component
+        dispatch(uiActions.hideConfirmModal());
+
         // use async functions so that we can rename, delete and add without awaiting for each one of this to finish firstly
 
         const updateLeagueName = async () => {
@@ -100,11 +107,16 @@ const EditLeagueFields = () => {
         navigate(`/leagues/${league._id}`);
     };
 
-    // disable the save button when there is an empty name field or number of teams are less than 2
+    const handleCloseModal = () => {
+        dispatch(uiActions.hideConfirmModal());
+    };
+
+    // checks to disable the save button
     let disableSave = false;
     if (leagueTeams.length < 2) disableSave = true;
     else {
         // TODO: Improve this (linear) search algorithm
+        // when there is a team with no name
         for (let i = 0; i < leagueTeams.length; i++) {
             if (!leagueTeams[i].name) {
                 disableSave = true;
@@ -113,21 +125,42 @@ const EditLeagueFields = () => {
         }
     }
 
-    // team props of the edit team component
-    const teams = {
-        oldTeams: league.teams,
-        newTeams: leagueTeams,
-    };
+    // disable the save buttons when its not and there are no changes found
+    if (!disableSave) {
+        let changeFound = false;
+        // here we are sure that the lengths are equal since we disable save when lengths are not equal
+        if (league.name !== leagueName) changeFound = true;
+        else if (league.teams.length !== leagueTeams.length) changeFound = true;
+        else {
+            for (let i = 0; i < leagueTeams.length; i++) {
+                if (league.teams[i].name !== leagueTeams[i].name) {
+                    changeFound = true;
+                    break;
+                }
+            }
+        }
 
-    // function props of the edit team component
-    const handlers = {
-        onConfirm: handlePersistChanges,
-        onInputChange: handleInputChange,
-        onDeleteTeam: handleDeleteTeam,
-    };
+        if (!changeFound) {
+            disableSave = true;
+        }
+    }
+
+    // add league name change to the list of items
+    const oldItems = [...league.teams, { _id: league._id, name: league.name }];
+    const newItems = [...leagueTeams, { _id: league._id, name: leagueName }];
 
     return (
         <>
+            {showModal && <Backdrop onClose={handleCloseModal} />}
+            {showModal && (
+                <Modal>
+                    <ConfirmModal
+                        onConfirm={handlePersistChanges}
+                        oldItems={oldItems}
+                        newItems={newItems}
+                    />
+                </Modal>
+            )}
             <EditField
                 onInputChange={(value) => setLeagueName(value)}
                 tag="h2"
@@ -135,7 +168,11 @@ const EditLeagueFields = () => {
                 value={leagueName}
             />
 
-            <EditTeams teams={teams} handlers={handlers} />
+            <EditTeams
+                teams={leagueTeams}
+                onInputChange={handleInputChange}
+                onDeleteTeam={handleDeleteTeam}
+            />
 
             {error && (
                 <div className="edit-teams__error">
