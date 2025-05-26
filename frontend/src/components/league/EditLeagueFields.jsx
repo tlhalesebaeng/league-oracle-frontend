@@ -12,6 +12,7 @@ import Backdrop from '../modal/Backdrop.jsx';
 import Modal from '../modal/Modal.jsx';
 import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import './EditLeagueFields.css';
+import { showAlert } from '../../store/ui/alert-slice.js';
 
 const EditLeagueFields = () => {
     const league = useLoaderData();
@@ -49,54 +50,77 @@ const EditLeagueFields = () => {
         dispatch(uiActions.hideConfirmModal());
 
         // use async functions so that we can rename, delete and add without awaiting for each one of this to finish firstly
+        const requestData = []; // holds a list of all the requests we will make
 
-        const updateLeagueName = async () => {
-            if (leagueName !== league.name) {
-                // the league name was changed
-                await request(`/leagues/${league._id}`, 'patch', {
-                    name: leagueName,
-                });
+        // add the league name changes to the request data
+        if (leagueName !== league.name) {
+            requestData.push({
+                url: `/leagues/${league._id}`,
+                method: 'patch',
+                data: { name: leagueName },
+            });
+        }
+
+        // add the renamed teams to the request data
+        const renamedTeams = data.renamed;
+        for (let i = 0; i < renamedTeams.length; i++) {
+            requestData.push({
+                url: `/leagues/${league._id}/teams/${renamedTeams[i]._id}`,
+                method: 'patch',
+                data: { name: renamedTeams[i].newName },
+            });
+        }
+
+        // add the new teams to the request data
+        const addedTeams = data.added;
+        for (let i = 0; i < addedTeams.length; i++) {
+            requestData.push({
+                url: `/leagues/${league._id}/teams/`,
+                method: 'post',
+                data: { name: addedTeams[i].name },
+            });
+        }
+
+        // add deleted teams to the request data
+        const deletedTeams = data.deleted;
+        for (let i = 0; i < deletedTeams.length; i++) {
+            requestData.push({
+                url: `/leagues/${league._id}/teams/${deletedTeams[i]._id}`,
+                method: 'delete',
+            });
+        }
+
+        // execute the requests all at once
+        const response = await Promise.allSettled(
+            requestData.map(async (details) => {
+                const { url, method, data: someData } = details; // use aliase for data to avoid naming conflicts
+                if (method) {
+                    return await request(url, method, someData);
+                }
+                return await request(url, method);
+            })
+        );
+
+        // TODO: Improve this (linear) search algorithm
+        // look for a result that is not truthy, its promise was not resolved
+        let errorOccured = false;
+        for (let i = 0; i < response.length; i++) {
+            if (!response[i].value) {
+                errorOccured = true;
+                break;
             }
-        };
+        }
 
-        const changeNames = async () => {
-            // change the team names if any names were changed
-            const renamedTeams = data.renamed;
-            for (let i = 0; i < renamedTeams.length; i++) {
-                const data = { name: renamedTeams[i].newName };
-                await request(
-                    `/leagues/${league._id}/teams/${renamedTeams[i]._id}`,
-                    'patch',
-                    data
-                );
-            }
-        };
+        if (!errorOccured) {
+            // set the teams to be the new teams
+            league.teams = [...leagueTeams];
 
-        const addTeams = async () => {
-            // add teams if there are teams to add
-            const addedTeams = data.added;
-            for (let i = 0; i < addedTeams.length; i++) {
-                const data = { name: addedTeams[i].name };
-                await request(`/leagues/${league._id}/teams/`, 'post', data);
-            }
-        };
-
-        const deleteTeams = async () => {
-            // delete teams if there are teams to be deleted
-            const deletedTeams = data.deleted;
-            for (let i = 0; i < deletedTeams.length; i++) {
-                await request(
-                    `/leagues/${league._id}/teams/${deletedTeams[i]._id}`,
-                    'delete'
-                );
-            }
-        };
-
-        // finished defining functions execute this fuctions
-        addTeams();
-        changeNames();
-        updateLeagueName();
-        deleteTeams();
+            // all request were successful, show a success alert
+            dispatch(showAlert('success', 'All changes succeeded'));
+        } else {
+            // aks user to reload to see changes tha were successful
+            dispatch(showAlert('error', 'Please reload page'));
+        }
     };
 
     const handleConfirmChanges = () => {

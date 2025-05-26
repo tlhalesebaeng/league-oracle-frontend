@@ -8,6 +8,7 @@ import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
 import './RootLayout.css';
 import api from '../../utils/functions/axiosInstance.js';
+import { useEffect } from 'react';
 
 const RootLayout = () => {
     const alert = useSelector((state) => state.alert);
@@ -15,9 +16,11 @@ const RootLayout = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
 
-    if (user) {
-        dispatch(authActions.authenticate(user));
-    }
+    useEffect(() => {
+        if (user) {
+            dispatch(authActions.authenticate(user));
+        }
+    }, []);
 
     const handleCloseAlert = () => {
         dispatch(alertActions.hideAlert());

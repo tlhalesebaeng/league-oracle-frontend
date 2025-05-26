@@ -7,9 +7,3 @@
     margin: 15px 0px;
     position: relative;
 }
-
-.edit-teams__error {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
