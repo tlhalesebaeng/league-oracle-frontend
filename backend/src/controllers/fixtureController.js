@@ -83,10 +83,21 @@ export const createLeagueFixtures = asyncHandler(async (req, res, next) => {
 
     const league = req.league;
 
-    const fixtures =
+    const dbFixtures =
         fixtureType === 'homeAndAway'
             ? await genHomeAndAway(league)
             : await genHomeOnly(league);
+
+    const teams = league.teams;
+    const fixtures = [];
+
+    dbFixtures.forEach((dbFixture) => {
+        const fixture = { ...dbFixture.toObject() };
+
+        replaceTeams(dbFixture, teams, fixture);
+
+        fixtures.push(fixture);
+    });
 
     res.status(200).json({
         name: league.name,
