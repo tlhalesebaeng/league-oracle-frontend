@@ -1,52 +1,86 @@
-import { useNavigate, useRouteLoaderData } from 'react-router-dom';
-import Card from '../app/Card.jsx';
-import TeamScore from './TeamScore.jsx';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import TeamScore from '../team/TeamScore.jsx';
 import Button from '../../utils/Button.jsx';
 import './ResultDetails.css';
 
-const ResultDetails = () => {
-    const { result, name } = useRouteLoaderData('result-route');
+const ResultDetails = (props) => {
     const navigate = useNavigate();
+    const [scores, setScores] = useState({
+        homeScore: props.result.homeTeamScore,
+        awayScore: props.result.awayTeamScore,
+    });
 
-    const { homeTeam, homeTeamScore, awayTeam, awayTeamScore } = result;
+    const { homeTeam, homeTeamScore, awayTeam, awayTeamScore } = props.result;
 
     const handleNameClick = () => {
-        navigate(`/leagues/${result.league}`);
+        navigate(`/leagues/${props.league._id}`);
     };
 
     const handleCancelChanges = () => {
-        navigate(`/leagues/${result.league}`);
+        navigate(`/leagues/${props.league._id}`);
     };
 
+    const handleScoreChange = (field, value) => {
+        setScores((prevScores) => {
+            const newScores = { ...prevScores };
+            newScores[field] = value;
+            return newScores;
+        });
+    };
+
+    // disable the save button if there are no changes in the scores
+    let disableSave = false;
+    if (
+        homeTeamScore === scores.homeScore &&
+        awayTeamScore === scores.awayTeam
+    ) {
+        disableSave = true;
+    }
+
+    // disable the save button if there is an empty score
+    if (!scores.homeScore || !scores.awayTeam) disableSave = true;
+
     return (
-        <Card>
+        <>
             <h2
                 onClick={handleNameClick}
                 className="result-details__league-name"
             >
-                {name}
+                {props.league.name}
             </h2>
             <TeamScore
-                leagueId={result.league}
+                leagueId={props.league._id}
                 team={homeTeam}
-                teamScore={homeTeamScore}
+                teamScore={scores.homeScore}
+                onInputChange={(value) => handleScoreChange('homeScore', value)}
             />
             <TeamScore
-                leagueId={result.league}
+                leagueId={props.league._id}
                 team={awayTeam}
-                teamScore={awayTeamScore}
+                teamScore={scores.awayScore}
+                onInputChange={(value) => handleScoreChange('awayScore', value)}
             />
             <section className="result-details__buttons">
                 <div className="result-details__btn-save">
-                    <Button type="save">Save</Button>
+                    <Button
+                        disabled={props.isLoading || disableSave}
+                        onClick={props.onSave}
+                        type="save"
+                    >
+                        {props.isLoading ? 'Loading...' : 'Save'}
+                    </Button>
                 </div>
                 <div className="result-details__btn-cancel">
-                    <Button onClick={handleCancelChanges} type="cancel">
+                    <Button
+                        onClick={() => handleCancelChanges(scores)}
+                        type="cancel"
+                    >
                         Cancel
                     </Button>
                 </div>
             </section>
-        </Card>
+        </>
     );
 };
 

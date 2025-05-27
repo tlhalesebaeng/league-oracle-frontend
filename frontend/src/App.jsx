@@ -18,6 +18,7 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import ViewTeam from './pages/team/ViewTeam.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
+import AddResult from './pages/result/AddResult.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -76,11 +77,15 @@ const appRouter = createBrowserRouter([
             {
                 id: 'result-route',
                 path: 'results',
-                loader: editResultDataLoader,
                 children: [
                     {
                         path: 'edit',
                         element: <EditResult />,
+                        loader: editResultDataLoader,
+                    },
+                    {
+                        path: 'add',
+                        element: <AddResult />,
                     },
                 ],
             },

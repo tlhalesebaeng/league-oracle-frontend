@@ -1,11 +1,27 @@
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { getSearchParams } from '../../utils/functions/searchParams.js';
 import api from '../../utils/functions/axiosInstance.js';
 import ResultDetails from '../../components/result/ResultDetails.jsx';
+import Card from '../../components/app/Card.jsx';
 
 const EditResult = () => {
+    const routeData = useLoaderData();
+
+    const result = routeData.result;
+    const league = { _id: result.league, name: routeData.name };
+
+    const handleSaveResult = (scores) => {};
+
     return (
         <main>
-            <ResultDetails />
+            <Card>
+                <ResultDetails
+                    result={result}
+                    league={league}
+                    onSave={handleSaveResult}
+                />
+            </Card>
         </main>
     );
 };

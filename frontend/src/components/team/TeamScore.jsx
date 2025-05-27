@@ -1,15 +1,8 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../../utils/Input';
 import './TeamScore.css';
 
-const TeamScore = ({ team, teamScore, leagueId }) => {
-    const [score, setScore] = useState(teamScore);
-
-    const handleInputChange = (value) => {
-        setScore(value);
-    };
-
+const TeamScore = ({ score, team, leagueId, onInputChange }) => {
     return (
         <section className="team-score">
             <Link
@@ -21,8 +14,8 @@ const TeamScore = ({ team, teamScore, leagueId }) => {
             </Link>
             <p>:</p>
             <Input
-                onInputChange={(event) => handleInputChange(event.target.value)}
-                placeholder={teamScore}
+                onInputChange={(event) => onInputChange(event.target.value)}
+                placeholder={score}
                 value={score}
             />
         </section>
