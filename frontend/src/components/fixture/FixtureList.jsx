@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useRouteLoaderData } from 'react-router-dom';
+
+import { useFetch } from '../../hooks/useFetch.js';
+import { showAlert } from '../../store/ui/alert-slice.js';
 
 import Button from '../../utils/Button.jsx';
 import FixtureItem from './FixtureItem.jsx';
@@ -12,12 +15,17 @@ import './FixtureList.css';
 const FixtureList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
-    let { fixtures, league } = useRouteLoaderData('league-route');
+    let routeData = useRouteLoaderData('league-route');
     const [showModal, setShowModal] = useState(false);
     const params = useParams();
+    const { request, error, isLoading } = useFetch();
+    const dispatch = useDispatch();
+    const [fixtures, setFixtures] = useState([...routeData.fixtures]);
+
+    const league = routeData.league;
 
     if (params.teamId) {
-        // we are looking at the team so we should only show fixtures for this team
+        // we are looking at a team so we should only show fixtures for this team
         fixtures = fixtures.filter((fixture) => {
             const homeTeam = fixture.homeTeam;
             const awayTeam = fixture.awayTeam;
@@ -34,6 +42,25 @@ const FixtureList = () => {
         setShowModal(true);
     };
 
+    const handleConfirm = async () => {
+        // close the modal
+        setShowModal(false);
+
+        // send the request (we will only support home and away fixtures for now)
+        const response = await request(
+            `/fixtures?leagueId=${league._id}&fixtureType=homeAndAway`,
+            'post'
+        );
+
+        if (response) {
+            // set fixtures to be the newly created fixtures
+            setFixtures(response.data.fixtures);
+
+            // show success alert
+            dispatch(showAlert('success', 'Season fixtures generated'));
+        }
+    };
+
     const handleCloseModal = () => {
         setShowModal(false);
     };
@@ -43,7 +70,10 @@ const FixtureList = () => {
             {showModal && <Backdrop onClose={handleCloseModal} />}
             {showModal && (
                 <Modal>
-                    <GeneratorModal onClose={handleCloseModal} />
+                    <GeneratorModal
+                        onConfirm={handleConfirm}
+                        onClose={handleCloseModal}
+                    />
                 </Modal>
             )}
             <ul className="fixture-list">
@@ -59,11 +89,14 @@ const FixtureList = () => {
                 {(!fixtures || fixtures.length === 0) && (
                     <li className="no-fixtures">
                         <p>No fixtures found</p>
-                        {/* will verify the league creator later */}
+                        {error && <p className="error-message">{error}</p>}
                         {isAuth && isCreator && (
                             <div>
-                                <Button onClick={handleGenerateFixtures}>
-                                    Generate
+                                <Button
+                                    disabled={isLoading}
+                                    onClick={handleGenerateFixtures}
+                                >
+                                    {isLoading ? 'Loading...' : 'Generate'}
                                 </Button>
                             </div>
                         )}

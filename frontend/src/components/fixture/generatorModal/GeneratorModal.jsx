@@ -1,17 +1,17 @@
 import Button from '../../../utils/Button';
 import './GeneratorModal.css';
 
-const GeneratorModal = ({ onClose }) => {
+const GeneratorModal = ({ onClose, onConfirm }) => {
     return (
         <section className="confirm-fixture-gen">
             <h2>Confirm</h2>
             <p>
                 Please confirm to generate season fixtures. This action cannot
-                be reversible.
+                be reversed.
             </p>
             <section>
                 <div className="btn-confirm-gen">
-                    <Button onClick={onClose} type="save">
+                    <Button onClick={onConfirm} type="save">
                         Confirm
                     </Button>
                 </div>
