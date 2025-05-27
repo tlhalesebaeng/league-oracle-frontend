@@ -15,14 +15,15 @@ import './FixtureList.css';
 const FixtureList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
-    let routeData = useRouteLoaderData('league-route');
+    const routeData = useRouteLoaderData('league-route');
     const [showModal, setShowModal] = useState(false);
     const params = useParams();
     const { request, error, isLoading } = useFetch();
     const dispatch = useDispatch();
-    const [fixtures, setFixtures] = useState([...routeData.fixtures]);
+    const [routeFixtures, setRotueFixtures] = useState([...routeData.fixtures]);
 
     const league = routeData.league;
+    let fixtures = routeFixtures;
 
     if (params.teamId) {
         // we are looking at a team so we should only show fixtures for this team
@@ -54,7 +55,7 @@ const FixtureList = () => {
 
         if (response) {
             // set fixtures to be the newly created fixtures
-            setFixtures(response.data.fixtures);
+            setRotueFixtures(response.data.fixtures);
 
             // show success alert
             dispatch(showAlert('success', 'Season fixtures generated'));
