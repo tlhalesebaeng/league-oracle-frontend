@@ -1,11 +1,19 @@
-import { useLoaderData } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+
 import { getSearchParams } from '../../utils/functions/searchParams.js';
 import api from '../../utils/functions/axiosInstance.js';
+import { useFetch } from '../../hooks/useFetch.js';
+import { showAlert } from '../../store/ui/alert-slice.js';
+
 import ResultDetails from '../../components/result/ResultDetails.jsx';
 import Card from '../../components/app/Card.jsx';
 
 const AddResult = () => {
     const routeData = useLoaderData();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { request, error, setError, isLoading } = useFetch();
 
     const fixture = routeData.fixture;
     // construct the result object from the fixture as needed by the result details component
@@ -19,7 +27,28 @@ const AddResult = () => {
     // construct the league object
     const league = { _id: fixture.league, name: routeData.name };
 
-    const handleAddResult = (scores) => {};
+    const handleAddResult = async (scores) => {
+        // convert fields to integers and use properties that the backend expects
+        const data = {
+            homeTeamScore: parseInt(scores.homeScore),
+            awayTeamScore: parseInt(scores.awayScore),
+        };
+
+        // send the request
+        const response = await request(
+            `/results?fixtureId=${fixture._id}&leagueId=${league._id}`,
+            'post',
+            data
+        );
+
+        if (response) {
+            // navigate to the leagues page
+            navigate(`/leagues/${league._id}`);
+
+            // show the success alert
+            dispatch(showAlert('success', 'Result successfully added'));
+        }
+    };
 
     return (
         <main>
@@ -27,6 +56,8 @@ const AddResult = () => {
                 <ResultDetails
                     result={result}
                     league={league}
+                    error={error}
+                    isLoading={isLoading}
                     onSave={handleAddResult}
                 />
             </Card>

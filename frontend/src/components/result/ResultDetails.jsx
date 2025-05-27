@@ -63,6 +63,7 @@ const ResultDetails = (props) => {
                 score={scores.awayScore}
                 onInputChange={(value) => handleScoreChange('awayScore', value)}
             />
+            {props.error && <p className="error-message">{props.error}</p>}
             <section className="result-details__buttons">
                 <div className="result-details__btn-save">
                     <Button
