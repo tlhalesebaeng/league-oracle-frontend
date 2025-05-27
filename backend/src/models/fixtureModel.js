@@ -51,6 +51,7 @@ fixtureSchema.virtual('time').get(function () {
 
         return `${hours}:${minutes}`;
     }
+    return 'TBC';
 });
 
 fixtureSchema.virtual('formattedDate').get(function () {
@@ -70,6 +71,8 @@ fixtureSchema.virtual('formattedDate').get(function () {
 
         return `${year}-${month}-${day}`;
     }
+
+    return 'TBC';
 });
 
 const Fixture = model('Fixture', fixtureSchema);
