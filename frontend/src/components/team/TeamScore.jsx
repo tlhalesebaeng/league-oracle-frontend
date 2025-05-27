@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../utils/Input';
 import './TeamScore.css';
 
-const TeamScore = ({ score, team, leagueId, onInputChange }) => {
+const TeamScore = ({ score, team, leagueId, onInputChange, placeholder }) => {
     return (
         <section className="team-score">
             <Link
@@ -15,7 +15,7 @@ const TeamScore = ({ score, team, leagueId, onInputChange }) => {
             <p>:</p>
             <Input
                 onInputChange={(event) => onInputChange(event.target.value)}
-                placeholder={score}
+                placeholder={placeholder}
                 value={score}
             />
         </section>

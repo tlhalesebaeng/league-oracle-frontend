@@ -52,13 +52,15 @@ const ResultDetails = (props) => {
             <TeamScore
                 leagueId={props.league._id}
                 team={homeTeam}
-                teamScore={scores.homeScore}
+                placeholder={homeTeamScore}
+                score={scores.homeScore}
                 onInputChange={(value) => handleScoreChange('homeScore', value)}
             />
             <TeamScore
                 leagueId={props.league._id}
                 team={awayTeam}
-                teamScore={scores.awayScore}
+                placeholder={awayTeamScore}
+                score={scores.awayScore}
                 onInputChange={(value) => handleScoreChange('awayScore', value)}
             />
             <section className="result-details__buttons">
