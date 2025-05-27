@@ -90,26 +90,16 @@ const EditLeagueFields = () => {
             });
         }
 
+        let errorOccured = false;
         // execute the requests all at once
-        const response = await Promise.allSettled(
+        await Promise.allSettled(
             requestData.map(async (details) => {
-                const { url, method, data: someData } = details; // use aliase for data to avoid naming conflicts
-                if (method) {
-                    return await request(url, method, someData);
-                }
-                return await request(url, method);
+                const { url, method, data: someData } = details; // use an aliase for data to avoid naming conflicts
+                const responseDetails = await request(url, method, someData);
+                if (!responseDetails) errorOccured = true; // the response of the request is undefined when an error occurred
+                return responseDetails;
             })
         );
-
-        // TODO: Improve this (linear) search algorithm
-        // look for a result that is not truthy, its promise was not resolved
-        let errorOccured = false;
-        for (let i = 0; i < response.length; i++) {
-            if (!response[i].value) {
-                errorOccured = true;
-                break;
-            }
-        }
 
         if (!errorOccured) {
             // set the teams to be the new teams
