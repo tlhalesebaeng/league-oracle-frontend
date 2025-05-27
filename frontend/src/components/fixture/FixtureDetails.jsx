@@ -17,7 +17,7 @@ const FixtureDetails = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const routeData = useRouteLoaderData('fixture-route');
-    const { request, error, isLoading } = useFetch();
+    const { request, error, setError, isLoading } = useFetch();
 
     const [data, setData] = useState({ ...routeData });
     const [editData, setEditData] = useState({
@@ -55,10 +55,20 @@ const FixtureDetails = () => {
     };
 
     const handleSaveChanges = async () => {
+        // reset the error if any
+        setError('');
+
+        // ignore the date field if it is set to TBC
+        const filteredData = { ...editData };
+        if (filteredData.date === 'TBC') filteredData.date = undefined;
+
         // send the request with the editted data
-        const response = await request(`/fixtures/${_id}`, 'patch', editData, {
-            params: { leagueId: league._id },
-        });
+        const response = await request(
+            `/fixtures/${_id}`,
+            'patch',
+            filteredData,
+            { params: { leagueId: league._id } }
+        );
 
         if (response) {
             // set the data to be the response of this data
@@ -102,8 +112,8 @@ const FixtureDetails = () => {
                 onEdit={handleEditField}
                 editData={editData}
                 league={league}
-                fixtureDate={formattedDate || 'TBC'}
-                fixtureTime={time || 'TBC'}
+                fixtureDate={formattedDate}
+                fixtureTime={time}
             />
 
             <FixtureTeams
