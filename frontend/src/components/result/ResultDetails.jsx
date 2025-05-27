@@ -39,7 +39,7 @@ const ResultDetails = (props) => {
     }
 
     // disable the save button if there is an empty score
-    if (!scores.homeScore || !scores.awayTeam) disableSave = true;
+    if (!scores.homeScore || !scores.awayScore) disableSave = true;
 
     return (
         <>
