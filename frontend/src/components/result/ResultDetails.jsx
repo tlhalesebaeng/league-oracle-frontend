@@ -67,7 +67,7 @@ const ResultDetails = (props) => {
                 <div className="result-details__btn-save">
                     <Button
                         disabled={props.isLoading || disableSave}
-                        onClick={props.onSave}
+                        onClick={() => props.onSave(scores)}
                         type="save"
                     >
                         {props.isLoading ? 'Loading...' : 'Save'}
