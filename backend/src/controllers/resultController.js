@@ -112,6 +112,9 @@ export const addFixtureResult = asyncHandler(async (req, res, next) => {
         return next(error);
     }
 
+    // delete the fixture
+    await Fixture.findByIdAndDelete(fixture._id);
+
     res.status(201).json({ result });
 });
 
