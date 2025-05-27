@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
 import './ResultItem.css';
 
@@ -12,12 +12,16 @@ const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
         <li className="result-list__item">
             <p className="result-list__date">{date || 'TBC'}</p>
             <section className="result-list__teams">
-                <NavLink>{homeTeam.name}</NavLink>
+                <Link to={`/leagues/${result.league}/teams/${homeTeam._id}`}>
+                    {homeTeam.name}
+                </Link>
                 <p>
                     <span>{homeTeamScore}</span>
                     <span>{awayTeamScore}</span>
                 </p>
-                <NavLink>{awayTeam.name}</NavLink>
+                <Link to={`/leagues/${result.league}/teams/${awayTeam._id}`}>
+                    {awayTeam.name}
+                </Link>
             </section>
             {isAuth && isCreator && (
                 <section className="result-list__edit-btn">

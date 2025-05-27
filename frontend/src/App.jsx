@@ -16,7 +16,7 @@ import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
 import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
-import Teams from './pages/team/Teams.jsx';
+import ViewTeam from './pages/team/ViewTeam.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 
 const appRouter = createBrowserRouter([
@@ -47,7 +47,7 @@ const appRouter = createBrowserRouter([
                             },
                             {
                                 path: 'teams/:teamId',
-                                element: <Teams />,
+                                element: <ViewTeam />,
                             },
                         ],
                     },

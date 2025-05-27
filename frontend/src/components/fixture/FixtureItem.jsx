@@ -5,9 +5,11 @@ const FixtureItem = ({ leagueId, fixture }) => {
     const { _id, homeTeam, awayTeam, formattedDate, time } = fixture;
     return (
         <li className="fixture-list__item">
-            <p className="fixture-list__date">{formattedDate || 'TBC'}</p>
+            <p className="fixture-list__date">{formattedDate}</p>
             <section className="fixture-list__details">
-                <Link to={`/teams/${homeTeam._id}`}>{homeTeam.name}</Link>
+                <Link to={`/leagues/${leagueId}/teams/${homeTeam._id}`}>
+                    {homeTeam.name}
+                </Link>
                 <Link
                     className="fixture-list__versus"
                     to={{
@@ -17,9 +19,11 @@ const FixtureItem = ({ leagueId, fixture }) => {
                 >
                     versus
                 </Link>
-                <Link to={`/teams/${awayTeam._id}`}>{awayTeam.name}</Link>
+                <Link to={`/leagues/${leagueId}/teams/${awayTeam._id}`}>
+                    {awayTeam.name}
+                </Link>
             </section>
-            <p className="fixture-list__time">{time || 'TBC'}</p>
+            <p className="fixture-list__time">{time}</p>
         </li>
     );
 };
