@@ -9,6 +9,7 @@ import ViewFixture, {
 import EditResult, {
     editResultDataLoader,
 } from './pages/result/EditResult.jsx';
+import AddResult, { addResultDataLoader } from './pages/result/AddResult.jsx';
 
 import RootLayout, { authLoader } from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
@@ -18,7 +19,6 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import ViewTeam from './pages/team/ViewTeam.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
-import AddResult from './pages/result/AddResult.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -86,6 +86,7 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'add',
                         element: <AddResult />,
+                        loader: addResultDataLoader,
                     },
                 ],
             },
