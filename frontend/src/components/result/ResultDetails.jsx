@@ -33,7 +33,7 @@ const ResultDetails = (props) => {
     let disableSave = false;
     if (
         homeTeamScore === scores.homeScore &&
-        awayTeamScore === scores.awayTeam
+        awayTeamScore === scores.awayScore
     ) {
         disableSave = true;
     }
