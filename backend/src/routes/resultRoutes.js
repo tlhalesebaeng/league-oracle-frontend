@@ -3,6 +3,7 @@ import {
     addFixtureResult,
     getAllFixtureResults,
     getFixtureResult,
+    updateFixtureResult,
 } from '../controllers/resultController.js';
 import { protect } from '../controllers/authController.js';
 import { verifyLeagueCreator } from '../controllers/leagueController.js';
@@ -13,6 +14,9 @@ resultRoute
     .post(protect, verifyLeagueCreator, addFixtureResult)
     .get(getAllFixtureResults);
 
-resultRoute.route('/:resultId').get(getFixtureResult);
+resultRoute
+    .route('/:resultId')
+    .patch(protect, verifyLeagueCreator, updateFixtureResult)
+    .get(getFixtureResult);
 
 export default resultRoute;
