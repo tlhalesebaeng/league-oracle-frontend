@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import EditField from '../app/EditField.jsx';
 import './FixtureHeader.css';
+import Input from '../../utils/Input.jsx';
 
 const FixtureHeader = (props) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -22,14 +23,14 @@ const FixtureHeader = (props) => {
                 <EditField
                     onInputChange={(value) => onEdit('date', value)}
                     tag="span"
-                    placeholder={fixtureDate}
+                    type="date"
                     value={editData.date}
                 />
                 |
                 <EditField
                     onInputChange={(value) => onEdit('time', value)}
                     tag="span"
-                    placeholder={fixtureTime}
+                    type="time"
                     value={editData.time}
                 />
             </div>

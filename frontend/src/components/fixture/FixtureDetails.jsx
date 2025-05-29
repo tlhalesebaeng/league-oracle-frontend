@@ -58,9 +58,10 @@ const FixtureDetails = () => {
         // reset the error if any
         setError('');
 
-        // ignore the date field if it is set to TBC
+        // ignore the date and time fields if their values are TBC
         const filteredData = { ...editData };
         if (filteredData.date === 'TBC') filteredData.date = undefined;
+        if (filteredData.time === 'TBC') filteredData.time = undefined;
 
         // send the request with the editted data
         const response = await request(

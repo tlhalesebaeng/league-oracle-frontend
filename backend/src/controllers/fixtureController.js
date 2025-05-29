@@ -217,6 +217,15 @@ export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
         changedDate = new Date(date);
     }
 
+    if (time) {
+        const newTime = time.split(':');
+        const hours = newTime[0];
+        const minutes = newTime[1];
+
+        changedDate.setHours(hours);
+        changedDate.setMinutes(minutes);
+    }
+
     const fixture = await Fixture.findByIdAndUpdate(
         fixtureId,
         { date: changedDate, venue, field },

@@ -5,16 +5,20 @@ import closeImg from '../../assets/close.png';
 import './EditField.css';
 
 // tag allows us to render a dynamic jsx tag
-const EditField = ({ value, tag: Tag = 'p', onInputChange, placeholder }) => {
+const EditField = (props) => {
     const [showInput, setShowInput] = useState(false);
+    const Tag = props.tag || 'p';
 
     if (showInput) {
         return (
             <section className="edit-field">
                 <Input
-                    onInputChange={(event) => onInputChange(event.target.value)}
-                    placeholder={placeholder}
-                    value={value}
+                    onInputChange={(event) =>
+                        props.onInputChange(event.target.value)
+                    }
+                    placeholder={props.placeholder}
+                    type={props.type}
+                    value={props.value}
                 />
                 <img onClick={() => setShowInput(false)} src={closeImg} />
             </section>
@@ -23,7 +27,7 @@ const EditField = ({ value, tag: Tag = 'p', onInputChange, placeholder }) => {
 
     return (
         <div className="edit-field">
-            <Tag>{value || placeholder}</Tag>
+            <Tag>{props.value || props.placeholder}</Tag>
             <img onClick={() => setShowInput(true)} src={pencilImg} />
         </div>
     );
