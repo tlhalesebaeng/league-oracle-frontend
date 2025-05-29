@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 
 import { useFetch } from '../../hooks/useFetch.js';
 import { uiActions } from '../../store/ui/ui-slice.js';
+import { showAlert } from '../../store/ui/alert-slice.js';
 
 import EditField from '../app/EditField.jsx';
 import EditTeams from '../team/EditTeams.jsx';
@@ -12,7 +13,6 @@ import Backdrop from '../modal/Backdrop.jsx';
 import Modal from '../modal/Modal.jsx';
 import ConfirmModal from './confirmModal/ConfirmModal.jsx';
 import './EditLeagueFields.css';
-import { showAlert } from '../../store/ui/alert-slice.js';
 
 const EditLeagueFields = () => {
     const league = useLoaderData();
@@ -107,6 +107,10 @@ const EditLeagueFields = () => {
 
             // all request were successful, show a success alert
             dispatch(showAlert('success', 'All changes succeeded'));
+
+            // set the tab to be standings so that changes can be seen because
+            // we can edit the league from any tab
+            dispatch(uiActions.setTab('standings'));
         } else {
             // aks user to reload to see changes tha were successful
             dispatch(showAlert('error', 'Please reload page'));
