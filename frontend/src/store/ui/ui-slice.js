@@ -6,6 +6,7 @@ const uiSlice = createSlice({
         authButtonsShown: false,
         leaguesModalShown: false,
         confirmModalShown: false,
+        tab: 'standings',
     },
     reducers: {
         showAuthButtons(state) {
@@ -25,6 +26,9 @@ const uiSlice = createSlice({
         },
         hideConfirmModal(state) {
             state.confirmModalShown = false;
+        },
+        setTab(state, action) {
+            state.tab = action.payload;
         },
     },
 });

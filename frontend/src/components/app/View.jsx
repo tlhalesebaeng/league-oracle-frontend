@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { uiActions } from '../../store/ui/ui-slice.js';
 import StandingDetails from '../league/StandingDetails.jsx';
 import Standings from '../league/Standings.jsx';
 import FixtureList from '../fixture/FixtureList.jsx';
@@ -10,29 +9,19 @@ import './View.css';
 
 // This is a shared component for standings, fixtures and results
 const View = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const initialTab = searchParams.get('tab');
-    const [tab, setTab] = useState(initialTab || 'standings');
-
-    const setTabParam = (value) => {
-        // updating the url search params causes re rendering from the first component of the route
-        // searchParams.set('tab', value);
-        // setSearchParams(searchParams);
-    };
+    const tab = useSelector((state) => state.ui.tab);
+    const dispatch = useDispatch();
 
     const handleStandingsTab = () => {
-        setTabParam('standings');
-        setTab('standings');
+        dispatch(uiActions.setTab('standings'));
     };
 
     const handleFixturesTab = () => {
-        setTabParam('fixtures');
-        setTab('fixtures');
+        dispatch(uiActions.setTab('fixtures'));
     };
 
     const handleResultsTab = () => {
-        setTabParam('results');
-        setTab('results');
+        dispatch(uiActions.setTab('results'));
     };
 
     const tabHandlers = {
