@@ -14,17 +14,11 @@ const Standings = () => {
 
         for (let i = 0; i < standings.length; i++) {
             for (let j = 0; j < standings.length; j++) {
-                let standing1 = standings[i];
-                let standing2 = standings[j];
-
-                if (standing1.points > standing2.points) {
+                if (standings[i].points > standings[j].points) {
                     // swap
-                    [standing1, standing2] = [standing2, standing1];
-                } else if (
-                    standing1.points === standing2.points &&
-                    standing1.goalDifference > standing2.goalDifference
-                ) {
-                    [standing1, standing2] = [standing2, standing1];
+                    let standing = standings[i];
+                    standings[i] = standings[j];
+                    standings[j] = standing;
                 }
             }
         }
