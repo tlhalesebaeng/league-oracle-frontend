@@ -91,7 +91,7 @@ export const logout = asyncHandler(async (req, res, next) => {
 
 export const checkAuth = asyncHandler(async (req, res, next) => {
     if (!req.cookies || !req.cookies.access_jwt) {
-        res.status(400).json({
+        return res.status(400).json({
             isAuth: false,
         });
     }
