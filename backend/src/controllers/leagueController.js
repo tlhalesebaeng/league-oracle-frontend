@@ -28,8 +28,13 @@ export const createLeague = asyncHandler(async (req, res, next) => {
 });
 
 export const getAllLeagues = asyncHandler(async (req, res, next) => {
-    // allow filtering by league name
-    const leagues = await League.find({});
+    const queryObj = {};
+    const name = req.query.name;
+    if (name) {
+        // find league names that have this provided name field as part of their name
+        queryObj['name'] = new RegExp(name, 'i'); // i makes this regex case-insensitive
+    }
+    const leagues = await League.find(queryObj);
     res.status(200).json({ leagues });
 });
 
