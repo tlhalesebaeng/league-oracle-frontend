@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../store/ui/ui-slice.js';
 import api from '../../utils/functions/axiosInstance.js';
+import { asyncHandler } from '../../utils/functions/asyncHandler.js';
 
 import View from '../../components/app/View.jsx';
 
@@ -17,7 +18,7 @@ const Leagues = () => {
 };
 
 // loader function to get league, fixtures and results data
-export const leagueDataLoader = async ({ params }) => {
+export const leagueDataLoader = asyncHandler(async ({ params }) => {
     // request league data
     const leagueResponse = await api.get(`/leagues/${params.leagueId}`);
     const { league } = leagueResponse.data;
@@ -42,9 +43,7 @@ export const leagueDataLoader = async ({ params }) => {
     const { fixtures } = fixturesResponse.data;
     const { results } = resultsResponse.data;
 
-    // TODO: Handle promise rejections of all this requests by throwing an error
-
     return { league, fixtures, results };
-};
+});
 
 export default Leagues;

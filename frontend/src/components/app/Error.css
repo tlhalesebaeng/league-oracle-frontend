@@ -1,0 +1,56 @@
+.app-error {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.app-error__status {
+    font-size: 300px;
+    font-weight: 700;
+    line-height: 300px;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.app-error__details {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.app-error__details p {
+    font-size: 18px;
+}
+
+.app-error__details h1 {
+    margin: 10px 0px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.app-error__buttons {
+    display: flex;
+}
+
+.app-error__buttons div {
+    height: 30px;
+    margin: 25px 10px;
+}
+
+.app-error__buttons div button {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.app-error__buttons div button img {
+    height: 14px;
+    width: 14px;
+    margin-right: 10px;
+}

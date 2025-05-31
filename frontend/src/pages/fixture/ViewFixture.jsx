@@ -1,12 +1,13 @@
 import { getSearchParams } from '../../utils/functions/searchParams.js';
 import FixtureDetails from '../../components/fixture/FixtureDetails.jsx';
 import api from '../../utils/functions/axiosInstance.js';
+import { asyncHandler } from '../../utils/functions/asyncHandler.js';
 
 const ViewFixture = () => {
     return <FixtureDetails />;
 };
 
-export const fixtureDataLoader = async ({ request, params }) => {
+export const fixtureDataLoader = asyncHandler(async ({ request, params }) => {
     // get the league id from the url
     const searchParams = getSearchParams(request);
     const leagueId = searchParams.get('leagueId');
@@ -16,9 +17,7 @@ export const fixtureDataLoader = async ({ request, params }) => {
         params: { leagueId },
     });
 
-    // TODO: Handle errors of this request
-
     return response.data;
-};
+});
 
 export default ViewFixture;

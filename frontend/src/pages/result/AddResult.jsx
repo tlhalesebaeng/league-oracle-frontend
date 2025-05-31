@@ -5,6 +5,7 @@ import { getSearchParams } from '../../utils/functions/searchParams.js';
 import api from '../../utils/functions/axiosInstance.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
+import { asyncHandler } from '../../utils/functions/asyncHandler.js';
 
 import ResultDetails from '../../components/result/ResultDetails.jsx';
 import Card from '../../components/app/Card.jsx';
@@ -13,7 +14,7 @@ const AddResult = () => {
     const routeData = useLoaderData();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { request, error, setError, isLoading } = useFetch();
+    const { request, error, isLoading } = useFetch();
 
     const fixture = routeData.fixture;
     // construct the result object from the fixture as needed by the result details component
@@ -67,7 +68,7 @@ const AddResult = () => {
 
 export default AddResult;
 
-export const addResultDataLoader = async ({ request }) => {
+export const addResultDataLoader = asyncHandler(async ({ request }) => {
     // get the league and fixture id from the request url (fixture is the fixture to which we want to add result for)
     const searchParams = getSearchParams(request);
     const leagueId = searchParams.get('leagueId');
@@ -80,7 +81,5 @@ export const addResultDataLoader = async ({ request }) => {
         },
     });
 
-    // TODO: Handle errors of this request
-
     return response.data;
-};
+});

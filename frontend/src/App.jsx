@@ -11,7 +11,7 @@ import EditResult, {
 } from './pages/result/EditResult.jsx';
 import AddResult, { addResultDataLoader } from './pages/result/AddResult.jsx';
 
-import RootLayout, { authLoader } from './components/app/RootLayout.jsx';
+import RootLayout from './components/app/RootLayout.jsx';
 import Signup from './pages/auth/Signup.jsx';
 import Login from './pages/auth/Login.jsx';
 import Home from './pages/app/Home.jsx';
@@ -19,12 +19,13 @@ import Landing from './pages/app/Landing.jsx';
 import About from './pages/app/About.jsx';
 import ViewTeam from './pages/team/ViewTeam.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
+import ErrorPage from './pages/app/ErrorPage.jsx';
 
 const appRouter = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout />,
-        loader: authLoader,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,

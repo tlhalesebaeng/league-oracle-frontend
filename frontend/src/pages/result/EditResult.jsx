@@ -5,6 +5,7 @@ import { getSearchParams } from '../../utils/functions/searchParams.js';
 import api from '../../utils/functions/axiosInstance.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
+import { asyncHandler } from '../../utils/functions/asyncHandler.js';
 
 import ResultDetails from '../../components/result/ResultDetails.jsx';
 import Card from '../../components/app/Card.jsx';
@@ -53,7 +54,7 @@ const EditResult = () => {
     );
 };
 
-export const editResultDataLoader = async ({ request }) => {
+export const editResultDataLoader = asyncHandler(async ({ request }) => {
     // get the league and result id from the request url
     const searchParams = getSearchParams(request);
     const resultId = searchParams.get('resultId');
@@ -66,9 +67,7 @@ export const editResultDataLoader = async ({ request }) => {
         },
     });
 
-    // TODO: Handle errors of this request
-
     return response.data;
-};
+});
 
 export default EditResult;
