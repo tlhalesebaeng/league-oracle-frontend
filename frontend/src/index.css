@@ -6,28 +6,28 @@
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     src: url('/fonts/Poppins-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     src: url('/fonts/Poppins-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto';
+    font-family: 'Poppins';
     src: url('/fonts/Poppins-ExtraBold.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
@@ -71,6 +71,11 @@ main {
     align-items: center;
     justify-content: center;
     background-color: rgb(245, 248, 250);
+}
+
+h1,
+h2 {
+    font-weight: 600;
 }
 
 .error-message {
