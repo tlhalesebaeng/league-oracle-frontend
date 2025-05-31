@@ -10,6 +10,21 @@ const MyLeagues = ({ leagues }) => {
         navigate('/leagues/create');
     };
 
+    // this will short long names (24+ character) by adding dots after some characters
+    const shortenName = (name) => {
+        if (name.length < 24) {
+            return name;
+        }
+
+        let result = '';
+        for (let i = 0; i < 24; i++) {
+            result += name[i];
+        }
+        result += '...';
+
+        return result;
+    };
+
     if (!leagues || leagues.length === 0) {
         return (
             <aside className="my-leagues no-leagues">
@@ -25,14 +40,17 @@ const MyLeagues = ({ leagues }) => {
         <aside className="my-leagues">
             <h3>My leagues</h3>
             <ul>
-                {leagues.map((league) => (
-                    <li
-                        onClick={() => navigate(`/leagues/${league._id}`)}
-                        key={league._id}
-                    >
-                        {league.name}
-                    </li>
-                ))}
+                {leagues.map((league) => {
+                    const name = shortenName(league.name);
+                    return (
+                        <li
+                            onClick={() => navigate(`/leagues/${league._id}`)}
+                            key={league._id}
+                        >
+                            {name}
+                        </li>
+                    );
+                })}
             </ul>
         </aside>
     );
