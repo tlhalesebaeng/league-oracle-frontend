@@ -21,7 +21,7 @@ const RootLayout = () => {
         const checkAuth = async () => {
             const response = await request('/auth/check', 'get');
             if (response && response.data.user) {
-                dispatch(authActions.authenticate(user));
+                dispatch(authActions.authenticate(response.data.user));
             }
             setAuthChecked(true);
         };
