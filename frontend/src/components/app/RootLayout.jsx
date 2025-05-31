@@ -1,31 +1,47 @@
-import { Outlet, useLoaderData, useNavigation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useNavigation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { alertActions, alertTimeout } from '../../store/ui/alert-slice.js';
 import { authActions } from '../../store/auth-slice.js';
+import { useFetch } from '../../hooks/useFetch.js';
 
 import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
 import './RootLayout.css';
-import api from '../../utils/functions/axiosInstance.js';
-import { useEffect } from 'react';
 
 const RootLayout = () => {
     const alert = useSelector((state) => state.alert);
-    const user = useLoaderData();
     const dispatch = useDispatch();
     const navigation = useNavigation();
+    const { request } = useFetch();
+    const [authChecked, setAuthChecked] = useState(false);
 
     useEffect(() => {
-        if (user) {
-            dispatch(authActions.authenticate(user));
-        }
+        const checkAuth = async () => {
+            const response = await request('/auth/check', 'get');
+            if (response && response.data.user) {
+                dispatch(authActions.authenticate(user));
+            }
+            setAuthChecked(true);
+        };
+
+        checkAuth();
     }, []);
 
     const handleCloseAlert = () => {
         dispatch(alertActions.hideAlert());
         if (alertTimeout) clearTimeout(alertTimeout); // clear the time out set by the showAlert action creator
     };
+
+    // this will prevent rendering the whole app before authentication is checked
+    if (!authChecked) {
+        return (
+            <main>
+                <p>Loading...</p>
+            </main>
+        );
+    }
 
     return (
         <>
@@ -44,12 +60,3 @@ const RootLayout = () => {
 };
 
 export default RootLayout;
-
-export const authLoader = async () => {
-    // this loader checks if we are logged in when we first load the app
-    // it only runs once since its the root layout loader
-    const response = await api.get('/auth/check');
-    if (response && response.data && response.data.isAuth) {
-        return response.data.user;
-    }
-};
