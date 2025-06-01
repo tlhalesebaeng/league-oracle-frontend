@@ -12,7 +12,9 @@
     border-radius: 3px;
     color: rgba(0, 0, 0, 0.6);
     font-size: 14px;
+    animation: show_alert 1s ease-out forwards;
 }
+
 .alert p {
     flex: 1;
 }
@@ -45,4 +47,15 @@
     width: 24px;
     height: 24px;
     margin-right: 10px;
+}
+
+@keyframes show_alert {
+    0% {
+        opacity: 0;
+        transform: translateX(10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
