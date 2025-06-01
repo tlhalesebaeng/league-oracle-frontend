@@ -209,8 +209,9 @@ const EditLeagueFields = () => {
                             disabled={isLoading || disableSave}
                             onClick={handleConfirmChanges}
                             type="save"
+                            loading={isLoading}
                         >
-                            {isLoading ? 'Loading...' : 'Save'}
+                            Save
                         </Button>
                     </div>
                     <div className="btn-cancel-edit-league">

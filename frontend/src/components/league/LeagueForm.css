@@ -31,7 +31,8 @@
     min-width: 130px;
 }
 
-.league-form__buttons div {
+.league-form__buttons .btn-add-team,
+.league-form__buttons .btn-create {
     width: 30%;
 }
 

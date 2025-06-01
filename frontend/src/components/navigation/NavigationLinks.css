@@ -19,3 +19,16 @@
 .navigation-link__create svg {
     opacity: 0.5;
 }
+
+.navigation-link__logout-spinner {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px;
+}
+
+.navigation-link__logout-spinner .spinner div {
+    width: 2.5px;
+    height: 7px;
+    background: rgba(0, 0, 0, 0.2);
+    transform-origin: 1.45px 11.6px;
+}

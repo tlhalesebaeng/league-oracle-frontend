@@ -1,6 +1,7 @@
+import Spinner from '../components/app/Spinner';
 import './Button.css';
 
-const Button = ({ onClick, children, type, disabled }) => {
+const Button = ({ onClick, children, type, disabled, loading }) => {
     // classname for a disabled button, this helps to remove the active pseudoclass on disabled buttons
     let className = '';
     if (disabled) className = 'disabled-btn ';
@@ -12,7 +13,12 @@ const Button = ({ onClick, children, type, disabled }) => {
 
     return (
         <button disabled={disabled} onClick={onClick} className={className}>
-            {children}
+            {loading && (
+                <div className="btn__spinner spinner__wrapper">
+                    <Spinner />
+                </div>
+            )}
+            {!loading && children}
         </button>
     );
 };

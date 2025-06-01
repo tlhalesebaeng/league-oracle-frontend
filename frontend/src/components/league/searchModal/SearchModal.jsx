@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import useDebounceValue from '../../../hooks/useDebounceValue.js';
+import { useFetch } from '../../../hooks/useFetch.js';
+
 import Input from '../../../utils/Input.jsx';
 import LeagueList from './LeagueList.jsx';
+import Spinner from '../../app/Spinner.jsx';
 import './SearchModal.css';
-import { useFetch } from '../../../hooks/useFetch.js';
 
 const SearchModal = () => {
     const [searchPhrase, setSearchPhrase] = useState('');
@@ -49,7 +51,11 @@ const SearchModal = () => {
             />
             <div className="search-modal-message">
                 {error && <p className="error-message">{error}</p>}
-                {isLoading && <p>Loading...</p>}
+                {isLoading && (
+                    <div className="search-modal__spinner spinner__wrapper">
+                        <Spinner />
+                    </div>
+                )}
                 {noLeagues && <p>No leagues found</p>}
             </div>
             <LeagueList leagues={leagues} />

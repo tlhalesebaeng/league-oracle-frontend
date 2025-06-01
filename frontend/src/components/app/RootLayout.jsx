@@ -8,6 +8,7 @@ import { useFetch } from '../../hooks/useFetch.js';
 
 import Navigation from '../navigation/Navigation.jsx';
 import Alert from './Alert.jsx';
+import PageSpinner from './PageSpinner.jsx';
 import './RootLayout.css';
 
 const RootLayout = () => {
@@ -36,11 +37,7 @@ const RootLayout = () => {
 
     // this will prevent rendering the whole app before authentication is checked
     if (!authChecked) {
-        return (
-            <main>
-                <p>Loading...</p>
-            </main>
-        );
+        return <PageSpinner />;
     }
 
     return (
@@ -53,7 +50,7 @@ const RootLayout = () => {
                 />
             )}
             <Navigation />
-            {navigation.state === 'loading' && <p>Loading...</p>}
+            {navigation.state === 'loading' && <PageSpinner />}
             <Outlet />
         </>
     );

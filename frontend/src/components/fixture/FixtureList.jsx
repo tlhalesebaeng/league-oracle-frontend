@@ -96,8 +96,9 @@ const FixtureList = () => {
                                 <Button
                                     disabled={isLoading}
                                     onClick={handleGenerateFixtures}
+                                    loading={isLoading}
                                 >
-                                    {isLoading ? 'Loading...' : 'Generate'}
+                                    Generate
                                 </Button>
                             </div>
                         )}

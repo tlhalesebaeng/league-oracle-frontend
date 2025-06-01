@@ -81,8 +81,9 @@ const LeagueForm = ({ onSubmit, loading }) => {
                     <Button
                         disabled={disabled}
                         onClick={(event) => onSubmit(event, teams, leagueName)}
+                        loading={loading}
                     >
-                        {loading ? 'Loading...' : 'Create'}
+                        Create
                     </Button>
                 </div>
             </section>

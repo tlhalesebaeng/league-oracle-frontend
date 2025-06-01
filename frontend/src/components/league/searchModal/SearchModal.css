@@ -18,3 +18,15 @@
     display: flex;
     justify-content: center;
 }
+
+.search-modal__spinner {
+    width: 30px;
+    height: 30px;
+}
+
+.search-modal__spinner .spinner div {
+    width: 2.5px;
+    height: 7px;
+    background: rgba(0, 0, 0, 0.2);
+    transform-origin: 1.45px 11.6px;
+}

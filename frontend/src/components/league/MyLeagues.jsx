@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../utils/Button.jsx';
+import Spinner from '../app/Spinner.jsx';
 import './MyLeagues.css';
 
-const MyLeagues = ({ leagues }) => {
+const MyLeagues = ({ leagues, loading }) => {
     const navigate = useNavigate();
 
     const handleCreate = () => {
@@ -24,6 +25,16 @@ const MyLeagues = ({ leagues }) => {
 
         return result;
     };
+
+    if (loading) {
+        return (
+            <aside className="my-leagues no-leagues">
+                <div className="my-leagues__spinner spinner__wrapper">
+                    <Spinner />
+                </div>
+            </aside>
+        );
+    }
 
     if (!leagues || leagues.length === 0) {
         return (

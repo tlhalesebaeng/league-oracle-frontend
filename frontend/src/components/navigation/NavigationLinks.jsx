@@ -6,6 +6,7 @@ import { authActions } from '../../store/auth-slice.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
 
+import Spinner from '../app/Spinner.jsx';
 import './NavigationLinks.css';
 
 const NavigationLinks = () => {
@@ -51,7 +52,12 @@ const NavigationLinks = () => {
                 </svg>
             </li>
             <li onClick={handleLogout} className="navigation-link__logout">
-                <p>{isLoading ? 'Loading...' : 'Logout'}</p>
+                {isLoading && (
+                    <div className="navigation-link__logout-spinner spinner-wrapper">
+                        <Spinner />
+                    </div>
+                )}
+                {!isLoading && <p>Logout</p>}
             </li>
         </>
     );

@@ -106,8 +106,9 @@ const Login = () => {
                         <Button
                             onClick={handleLogin}
                             disabled={isLoading ? true : disabled}
+                            loading={isLoading}
                         >
-                            {isLoading ? 'Loading...' : 'Login'}
+                            Login
                         </Button>
                     </div>
                 </AuthForm>

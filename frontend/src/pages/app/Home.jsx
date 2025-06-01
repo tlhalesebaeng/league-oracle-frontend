@@ -10,7 +10,7 @@ const Home = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
 
     const { request, error, isLoading } = useFetch();
-    const [leagues, setLeagues] = useState();
+    const [leagues, setLeagues] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,8 +33,7 @@ const Home = () => {
     // the styles for layout content class are stored in the RootLayout.css
     return (
         <div className="layout-content">
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && <MyLeagues leagues={leagues} />}
+            <MyLeagues loading={isLoading} leagues={leagues} />
             <main>
                 <h2>Home Page</h2>
             </main>

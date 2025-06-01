@@ -160,8 +160,9 @@ const Signup = () => {
                         <Button
                             disabled={isLoading ? true : disabled}
                             onClick={handleSignup}
+                            loading={isLoading}
                         >
-                            {isLoading ? 'Loading...' : 'Create account'}
+                            Create account
                         </Button>
                     </div>
                 </AuthForm>

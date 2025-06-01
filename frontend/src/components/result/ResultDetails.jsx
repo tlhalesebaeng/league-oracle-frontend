@@ -70,8 +70,9 @@ const ResultDetails = (props) => {
                         disabled={props.isLoading || disableSave}
                         onClick={() => props.onSave(scores)}
                         type="save"
+                        loading={props.isLoading}
                     >
-                        {props.isLoading ? 'Loading...' : 'Save'}
+                        Save
                     </Button>
                 </div>
                 <div className="result-details__btn-cancel">

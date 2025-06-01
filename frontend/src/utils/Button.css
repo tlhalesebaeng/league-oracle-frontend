@@ -7,6 +7,9 @@
     font-size: 16px;
     font-weight: 400;
     transition: background-color ease 0.15s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn:hover,
@@ -46,4 +49,16 @@
     background-color: transparent;
     border: 1px solid rgb(255, 0, 0);
     color: rgb(255, 0, 0);
+}
+
+.btn__spinner {
+    width: 30px;
+    height: 30px;
+}
+
+.btn__spinner .spinner div {
+    width: 2.5px;
+    height: 7px;
+    background: rgb(255, 255, 255);
+    transform-origin: 1.45px 11.6px;
 }

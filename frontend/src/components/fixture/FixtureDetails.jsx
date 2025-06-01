@@ -140,8 +140,9 @@ const FixtureDetails = () => {
                         <Button
                             disabled={isLoading || disableSave}
                             onClick={handleSaveChanges}
+                            loading={isLoading}
                         >
-                            {isLoading ? 'Loading...' : 'Save'}
+                            Save
                         </Button>
                     </div>
                     <div className="fixture-details__btn-cancel">
