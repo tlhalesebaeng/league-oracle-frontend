@@ -32,15 +32,15 @@ export const addFixtureResult = asyncHandler(async (req, res, next) => {
     }
 
     const { homeTeamScore, awayTeamScore } = req.body;
-    const { homeTeam, awayTeam } = fixture;
+    const { homeTeam, awayTeam, date } = fixture;
     const leagueId = fixture.league;
-    const league = req.league;
 
     // create and save the result
     const result = await Result.create({
         league: leagueId,
         homeTeam,
         awayTeam,
+        date,
         homeTeamScore,
         awayTeamScore,
     });
