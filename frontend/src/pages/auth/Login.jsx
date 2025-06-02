@@ -105,7 +105,7 @@ const Login = () => {
                     <div className="btn-submit-container">
                         <Button
                             onClick={handleLogin}
-                            disabled={isLoading ? true : disabled}
+                            disabled={isLoading || disabled}
                             loading={isLoading}
                         >
                             Login

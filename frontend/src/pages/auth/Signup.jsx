@@ -158,7 +158,7 @@ const Signup = () => {
                     {error && <p className="error-message">{error}</p>}
                     <div className="btn-submit-container">
                         <Button
-                            disabled={isLoading ? true : disabled}
+                            disabled={isLoading || disabled}
                             onClick={handleSignup}
                             loading={isLoading}
                         >
