@@ -20,6 +20,7 @@ import About from './pages/app/About.jsx';
 import ViewTeam from './pages/team/ViewTeam.jsx';
 import CreateLeague from './pages/league/CreateLeague.jsx';
 import ErrorPage from './pages/app/ErrorPage.jsx';
+import Contact from './pages/app/Contact.jsx';
 
 const appRouter = createBrowserRouter([
     {
@@ -90,6 +91,10 @@ const appRouter = createBrowserRouter([
                         loader: addResultDataLoader,
                     },
                 ],
+            },
+            {
+                path: 'contact',
+                element: <Contact />,
             },
             {
                 path: 'about',
