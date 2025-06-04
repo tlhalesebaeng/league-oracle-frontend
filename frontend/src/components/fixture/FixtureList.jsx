@@ -92,7 +92,7 @@ const FixtureList = () => {
                         <p>No fixtures found</p>
                         {error && <p className="error-message">{error}</p>}
                         {isAuth && isCreator && (
-                            <div>
+                            <div className="no-fixture__btn-generate">
                                 <Button
                                     disabled={isLoading}
                                     onClick={handleGenerateFixtures}

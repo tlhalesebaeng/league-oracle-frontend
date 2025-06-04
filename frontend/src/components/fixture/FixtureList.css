@@ -11,7 +11,8 @@
     align-items: center;
 }
 
-.no-fixtures div {
+.no-fixture__btn-generate {
     height: 30px;
+    width: 120px;
     margin-top: 10px;
 }
