@@ -1,0 +1,104 @@
+.footer {
+    width: 100%;
+    height: 390px;
+    margin-top: 50px;
+    padding: 50px 30px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+}
+
+.footer-details {
+    position: relative;
+}
+
+.footer-details h3 {
+    font-size: 20px;
+}
+
+/* styles for details about the app */
+.footer-details__app-details {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.footer-details__app-details p {
+    max-width: 350px;
+    margin: 10px 0px;
+    font-size: 16px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* styles for the links part */
+
+.footer-details__links {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-details__links li {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.footer-details__links li h3 {
+    margin-bottom: 8px;
+}
+
+.footer-details__links li a {
+    margin: 8px 0px;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.footer-details__links li a:hover {
+    text-decoration: underline;
+}
+
+/* contact styles */
+.footer-details__contact {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.footer-details__contact p {
+    font-size: 16px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.footer-details__contact-email {
+    margin: 8px 0px;
+}
+
+.footer-details__contact-button {
+    width: 140px;
+    height: 30px;
+    margin-top: 20px;
+}
+
+/* copy right styles */
+
+.footer-copyright {
+    margin: 30px 100px 0px 100px;
+    padding: 40px 0px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.footer-copyright p {
+    color: rgba(0, 0, 0, 0.6);
+}
