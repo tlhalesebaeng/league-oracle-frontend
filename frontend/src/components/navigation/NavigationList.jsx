@@ -15,9 +15,14 @@ const NavigationList = () => {
     return (
         <ul className="nav-list">
             {isAuth && (
-                <li className="nav-list__about-link">
-                    <Link to="/about">About</Link>
-                </li>
+                <>
+                    <li className="nav-list__about-link">
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li className="nav-list__contact-link">
+                        <Link to="/contact">Contact</Link>
+                    </li>
+                </>
             )}
             <li>
                 <SearchLeagues />

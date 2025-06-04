@@ -10,6 +10,12 @@
     align-items: center;
 }
 
-.nav-list__about-link a {
+.nav-list__about-link a,
+.nav-list__contact-link a {
     text-decoration: none;
+}
+
+.nav-list__about-link a:hover,
+.nav-list__contact-link a:hover {
+    text-decoration: underline;
 }
