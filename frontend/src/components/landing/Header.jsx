@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
+import exampleStandingImg from '../../assets/example-standings.png';
 import './Header.css';
 
 const Header = ({ howItWorksRef }) => {
@@ -33,7 +34,9 @@ const Header = ({ howItWorksRef }) => {
                     </Button>
                 </div>
             </section>
-            <img alt="league-image" />
+            <section className="landing-header__image">
+                <img src={exampleStandingImg} alt="league-image" />
+            </section>
         </header>
     );
 };

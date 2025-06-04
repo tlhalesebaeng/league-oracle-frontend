@@ -32,3 +32,13 @@
 .landing-header__buttons button {
     width: 140px;
 }
+
+.landing-header__image {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-header__image img {
+    width: 360px;
+}
