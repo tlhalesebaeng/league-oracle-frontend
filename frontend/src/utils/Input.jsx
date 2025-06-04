@@ -1,6 +1,21 @@
 import './input.css';
 
 const Input = (props) => {
+    if (props.kind === 'text-area') {
+        return (
+            <>
+                {props.label && <label>{props.label}</label>}
+                <textarea
+                    ref={props.ref}
+                    onChange={props.onInputChange}
+                    className={props.className || 'textarea'}
+                    placeholder={props.placeholder}
+                    value={props.value}
+                ></textarea>
+            </>
+        );
+    }
+
     return (
         <>
             {props.label && <label>{props.label}</label>}
