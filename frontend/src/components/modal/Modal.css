@@ -13,11 +13,3 @@ dialog {
     top: 50%;
     transform: translate(-50%, -50%);
 }
-
-.search-modal {
-    width: 600px;
-    margin-top: 10px;
-    left: 287px;
-    top: 0%;
-    transform: none;
-}
