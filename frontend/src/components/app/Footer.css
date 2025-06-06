@@ -102,3 +102,26 @@
 .footer-copyright p {
     color: rgba(0, 0, 0, 0.6);
 }
+
+/* responsiveness */
+
+@media (max-width: 1000px) {
+    .footer-details h3 {
+        font-size: 18px;
+    }
+
+    .footer-details__app-details p {
+        max-width: 260px;
+    }
+
+    .footer-details__links {
+        left: 55%;
+        transform: translate(-55%, 0);
+    }
+
+    .footer-details__app-details p,
+    .footer-details__contact p,
+    .footer-details__links li a {
+        font-size: 14px;
+    }
+}

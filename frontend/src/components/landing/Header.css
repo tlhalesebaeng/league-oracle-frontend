@@ -42,3 +42,19 @@
 .landing-header__image img {
     width: 360px;
 }
+
+/* responsiveness */
+
+@media (max-width: 1000px) {
+    .landing-header__details {
+        width: 100%;
+    }
+
+    .landing-header__image {
+        width: 0%;
+    }
+
+    .landing-header__image img {
+        display: none;
+    }
+}

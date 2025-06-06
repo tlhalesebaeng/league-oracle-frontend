@@ -5,7 +5,7 @@ import './HowItWorks.css';
 const steps = [
     {
         id: 'step-1',
-        title: 'Create league',
+        title: 'Create a league',
         description:
             'After logging in, click on the plus (+) sign on the top left corner to create a league with any amount of teams',
         showDesc: true,

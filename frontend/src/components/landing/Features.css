@@ -48,3 +48,27 @@
 .features ul li img {
     width: 30px;
 }
+
+/* responsiveness */
+
+@media (max-width: 1000px) {
+    .features .card {
+        margin: 0px 10px;
+    }
+
+    .features ul li {
+        width: 160px;
+    }
+
+    .features ul li img {
+        width: 20px;
+    }
+
+    .features ul li p {
+        font-size: 12px;
+    }
+
+    .features ul li h3 {
+        font-size: 14px;
+    }
+}
