@@ -1,10 +1,16 @@
 .tab-list {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.tab-list ul {
+    width: 400px;
     list-style: none;
     display: flex;
     justify-content: space-evenly;
 }
 
-.tab-list .active {
+.tab-list ul .active {
     background-color: rgba(0, 0, 0, 0.05);
 }

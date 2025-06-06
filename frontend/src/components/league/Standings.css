@@ -1,7 +1,13 @@
+.league-standings {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0px 50px;
+}
+
 .league-standings table {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
 }
 
 .league-standings thead tr {
@@ -9,12 +15,13 @@
 }
 
 .league-standings__space-header {
-    width: 350px;
+    width: 65%;
 }
 
 .league-standings__header-field {
     height: 20px;
-    width: 70px;
+    width: 10%;
+    min-width: 50px;
     background-color: transparent;
     display: flex;
     justify-content: center;

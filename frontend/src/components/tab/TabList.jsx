@@ -10,19 +10,26 @@ const TabList = ({ onStandings, onFixtures, onResults, tab }) => {
 
     const tabs = ['Standings', 'Fixtures', 'Results'];
     return (
-        <ul className="tab-list">
-            {tabs.map((tabName) => {
-                const lowercaseTabName = tabName.toLowerCase();
-                const style = tab === lowercaseTabName ? 'active' : undefined;
-                const click = determineHandler(lowercaseTabName);
+        <section className="tab-list">
+            <ul>
+                {tabs.map((tabName) => {
+                    const lowercaseTabName = tabName.toLowerCase();
+                    const style =
+                        tab === lowercaseTabName ? 'active' : undefined;
+                    const click = determineHandler(lowercaseTabName);
 
-                return (
-                    <TabItem onClick={click} className={style} key={tabName}>
-                        {tabName}
-                    </TabItem>
-                );
-            })}
-        </ul>
+                    return (
+                        <TabItem
+                            onClick={click}
+                            className={style}
+                            key={tabName}
+                        >
+                            {tabName}
+                        </TabItem>
+                    );
+                })}
+            </ul>
+        </section>
     );
 };
 
