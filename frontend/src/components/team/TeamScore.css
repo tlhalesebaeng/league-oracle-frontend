@@ -1,19 +1,24 @@
 .team-score {
+    height: 60px;
     width: 100%;
-    margin: 10px 0px;
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+}
+
+.team-score a {
+    position: absolute;
+    text-decoration: none;
 }
 
 .team-score p {
     margin-right: 20px;
+    position: absolute;
+    left: 50%;
 }
 
 .team-score input {
     max-width: 150px;
-}
-
-.team-score a {
-    text-decoration: none;
+    position: absolute;
+    right: 0px;
 }

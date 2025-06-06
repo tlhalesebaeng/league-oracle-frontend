@@ -42,7 +42,7 @@ const ResultDetails = (props) => {
     if (!scores.homeScore || !scores.awayScore) disableSave = true;
 
     return (
-        <>
+        <div className="result-details">
             <h2
                 onClick={handleNameClick}
                 className="result-details__league-name"
@@ -84,7 +84,7 @@ const ResultDetails = (props) => {
                     </Button>
                 </div>
             </section>
-        </>
+        </div>
     );
 };
 
