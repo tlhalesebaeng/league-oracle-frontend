@@ -1,4 +1,5 @@
 .confirm-fixture-gen {
+    width: 500px;
     padding: 10px;
     display: flex;
     flex-direction: column;
