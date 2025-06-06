@@ -4,6 +4,7 @@ import { uiActions } from '../../store/ui/ui-slice.js';
 import Modal from '../modal/Modal.jsx';
 import Backdrop from '../modal/Backdrop.jsx';
 import SearchModal from '../league/searchModal/SearchModal.jsx';
+import searchImg from '../../assets/search.png';
 import './SearchLeagues.css';
 
 const SearchLeagues = () => {
@@ -26,6 +27,7 @@ const SearchLeagues = () => {
                 </Modal>
             )}
             <div onClick={handleSearch} className="search-leagues">
+                <img src={searchImg} alt="search-img" />
                 <p>Search for a league</p>
             </div>
         </>

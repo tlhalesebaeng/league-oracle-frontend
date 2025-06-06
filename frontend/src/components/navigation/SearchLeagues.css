@@ -13,6 +13,24 @@
 }
 
 .search-leagues p {
+    margin-left: 10px;
     color: rgba(0, 0, 0, 0.6);
     font-size: 14px;
+}
+
+.search-leagues img {
+    width: 18px;
+}
+
+/* responsiveness */
+
+@media (max-width: 1000px) {
+    .search-leagues {
+        width: fit-content;
+        padding: 0px 20px;
+    }
+
+    .search-leagues p {
+        display: none;
+    }
 }
