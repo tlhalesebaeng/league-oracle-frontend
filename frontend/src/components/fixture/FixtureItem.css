@@ -1,5 +1,4 @@
 .fixture-list__item {
-    height: 60px;
     margin: 10px 0px;
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -22,8 +21,9 @@
 
 .fixture-list__versus {
     position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -50%);
 }
 
 .fixture-list__details h3 {
@@ -34,4 +34,17 @@
 
 .fixture-list__details a {
     text-decoration: none;
+}
+
+@media (max-width: 750px) {
+    .fixture-list__details h3,
+    .fixture-list__details a {
+        font-size: 12px;
+    }
+
+    .fixture-list__details a {
+        max-width: 100px;
+        display: flex;
+        align-items: center;
+    }
 }
