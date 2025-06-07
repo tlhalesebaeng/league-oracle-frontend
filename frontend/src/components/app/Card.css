@@ -12,3 +12,11 @@
     width: 65%;
     max-width: 900px;
 }
+
+@media (max-width: 600px) {
+    .card {
+        border: none;
+        border-radius: 0px;
+        background-color: rgb(245, 248, 250);
+    }
+}
