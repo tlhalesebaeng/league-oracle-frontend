@@ -1,6 +1,7 @@
 .edit-teams-modal {
     width: 500px;
     padding: 0px 10px;
+    box-sizing: border-box;
 }
 
 .edit-teams-modal h2 {
@@ -42,4 +43,16 @@
 
 .edit-teams-modal__buttons .btn-cancel-edit-teams {
     margin-left: 10px;
+}
+
+/* responsiveness */
+
+@media (max-width: 600px) {
+    .edit-teams-modal {
+        width: 300px;
+    }
+
+    .edit-teams-modal__buttons {
+        justify-content: center;
+    }
 }
