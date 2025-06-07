@@ -20,7 +20,7 @@ const NavigationList = () => {
                     <Link to="/contact">Contact</Link>
                 </li>
             )}
-            <li>
+            <li className="nav-list__search">
                 <SearchLeagues />
             </li>
             {!isAuth && showAuthButtons && (

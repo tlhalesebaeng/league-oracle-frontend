@@ -35,10 +35,10 @@ const NavigationLinks = () => {
     };
 
     return (
-        <>
-            <li
+        <li className="navigation-links">
+            <div
                 onClick={handleCreateLeague}
-                className="navigation-link__create"
+                className="navigation-links__create"
             >
                 <svg
                     aria-hidden="true"
@@ -50,16 +50,16 @@ const NavigationLinks = () => {
                 >
                     <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
                 </svg>
-            </li>
-            <li onClick={handleLogout} className="navigation-link__logout">
+            </div>
+            <div onClick={handleLogout} className="navigation-links__logout">
                 {isLoading && (
-                    <div className="navigation-link__logout-spinner spinner-wrapper">
+                    <div className="navigation-links__logout-spinner spinner-wrapper">
                         <Spinner />
                     </div>
                 )}
                 {!isLoading && <p>Logout</p>}
-            </li>
-        </>
+            </div>
+        </li>
     );
 };
 

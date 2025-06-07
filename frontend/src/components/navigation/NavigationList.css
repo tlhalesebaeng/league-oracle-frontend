@@ -3,13 +3,6 @@
     display: flex;
 }
 
-.nav-list li {
-    height: 30px;
-    margin: 0px 10px;
-    display: flex;
-    align-items: center;
-}
-
 .nav-list__links {
     display: flex;
 }
@@ -21,6 +14,13 @@
 
 .nav-list__links a:hover {
     text-decoration: underline;
+}
+
+.nav-list__search {
+    height: 30px;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
 }
 
 /* responsiveness */

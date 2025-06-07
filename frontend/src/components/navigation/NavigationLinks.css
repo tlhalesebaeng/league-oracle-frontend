@@ -1,32 +1,40 @@
-.navigation-link__create,
-.navigation-link__logout {
+.navigation-links {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-links__create,
+.navigation-links__logout {
+    height: 30px;
+    margin: 0px 10px;
     padding: 0px 15px;
-    justify-content: center;
+    display: flex;
+    align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 5px;
 }
 
-.navigation-link__logout {
+.navigation-links__logout {
     color: rgba(0, 0, 0);
     font-size: 14px;
 }
 
-.navigation-link__create:hover,
-.navigation-link__logout:hover {
+.navigation-links__create:hover,
+.navigation-links__logout:hover {
     cursor: pointer;
 }
 
-.navigation-link__create svg {
+.navigation-links__create svg {
     opacity: 0.5;
 }
 
-.navigation-link__logout-spinner {
+.navigation-links__logout-spinner {
     width: 30px;
     height: 30px;
     margin: 0px 10px;
 }
 
-.navigation-link__logout-spinner .spinner div {
+.navigation-links__logout-spinner .spinner div {
     width: 2.5px;
     height: 7px;
     background: rgba(0, 0, 0, 0.2);
