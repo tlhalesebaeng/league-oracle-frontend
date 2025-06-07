@@ -1,4 +1,9 @@
 .view__header {
-    min-width: 500px;
-    width: 35%;
+    width: 500px;
+}
+
+@media (max-width: 750px) {
+    .view__header {
+        width: 80%;
+    }
 }

@@ -43,7 +43,7 @@ const StandingDetails = () => {
 
     return (
         <section className="league-details">
-            <div className="header">
+            <div className="league-details__header">
                 <h2 onClick={handleLeagueNameClick}>{league.name}</h2>
                 {isAuth && isCreator && (
                     <div className="btn-update">

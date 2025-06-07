@@ -7,24 +7,34 @@
     border-bottom: 2px solid rgba(0, 0, 0, 0.3);
 }
 
-.league-details .header h2 {
+.league-details__header {
+    display: flex;
+    align-items: center;
+}
+
+.league-details__header h2 {
     font-size: 30px;
     line-height: 30px;
     margin-bottom: 10px;
 }
 
-.league-details .header {
-    display: flex;
-    align-items: center;
-}
-
-.league-details .header .btn-update {
+.league-details__header .btn-update {
     height: 30px;
     width: 100px;
     margin-left: 30px;
     margin-bottom: 10px;
 }
 
-.league-details h2:hover {
+.league-details__header h2:hover {
     cursor: pointer;
+}
+
+@media (max-width: 750px) {
+    .league-details__header {
+        flex-direction: column;
+    }
+
+    .league-details__header .btn-update {
+        margin-left: 0px;
+    }
 }
