@@ -5,6 +5,7 @@
 
 .nav-list__links {
     display: flex;
+    align-items: center;
 }
 
 .nav-list__links a {
