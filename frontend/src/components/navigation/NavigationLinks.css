@@ -40,3 +40,12 @@
     background: rgba(0, 0, 0, 0.2);
     transform-origin: 1.45px 11.6px;
 }
+
+/* responsiveness */
+
+@media (max-width: 750px) {
+    .navigation-links {
+        display: none;
+        margin: 0px;
+    }
+}
