@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Button from '../../utils/Button.jsx';
 import SearchLeagues from './SearchLeagues.jsx';
 import NavigationLinks from './NavigationLinks.jsx';
+import menuImg from '../../assets/menu.png';
 import './NavigationList.css';
 
 const NavigationList = () => {
@@ -11,6 +12,10 @@ const NavigationList = () => {
     const showAuthButtons = useSelector((state) => state.ui.authButtonsShown);
 
     const navigate = useNavigate();
+
+    const handleOpenSidebar = () => {
+        console.log('opening side bar');
+    };
 
     return (
         <ul className="nav-list">
@@ -37,7 +42,9 @@ const NavigationList = () => {
                     </li>
                 </>
             )}
-
+            <li onClick={handleOpenSidebar} className="nav-list__menu">
+                <img src={menuImg} />
+            </li>
             {isAuth && <NavigationLinks />}
         </ul>
     );

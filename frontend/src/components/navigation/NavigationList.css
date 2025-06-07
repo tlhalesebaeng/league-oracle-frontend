@@ -24,11 +24,34 @@
     align-items: center;
 }
 
+.nav-list__menu {
+    height: 30px;
+    padding: 0px 15px;
+    margin: 0px 10px;
+    display: none;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.nav-list__menu:hover {
+    cursor: pointer;
+}
+
+.nav-list__menu img {
+    height: 20px;
+    width: 20px;
+}
+
 /* responsiveness */
 
 @media (max-width: 750px) {
     .nav-list__links a {
         display: none;
         margin: 0px;
+    }
+
+    .nav-list__menu {
+        display: flex;
     }
 }
