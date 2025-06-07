@@ -17,7 +17,7 @@
 }
 
 .how-it-works ul .card {
-    margin: 20px;
+    margin: 20px 0px;
     align-items: start;
 }
 
@@ -42,6 +42,7 @@
     font-weight: 600;
     color: rgb(255, 255, 255);
     background-color: rgb(34, 133, 245);
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,4 +65,22 @@
 .how-it-works ul .shown .how-it-works__top-part p {
     color: rgb(34, 133, 245);
     background-color: rgb(255, 255, 255);
+}
+
+/* responsiveness */
+
+@media (max-width: 750px) {
+    .how-it-works ul {
+        min-width: 300px;
+    }
+
+    .how-it-works ul .card {
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    .how-it-works ul .shown {
+        background-color: rgb(34, 133, 245);
+    }
 }
