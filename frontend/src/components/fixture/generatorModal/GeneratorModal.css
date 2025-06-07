@@ -26,3 +26,15 @@
 .btn-cancel-gen {
     margin-left: 10px;
 }
+
+/* responsiveness */
+
+@media (max-width: 600px) {
+    .confirm-fixture-gen {
+        width: 300px;
+    }
+
+    .confirm-fixture-gen section {
+        justify-content: center;
+    }
+}
