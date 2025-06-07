@@ -29,6 +29,8 @@
     cursor: pointer;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .league-details__header {
         flex-direction: column;

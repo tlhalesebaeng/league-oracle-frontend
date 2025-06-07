@@ -16,6 +16,8 @@
     margin-top: 10px;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .result-list {
         width: 90%;

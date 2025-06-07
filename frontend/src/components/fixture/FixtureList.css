@@ -17,6 +17,8 @@
     margin-top: 10px;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .fixture-list {
         width: 90%;

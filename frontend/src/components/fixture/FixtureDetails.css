@@ -22,6 +22,8 @@
     color: rgb(255, 0, 0);
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .fixture-details__buttons {
         width: 90%;

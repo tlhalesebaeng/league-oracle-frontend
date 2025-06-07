@@ -13,6 +13,8 @@
     max-width: 900px;
 }
 
+/* responsiveness */
+
 @media (max-width: 600px) {
     .card {
         padding: 20px 0px;

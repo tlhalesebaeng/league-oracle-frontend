@@ -30,6 +30,8 @@
     font-weight: 600;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .league-standings {
         margin: 0px 30px;

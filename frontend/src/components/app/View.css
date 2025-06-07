@@ -2,6 +2,8 @@
     width: 500px;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .view__header {
         width: 80%;

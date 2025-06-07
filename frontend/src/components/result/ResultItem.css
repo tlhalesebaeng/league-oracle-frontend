@@ -46,6 +46,8 @@
     font-size: 12px;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .result-list__teams p,
     .result-list__teams a {

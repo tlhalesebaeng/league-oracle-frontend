@@ -36,6 +36,8 @@
     text-decoration: none;
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .fixture-list__details h3,
     .fixture-list__details a {

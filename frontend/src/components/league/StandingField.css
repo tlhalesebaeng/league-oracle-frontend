@@ -28,6 +28,8 @@
     color: rgb(255, 255, 255);
 }
 
+/* responsiveness */
+
 @media (max-width: 750px) {
     .league-standings__field {
         height: 30px;
