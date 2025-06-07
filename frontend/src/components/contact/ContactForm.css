@@ -67,3 +67,33 @@
         width: 300px;
     }
 }
+
+@media (max-width: 750px) {
+    .contact-form aside {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-form aside p {
+        text-align: center;
+        max-width: 300px;
+    }
+
+    .contact-form {
+        flex-direction: column;
+    }
+
+    .contact-form form section input,
+    .contact-form form section textarea {
+        background-color: rgb(245, 248, 250);
+    }
+
+    .contact-form .card {
+        margin: 0px;
+        border: none;
+        border-radius: 0px;
+        background-color: rgb(245, 248, 250);
+    }
+}
