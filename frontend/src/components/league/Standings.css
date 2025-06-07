@@ -29,3 +29,28 @@
     font-size: 14px;
     font-weight: 600;
 }
+
+@media (max-width: 750px) {
+    .league-standings {
+        margin: 0px 30px;
+    }
+
+    .league-standings__header-field {
+        height: 30px;
+        font-size: 12px;
+        width: 40px;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 600px) {
+    .league-standings {
+        margin: 0px 10px;
+    }
+
+    .header-type__W,
+    .header-type__D,
+    .header-type__L {
+        display: none;
+    }
+}

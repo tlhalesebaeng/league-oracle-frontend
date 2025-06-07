@@ -37,7 +37,7 @@ const Standings = () => {
                         {tableHeaderFields.map((fieldName) => (
                             <td
                                 key={fieldName}
-                                className="league-standings__header-field"
+                                className={`league-standings__header-field header-type__${fieldName}`}
                             >
                                 {fieldName}
                             </td>

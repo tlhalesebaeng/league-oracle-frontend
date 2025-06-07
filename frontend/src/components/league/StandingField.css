@@ -27,3 +27,25 @@
     background-color: rgb(34, 133, 245);
     color: rgb(255, 255, 255);
 }
+
+@media (max-width: 750px) {
+    .league-standings__field {
+        height: 30px;
+        font-size: 12px;
+        border-width: 2px;
+        width: 40px;
+        min-width: unset;
+    }
+
+    .league-standings__heading-field {
+        width: 65%;
+    }
+}
+
+@media (max-width: 600px) {
+    .league-standings__wins-field,
+    .league-standings__draws-field,
+    .league-standings__loses-field {
+        display: none;
+    }
+}
