@@ -1,6 +1,5 @@
 .footer {
     width: 100%;
-    height: 390px;
     margin-top: 50px;
     padding: 50px 30px 0px 30px;
     display: flex;
@@ -11,18 +10,12 @@
 }
 
 .footer-details {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer-details h3 {
     font-size: 20px;
-}
-
-/* styles for details about the app */
-.footer-details__app-details {
-    position: absolute;
-    top: 0px;
-    left: 0px;
 }
 
 .footer-details__app-details p {
@@ -36,42 +29,26 @@
 /* styles for the links part */
 
 .footer-details__links {
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    list-style: none;
     display: flex;
     flex-direction: column;
 }
 
-.footer-details__links li {
-    display: flex;
-
-    flex-direction: column;
-}
-
-.footer-details__links li h3 {
+.footer-details__links h3 {
     margin-bottom: 8px;
 }
 
-.footer-details__links li a {
+.footer-details__links a {
     margin: 8px 0px;
     text-decoration: none;
     font-size: 16px;
     line-height: 16px;
 }
 
-.footer-details__links li a:hover {
+.footer-details__links a:hover {
     text-decoration: underline;
 }
 
 /* contact styles */
-.footer-details__contact {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
 
 .footer-details__contact p {
     font-size: 16px;
@@ -106,22 +83,38 @@
 /* responsiveness */
 
 @media (max-width: 1000px) {
-    .footer-details h3 {
-        font-size: 18px;
+    .footer-details {
+        display: grid;
+        justify-content: flex-start;
+        grid-template-columns: 350px 200px;
+        column-gap: 100px;
+    }
+}
+
+@media (max-width: 750px) {
+    .footer-details {
+        column-gap: 20px;
+        row-gap: 20px;
     }
 
-    .footer-details__app-details p {
-        max-width: 260px;
+    /* copy right styles */
+    .footer-copyright {
+        margin: 30px 30px 0px 30px;
+        padding: 40px 50px;
     }
 
-    .footer-details__links {
-        left: 55%;
-        transform: translate(-55%, 0);
+    .footer-copyright p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 630px) {
+    .footer-details {
+        display: flex;
+        flex-direction: column;
     }
 
-    .footer-details__app-details p,
-    .footer-details__contact p,
-    .footer-details__links li a {
-        font-size: 14px;
+    .footer-copyright {
+        padding: 40px 30px;
     }
 }

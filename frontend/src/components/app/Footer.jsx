@@ -10,12 +10,18 @@ const Footer = () => {
     const footerDetails = [
         {
             _id: 'footer-detail-1',
-            title: 'Quick Access',
+            title: 'Information',
             links: [
                 { to: '/about', name: 'About' },
-                { to: '#', name: 'Terms of service' },
-                { to: '#', name: 'Privacy policy' },
                 { to: '/contact', name: 'Contact' },
+            ],
+        },
+        {
+            _id: 'footer-detail-2',
+            title: 'Quick Access',
+            links: [
+                { to: '/login', name: 'Login' },
+                { to: '/signup', name: 'Sign up' },
             ],
         },
     ];
@@ -31,20 +37,21 @@ const Footer = () => {
                             results with little to no effort
                         </p>
                     </div>
-                    <ul className="footer-details__links">
-                        {footerDetails.map((detail) => {
-                            return (
-                                <li key={detail._id}>
-                                    <h3>{detail.title}</h3>
-                                    {detail.links.map((link) => (
-                                        <Link key={link.name} to={link.to}>
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    {footerDetails.map((detail) => {
+                        return (
+                            <div
+                                className="footer-details__links"
+                                key={detail._id}
+                            >
+                                <h3>{detail.title}</h3>
+                                {detail.links.map((link) => (
+                                    <Link key={link.name} to={link.to}>
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        );
+                    })}
                     <div className="footer-details__contact">
                         <h3>Contact Us</h3>
                         <p className="footer-details__contact-email">
