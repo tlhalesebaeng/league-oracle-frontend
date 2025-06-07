@@ -44,8 +44,8 @@ const RootLayout = () => {
         <>
             {alert.isShown && (
                 <Alert
-                    type={alert.type}
-                    message={alert.message}
+                    type={alert.type || 'error'}
+                    message={alert.message || 'no message provided'}
                     onClose={handleCloseAlert}
                 />
             )}
