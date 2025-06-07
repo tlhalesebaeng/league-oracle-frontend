@@ -35,3 +35,10 @@ label {
 .input-img:hover {
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    .input,
+    .textarea {
+        background-color: rgb(245, 248, 250);
+    }
+}
