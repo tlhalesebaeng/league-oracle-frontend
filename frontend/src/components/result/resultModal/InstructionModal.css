@@ -29,3 +29,15 @@
 .instruction-modal__buttons .btn-cancel-instruction {
     margin-left: 10px;
 }
+
+/* responsiveness */
+
+@media (max-width: 600px) {
+    .instruction-modal__content {
+        width: 300px;
+    }
+
+    .instruction-modal__buttons {
+        justify-content: center;
+    }
+}
