@@ -60,6 +60,10 @@
 }
 
 @media (max-width: 600px) {
+    .landing-header {
+        margin-top: 0px;
+    }
+
     .landing-header__details {
         display: flex;
         flex-direction: column;
