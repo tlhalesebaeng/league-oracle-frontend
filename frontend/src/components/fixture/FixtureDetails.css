@@ -21,3 +21,15 @@
     border-color: rgb(255, 0, 0);
     color: rgb(255, 0, 0);
 }
+
+@media (max-width: 750px) {
+    .fixture-details__buttons {
+        width: 90%;
+    }
+
+    .fixture-details__buttons .fixture-details__btn-add,
+    .fixture-details__buttons .fixture-details__btn-save,
+    .fixture-details__buttons .fixture-details__btn-cancel {
+        margin: 0px 5px;
+    }
+}
