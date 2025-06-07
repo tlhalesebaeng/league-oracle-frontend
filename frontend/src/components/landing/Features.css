@@ -12,7 +12,7 @@
 }
 
 .features__message {
-    max-width: 50%;
+    width: 50%;
     margin: 20px 0px;
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
@@ -70,5 +70,38 @@
 
     .features ul li h3 {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 750px) {
+    .features__message {
+        width: 300px;
+    }
+
+    .features .card {
+        margin: 10px 0px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    .features ul {
+        flex-direction: column;
+    }
+
+    .features ul li {
+        width: 300px;
+    }
+
+    .features ul li h3 {
+        font-size: 16px;
+    }
+
+    .features ul li p {
+        font-size: 14px;
+    }
+
+    .features ul li img {
+        width: 30px;
     }
 }
