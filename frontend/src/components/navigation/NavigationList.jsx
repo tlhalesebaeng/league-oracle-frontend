@@ -29,18 +29,14 @@ const NavigationList = () => {
                 <SearchLeagues />
             </li>
             {!isAuth && showAuthButtons && (
-                <>
-                    <li className="nav-btn">
-                        <Button onClick={() => navigate('/login')} type="no-bg">
-                            Login
-                        </Button>
-                    </li>
-                    <li>
-                        <Button onClick={() => navigate('/signup')}>
-                            Get started
-                        </Button>
-                    </li>
-                </>
+                <li className="nav-list__auth-buttons">
+                    <Button onClick={() => navigate('/login')} type="no-bg">
+                        Login
+                    </Button>
+                    <Button onClick={() => navigate('/signup')}>
+                        Get started
+                    </Button>
+                </li>
             )}
             <li onClick={handleOpenSidebar} className="nav-list__menu">
                 <img src={menuImg} />

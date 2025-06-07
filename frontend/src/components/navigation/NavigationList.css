@@ -24,6 +24,16 @@
     align-items: center;
 }
 
+.nav-list__auth-buttons {
+    height: 30px;
+    display: flex;
+}
+
+.nav-list__auth-buttons button {
+    margin: 0px 10px;
+    width: fit-content;
+}
+
 .nav-list__menu {
     height: 30px;
     padding: 0px 15px;
@@ -53,5 +63,9 @@
 
     .nav-list__menu {
         display: flex;
+    }
+
+    .nav-list__auth-buttons {
+        display: none;
     }
 }
