@@ -15,3 +15,9 @@
     height: 30px;
     margin-top: 10px;
 }
+
+@media (max-width: 750px) {
+    .result-list {
+        width: 90%;
+    }
+}

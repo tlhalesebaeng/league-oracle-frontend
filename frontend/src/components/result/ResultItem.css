@@ -1,5 +1,4 @@
 .result-list__item {
-    height: 60px;
     margin: 10px 0px;
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -32,9 +31,9 @@
 
 .result-list__teams p {
     position: absolute;
-    right: 50%;
-    top: 0px;
-    transform: translate(50%, 0%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .result-list__edit-btn {
@@ -45,4 +44,17 @@
 .result-list__edit-btn button {
     width: 60px;
     font-size: 12px;
+}
+
+@media (max-width: 750px) {
+    .result-list__teams p,
+    .result-list__teams a {
+        font-size: 12px;
+    }
+
+    .result-list__teams a {
+        max-width: 100px;
+        display: flex;
+        align-items: center;
+    }
 }
