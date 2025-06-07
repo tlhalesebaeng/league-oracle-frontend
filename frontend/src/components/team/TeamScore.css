@@ -18,7 +18,25 @@
 }
 
 .team-score input {
-    max-width: 150px;
+    width: 235px;
     position: absolute;
     right: 0px;
+}
+
+/* responsiveness */
+
+@media (max-width: 750px) {
+    .team-score input {
+        width: 185px;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-score input {
+        width: 135px;
+    }
+
+    .team-score a {
+        max-width: 120px;
+    }
 }

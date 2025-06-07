@@ -29,6 +29,19 @@
 .result-details__btn-save {
     margin-right: 15px;
 }
+
 .result-details__btn-cancel {
     margin-left: 15px;
+}
+
+@media (max-width: 750px) {
+    .result-details {
+        width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .result-details {
+        width: 300px;
+    }
 }
