@@ -39,4 +39,8 @@
     .league-details__header .btn-update {
         margin-left: 0px;
     }
+
+    .league-details__header h2 {
+        text-align: center;
+    }
 }
