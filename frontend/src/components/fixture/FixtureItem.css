@@ -43,8 +43,13 @@
     }
 
     .fixture-list__details a {
-        max-width: 100px;
+        max-width: 120px;
         display: flex;
         align-items: center;
+    }
+
+    .fixture-list__item {
+        margin: 10px 0px;
+        padding: 20px;
     }
 }
