@@ -36,6 +36,8 @@
     width: 100%;
 }
 
+/* responsiveness */
+
 @media (max-width: 600px) {
     .auth-form section {
         width: 300px;

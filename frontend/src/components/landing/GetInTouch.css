@@ -33,6 +33,8 @@
     font-weight: 500;
 }
 
+/* responsiveness */
+
 @media (max-width: 600px) {
     .get-in-touch {
         padding: 80px 30px;
