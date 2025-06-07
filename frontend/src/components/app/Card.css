@@ -22,4 +22,8 @@
         border-radius: 0px;
         background-color: rgb(245, 248, 250);
     }
+
+    .large-width {
+        width: 80%;
+    }
 }
