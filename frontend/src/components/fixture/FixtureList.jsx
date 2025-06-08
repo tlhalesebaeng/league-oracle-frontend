@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useRouteLoaderData } from 'react-router-dom';
 
@@ -20,7 +20,12 @@ const FixtureList = () => {
     const params = useParams();
     const { request, error, isLoading } = useFetch();
     const dispatch = useDispatch();
-    const [routeFixtures, setRotueFixtures] = useState([...routeData.fixtures]);
+    const [routeFixtures, setRouteFixtures] = useState([...routeData.fixtures]);
+
+    // if there is a change in the route data, update the fixtures
+    useEffect(() => {
+        setRouteFixtures([...routeData.fixtures]);
+    }, [routeData]);
 
     const league = routeData.league;
     let fixtures = routeFixtures;
@@ -55,7 +60,7 @@ const FixtureList = () => {
 
         if (response) {
             // set fixtures to be the newly created fixtures
-            setRotueFixtures(response.data.fixtures);
+            setRouteFixtures(response.data.fixtures);
 
             // show success alert
             dispatch(showAlert('success', 'Season fixtures generated'));
