@@ -38,3 +38,15 @@
     background: rgba(0, 0, 0, 0.2);
     transform-origin: 1.45px 11.6px;
 }
+
+@media (max-width: 750px) {
+    .search-modal {
+        width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-modal {
+        width: 300px;
+    }
+}
