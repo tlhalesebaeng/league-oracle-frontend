@@ -1,4 +1,6 @@
 .result-list__item {
+    height: fit-content;
+    min-height: 50px;
     margin: 10px 0px;
     padding: 10px 30px;
     border: 1px solid rgba(0, 0, 0, 0.3);
