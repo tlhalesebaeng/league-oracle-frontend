@@ -14,7 +14,7 @@ const Navigation = () => {
 
     return (
         <nav>
-            <h1 onClick={handleAppNameClick}>League Management</h1>
+            <h1 onClick={handleAppNameClick}>League Oracle</h1>
             <NavigationList />
         </nav>
     );

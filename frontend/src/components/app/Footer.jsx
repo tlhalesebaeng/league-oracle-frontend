@@ -30,7 +30,7 @@ const Footer = () => {
             <section className="footer">
                 <div className="footer-details">
                     <div className="footer-details__app-details">
-                        <h3>League Management</h3>
+                        <h3>League Oracle</h3>
                         <p>
                             The ultimate platform to create and easily manage
                             your leagues, update fixture details and add fixture
@@ -68,7 +68,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-copyright">
                     <p>
-                        Copyright © {currentYear} League Management. All rights
+                        Copyright © {currentYear} League Oracle. All rights
                         reserved
                     </p>
                 </div>
