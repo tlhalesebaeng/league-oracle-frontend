@@ -28,10 +28,8 @@ const StandingDetails = () => {
     const isCreator = league.creator === user._id;
 
     const handleLeagueNameClick = () => {
-        navigate({
-            pathname: `/leagues/${league._id}`,
-            search: '?/tab=standings',
-        });
+        // navigate to the leagues page
+        navigate(`/leagues/${league._id}`);
     };
 
     const handleEditLeague = () => {
