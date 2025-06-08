@@ -1,0 +1,19 @@
+.sidebar__links {
+    padding: 20px;
+    list-style: none;
+}
+
+.sidebar__links li {
+    width: 100%;
+    margin: 10px 0px;
+    padding: 5px 0px 5px 5px;
+    color: rgba(0, 0, 0);
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.sidebar__links li:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}

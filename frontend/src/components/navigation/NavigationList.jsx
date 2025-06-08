@@ -1,5 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { sidebarActions } from '../../store/ui/sidebar-slice.js';
 
 import Button from '../../utils/Button.jsx';
 import SearchLeagues from './SearchLeagues.jsx';
@@ -10,11 +12,15 @@ import './NavigationList.css';
 const NavigationList = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const showAuthButtons = useSelector((state) => state.ui.authButtonsShown);
-
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleOpenSidebar = () => {
-        console.log('opening side bar');
+        // dispatch the show sidebar action
+        dispatch(sidebarActions.showSidebar());
+
+        // this is not declarative and its not recommeded to do this, but i cant find a better easy way :(
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden'; // prevent scrolling
     };
 
     return (
