@@ -1,0 +1,16 @@
+.logout {
+    height: 30px;
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.logout button {
+    color: rgba(0, 0, 0);
+    font-size: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.logout button .spinner div {
+    background-color: rgba(0, 0, 0, 0.15);
+}
