@@ -51,20 +51,23 @@ const ConfirmModal = ({ oldItems, newItems, onConfirm }) => {
         <div className="edit-teams-modal">
             <h2>Confirm changes</h2>
             <ul className="edit-teams-modal__changes">
-                {renamedItems.map((item) => (
-                    <li key={item._id}>
-                        Change <span>{item.oldName}</span> to{' '}
-                        <span>{item.newName}</span>
-                    </li>
-                ))}
                 {differentItems.map((item) => (
                     <li key={item._id}>
-                        Add <span>{item.name}</span>
+                        <p>ADDED :</p>
+                        <span>{item.name}</span>
+                    </li>
+                ))}
+                {renamedItems.map((item) => (
+                    <li key={item._id}>
+                        <p>RENAMED :</p>
+                        <span>{item.oldName}</span> to{' '}
+                        <span>{item.newName}</span>
                     </li>
                 ))}
                 {deletedItems.map((item) => (
                     <li key={item._id}>
-                        Delete <span>{item.name}</span>
+                        <p>DELETED :</p>
+                        <span>{item.name}</span>
                     </li>
                 ))}
             </ul>

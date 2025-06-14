@@ -21,7 +21,15 @@
 }
 
 .edit-teams-modal li {
+    width: 100%;
     margin: 5px 0px;
+    display: flex;
+}
+
+.edit-teams-modal li p {
+    width: 100px;
+    display: flex;
+    justify-content: end;
 }
 
 .edit-teams-modal li span {
