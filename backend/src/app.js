@@ -11,8 +11,10 @@ import errorHandler from './controllers/errorController.js';
 import fixtureRoutes from './routes/fixtureRoutes.js';
 import resultRoute from './routes/resultRoutes.js';
 
+// Use express to create the server
 const app = express();
 
+// Make the environment variables accessible
 dotenv.config({ path: './config.env' });
 
 if (process.env.SERVER_ENV === 'development') {
