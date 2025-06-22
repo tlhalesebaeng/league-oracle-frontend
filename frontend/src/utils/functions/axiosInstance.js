@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_BASEURL,
+    baseURL: import.meta.env.VITE_BACKEND_BASE_URL,
     validateStatus: () => {
         return true; // resolve all responses
     },
