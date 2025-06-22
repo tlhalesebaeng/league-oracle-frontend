@@ -1,0 +1,42 @@
+# Backend CI/CD Pipeline
+name: Deploy Backend Application
+
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Login to docker hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin    
+      - name: Build Docker Image
+        run: docker build -t tlhalefosebaeng/league-oracle-backend ./backend
+      - name: Publish Image to docker hub
+        run: docker push tlhalefosebaeng/league-oracle-backend:latest 
+ 
+  deploy:
+    needs: build
+    runs-on: [self-hosted, backend-runner]
+    steps:
+        - name: Pull image from docker hub
+          run: docker pull tlhalefosebaeng/league-oracle-backend:latest 
+        - name: Delete old container
+          run: docker rm -f backend-container
+        - name: Run Docker Container
+          run: |
+            docker run -d -p 3000:3000 --name backend-container \
+            -e PORT="${{ secrets.BACKEND_PORT }}" \
+            -e SERVER_ENV="${{ secrets.SERVER_ENV }}" \
+            -e FRONTEND_BASE_URL="${{ secrets.FRONTEND_BASE_URL }}" \
+            -e DATABASE_URI="${{ secrets.DATABASE_URI }}" \
+            -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \
+            -e JWT_EXPIRES_IN="${{ secrets.JWT_EXPIRES_IN }}" \
+            -e JWT_COOKIE_EXPIRES_IN="${{ secrets.JWT_COOKIE_EXPIRES_IN }}" \
+            tlhalefosebaeng/league-oracle-backend
