@@ -4,8 +4,7 @@ import mongoose from 'mongoose';
 const connectDB = async () => {
     try {
         const db = process.env.DATABASE_URI;
-        const finalDB = db.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
-        const connection = await mongoose.connect(finalDB);
+        const connection = await mongoose.connect(db);
         if (connection) {
             console.log('Database connection successful...');
         }
