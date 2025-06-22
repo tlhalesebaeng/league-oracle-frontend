@@ -6,7 +6,7 @@ import ResultItem from './ResultItem.jsx';
 import Button from '../../utils/Button.jsx';
 import Modal from '../modal/Modal.jsx';
 import Backdrop from '../modal/Backdrop.jsx';
-import InstructionModal from './resultModal/instructionModal.jsx';
+import InstructionModal from './resultModal/InstructionModal.jsx';
 import './ResultList.css';
 
 const ResultList = () => {
