@@ -19,10 +19,8 @@ if (process.env.SERVER_ENV === 'development') {
     app.use(morgan('dev')); // log some request data (helps to show that request was sent)
 }
 
-const corsOptions = {
-    origin: 'http://localhost:5173',
-    credentials: true,
-};
+const frontendBaseUrl = process.env.FRONTEND_BASE_URL;
+const corsOptions = { origin: frontendBaseUrl, credentials: true }
 app.use(cors(corsOptions));
 
 app.use(express.json());
