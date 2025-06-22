@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import EditField from '../app/EditField.jsx';
 import './FixtureHeader.css';
-import Input from '../../utils/Input.jsx';
 
 const FixtureHeader = (props) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
