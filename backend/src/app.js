@@ -33,6 +33,7 @@ app.use(express.json());
 // Allow cookies to be sent and received
 app.use(cookieParser());
 
+// Routes
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/leagues', leagueRoutes);
 app.use('/api/v1/leagues/:leagueId/teams', teamRoutes);
