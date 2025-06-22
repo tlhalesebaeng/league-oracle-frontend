@@ -17,15 +17,20 @@ const app = express();
 // Make the environment variables accessible
 dotenv.config({ path: './config.env' });
 
+// Log some request data under development (helps to show that request was sent)
 if (process.env.SERVER_ENV === 'development') {
-    app.use(morgan('dev')); // log some request data (helps to show that request was sent)
+    app.use(morgan('dev'));
 }
 
+// Configure cors
 const frontendBaseUrl = process.env.FRONTEND_BASE_URL;
 const corsOptions = { origin: frontendBaseUrl, credentials: true }
 app.use(cors(corsOptions));
 
+// Allow communication with json
 app.use(express.json());
+
+// Allow cookies to be sent and received
 app.use(cookieParser());
 
 app.use('/api/v1/auth', authRoute);
@@ -34,12 +39,14 @@ app.use('/api/v1/leagues/:leagueId/teams', teamRoutes);
 app.use('/api/v1/fixtures', fixtureRoutes);
 app.use('/api/v1/results', resultRoute);
 
+// Middleware to handle 404 errors
 app.use((req, res, next) => {
     const error = new AppError(404, `${req.originalUrl} not found!`);
     next(error);
 });
 
-app.use(errorHandler); // error handling middleware
+// Error handling middleware
+app.use(errorHandler);
 
 export default app;
 
