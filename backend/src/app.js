@@ -42,7 +42,10 @@ app.use('/api/v1/results', resultRoute);
 
 // Middleware to handle 404 errors
 app.use((req, res, next) => {
+    // Create the error instance
     const error = new AppError(404, `${req.originalUrl} not found!`);
+
+    // Call the next middleware with the error
     next(error);
 });
 
