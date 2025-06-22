@@ -12,8 +12,11 @@ export const useLogout = () => {
 
     useEffect(() => {
         if (error) {
+            // Show an error alert
             dispatch(showAlert('error', 'Logout failed'));
-            setError(''); // reset the error to avoid an infinite loop
+
+            // Reset the error to avoid an infinite loop
+            setError(''); 
         }
     }, [error]);
 
