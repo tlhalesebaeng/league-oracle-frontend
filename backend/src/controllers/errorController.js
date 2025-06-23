@@ -3,7 +3,7 @@ import AppError from '../AppError.js';
 const handleValidationError = () => {
     const err = new AppError(
         400,
-        'Invalid input data! Please check fields and try again.'
+        'Invalid input data! Please check fields and try again'
     );
     return err;
 };
@@ -11,7 +11,7 @@ const handleValidationError = () => {
 const handleCastError = (error) => {
     const err = new AppError(
         400,
-        `Invalid ${error.path}: ${error.value}! Please check your ${error.path} and try again.`
+        `Invalid ${error.path}: ${error.value}! Please check your ${error.path} and try again`
     );
     return err;
 };
@@ -26,7 +26,7 @@ const handleDuplicatesError = (error) => {
     // create and return the error
     const err = new AppError(
         400,
-        `${key} already exists! Please use a different one.`
+        `${key} already exists! Please use a different one`
     );
     return err;
 };
@@ -34,7 +34,7 @@ const handleDuplicatesError = (error) => {
 const handleJWTError = () => {
     const error = new AppError(
         401,
-        'You are not logged in! Please login to continue.'
+        'You are not logged in! Please login to continue'
     );
     return error;
 };
@@ -45,7 +45,7 @@ const errorHandler = (error, req, res, next) => {
     }
 
     if (!error.isOperational) {
-        error.message = 'Something went really bad! Please try again later.';
+        error.message = 'Something went really bad! Please try again later';
         error.status = 500;
     }
 
@@ -64,7 +64,7 @@ const errorHandler = (error, req, res, next) => {
 
     const statusCode = error.statusCode || 500;
     const message =
-        error.message || 'Something went really bad! Please try again later.';
+        error.message || 'Something went really bad! Please try again later';
 
     res.status(statusCode).json({ message });
 };
