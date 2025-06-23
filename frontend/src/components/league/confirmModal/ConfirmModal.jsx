@@ -7,12 +7,12 @@ import './ConfirmModal.css';
 const ConfirmModal = ({ oldItems, newItems, onConfirm }) => {
     const dispatch = useDispatch();
 
-    // we use 4 here because of the assumption that the characters of the new different items
-    // cannot exceed 4 character i.e no _id of t100 can exist, we cannot have 100 teams in a league
+    // We use 4 here because of the assumption that the characters of the new different items
+    // Cannot exceed 4 character i.e no _id of t100 can exist, we cannot have 100 teams in a league
     const differentItems = newItems.filter((item) => item._id.length <= 4); // different items that are not there in old items
 
-    const deletedItems = []; // items that are no longer there in the new items array
-    const renamedItems = []; // items that have different names but same id
+    const deletedItems = []; // Items that are no longer there in the new items array
+    const renamedItems = []; // Items that have different names but same id
     oldItems.forEach((item) => {
         let found = false;
         for (let i = 0; i < newItems.length; i++) {
@@ -20,7 +20,7 @@ const ConfirmModal = ({ oldItems, newItems, onConfirm }) => {
                 found = true;
 
                 if (item.name !== newItems[i].name) {
-                    // the name was changed
+                    // The name was changed
                     const nameChanges = {
                         _id: item._id,
                         oldName: item.name,
