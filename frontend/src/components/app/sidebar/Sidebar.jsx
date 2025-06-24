@@ -18,31 +18,31 @@ const Sidebar = () => {
     const { handleLogout, isLoading } = useLogout();
 
     const resetBodyOverflow = () => {
-        // this is not declarative and its not recommeded to do this, but i cant find a better easy way :(
+        // This is not declarative and its not recommeded to do this, but i cant find a better easy way :(
         document.getElementsByTagName('body')[0].style.overflow = 'visible';
     };
 
     const handleCloseSidebar = () => {
-        // dispatch the hide sidebar action
+        // Dispatch the hide sidebar action
         dispatch(sidebarActions.hideSidebar());
 
-        // enable scrolling
+        // Enable scrolling
         resetBodyOverflow();
     };
 
     const handleNavigation = (url) => {
-        // close the side bar
+        // Close the side bar
         handleCloseSidebar();
 
-        // navigate to the provided url
+        // Navigate to the provided url
         navigate(url);
     };
 
     const handleSidebarLogout = async () => {
-        // log out the user
+        // Log out the user
         await handleLogout();
 
-        // navigate to the landing page
+        // Navigate to the landing page
         handleNavigation('/');
     };
 
