@@ -40,7 +40,11 @@ const RootLayout = () => {
     };
 
     const handleCloseSidebar = () => {
+        // Hide the sidebar
         dispatch(sidebarActions.hideSidebar());
+
+        // Make the page scrollable
+        document.getElementsByTagName('body')[0].style.overflow = 'visible'; // Declarative and not recommended
     };
 
     // this will prevent rendering the whole app before authentication is checked
