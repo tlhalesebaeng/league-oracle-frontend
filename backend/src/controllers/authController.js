@@ -115,6 +115,10 @@ export const checkAuth = asyncHandler(async (req, res, next) => {
     });
 });
 
+export const checkHealthStatus = asyncHandler(async (req, res) => {
+    res.status(200).json({status: 'healthy'})
+})
+
 export const protect = asyncHandler(async (req, res, next) => {
     // check if the token exists and get it
     if (!req.cookies || !req.cookies.access_jwt) {
