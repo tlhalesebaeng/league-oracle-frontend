@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import compression from 'compression';
 
 import AppError from './AppError.js';
 import authRoute from './routes/authRoutes.js';
@@ -62,6 +63,9 @@ app.use(hpp());
 
 // Allow cookies to be sent and received
 app.use(cookieParser());
+
+// Compress responses (reduces bandwidth usage)
+app.use(compression());
 
 // Routes
 app.use('/api/v1/auth', authRoute);
