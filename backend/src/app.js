@@ -5,12 +5,14 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
+import hpp from 'hpp';
 
 import AppError from './AppError.js';
 import authRoute from './routes/authRoutes.js';
 import leagueRoutes from './routes/leagueRoutes.js';
 import teamRoutes from './routes/teamRoutes.js';
 import errorHandler from './controllers/errorController.js';
+import sanitizeInput from './utils/sanitizeInput.js';
 import fixtureRoutes from './routes/fixtureRoutes.js';
 import resultRoute from './routes/resultRoutes.js';
 
@@ -46,6 +48,17 @@ app.use(cors(corsOptions));
 // Parse the body data into the request body object
 // and limit the body payload
 app.use(express.json({ limit: '1kb' }));
+
+// Data sanitization (NoSQL query injection)
+app.use((req, res, next) => {
+    sanitizeInput(req.body);
+    sanitizeInput(req.query);
+    sanitizeInput(req.params);
+    next();
+});
+
+// Prevent parameter pollution
+app.use(hpp());
 
 // Allow cookies to be sent and received
 app.use(cookieParser());
