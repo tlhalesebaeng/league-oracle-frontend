@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
+
 import AppError from './AppError.js';
 import authRoute from './routes/authRoutes.js';
 import leagueRoutes from './routes/leagueRoutes.js';
@@ -22,9 +24,19 @@ if (process.env.SERVER_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// Allow 50 requests in 1 hour to all requests starting with api (rate limiting)
+const limiter = rateLimit({
+    max: 50,
+    windowMs: 60 * 60 * 1000,
+    message: {
+        message: 'Too many requests, please try again in an hour!',
+    },
+});
+app.use('/api', limiter);
+
 // Configure cors
 const frontendBaseUrl = process.env.FRONTEND_BASE_URL;
-const corsOptions = { origin: frontendBaseUrl, credentials: true }
+const corsOptions = { origin: frontendBaseUrl, credentials: true };
 app.use(cors(corsOptions));
 
 // Allow communication with json
@@ -53,10 +65,3 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 export default app;
-
-/* TODO:
- * Implement password recovery and add other security mesures
- * Allow other users to invite others to co-handle the league
- * Allow users to update fixture results
- * Delete fixtures and results associated with the league when deleting a league
- */
