@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
 
 import AppError from './AppError.js';
 import authRoute from './routes/authRoutes.js';
@@ -24,6 +25,9 @@ if (process.env.SERVER_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// Set special security headers
+app.use(helmet());
+
 // Allow 50 requests in 1 hour to all requests starting with api (rate limiting)
 const limiter = rateLimit({
     max: 50,
@@ -39,8 +43,9 @@ const frontendBaseUrl = process.env.FRONTEND_BASE_URL;
 const corsOptions = { origin: frontendBaseUrl, credentials: true };
 app.use(cors(corsOptions));
 
-// Allow communication with json
-app.use(express.json());
+// Parse the body data into the request body object
+// and limit the body payload
+app.use(express.json({ limit: '1kb' }));
 
 // Allow cookies to be sent and received
 app.use(cookieParser());
