@@ -7,9 +7,17 @@ const connectDB = async () => {
         const connection = await mongoose.connect(db);
         if (connection) {
             console.log('Database connection successful...');
+        } else {
+            console.log('Database connection failed!!!');
         }
     } catch (error) {
-        console.log(error);
+        // Get the server environment
+        const SERVER_ENV = process.env.SERVER_ENV;
+        if (SERVER_ENV === 'development') {
+            console.log(error);
+        }
+
+        console.log('Database connection failed!!!');
     }
 };
 
