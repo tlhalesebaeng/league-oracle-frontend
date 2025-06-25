@@ -18,7 +18,7 @@ const server = app.listen(PORT, () => {
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (error) => {
-    if (SERVER_ENV !== 'production') {
+    if (SERVER_ENV === 'development') {
         // Log the error to the console
         console.log('ERROR:', error.name, error.message);
     }
