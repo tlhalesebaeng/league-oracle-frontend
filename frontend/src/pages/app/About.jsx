@@ -1,7 +1,9 @@
+import AppAbout from '../../components/app/AppAbout.jsx';
+
 const About = () => {
     return (
         <main>
-            <h1>About Page</h1>
+            <AppAbout />
         </main>
     );
 };
