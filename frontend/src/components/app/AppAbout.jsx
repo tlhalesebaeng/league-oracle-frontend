@@ -23,7 +23,7 @@ const AppAbout = () => {
         <div className="app-about">
             <h2>About League Oracle Project</h2>
             {about.map((aboutItem) => (
-                <section>
+                <section key={aboutItem.heading}>
                     <h3>{aboutItem.heading}</h3>
                     <p>{aboutItem.description}</p>
                 </section>
