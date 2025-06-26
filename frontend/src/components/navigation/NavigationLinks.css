@@ -3,6 +3,11 @@
     align-items: center;
 }
 
+.navigation-links img {
+    height: 38px;
+    width: 38px;
+}
+
 .navigation-links__create {
     height: 30px;
     margin: 0px 10px;
@@ -12,10 +17,6 @@
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.navigation-links__create svg {
-    opacity: 0.5;
 }
 
 .navigation-links__create:hover {
