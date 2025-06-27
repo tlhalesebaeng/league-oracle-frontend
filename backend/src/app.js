@@ -31,15 +31,17 @@ if (process.env.SERVER_ENV === 'development') {
 // Set special security headers
 app.use(helmet());
 
-// Allow 50 requests in 1 hour to all requests starting with api (rate limiting)
-const limiter = rateLimit({
-    max: 50,
-    windowMs: 60 * 60 * 1000,
-    message: {
-        message: 'Too many requests, please try again in an hour!',
-    },
-});
-app.use('/api', limiter);
+if (process.env.SERVER_ENV !== 'development') {
+    // Allow 50 requests in 1 hour to all requests starting with api (rate limiting)
+    const limiter = rateLimit({
+        max: 50,
+        windowMs: 60 * 60 * 1000,
+        message: {
+            message: 'Too many requests, please try again in an hour!',
+        },
+    });
+    app.use('/api', limiter);
+}
 
 // Configure cors
 const frontendBaseUrl = process.env.FRONTEND_BASE_URL;
