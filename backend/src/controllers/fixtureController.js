@@ -254,7 +254,22 @@ export const getUpcomingFixtures = asyncHandler(async (req, res, next) => {
     const fixtures = await Promise.all([...fixturesQueries]);
     const upcomingFixtures = fixtures.flat();
 
-    res.status(200).json({ fixtures: upcomingFixtures });
+    // Replace the team ids with the team details
+    const updatedFixtures = [];
+    upcomingFixtures.forEach((upcomingFixture) => {
+        leagues.forEach((league) => {
+            if (upcomingFixture.league.equals(league._id)) {
+                const teams = league.teams;
+                const fixture = { ...upcomingFixture.toObject() };
+
+                replaceTeams(upcomingFixture, teams, fixture);
+
+                updatedFixtures.push(fixture);
+            }
+        });
+    });
+
+    res.status(200).json({ fixtures: updatedFixtures });
 });
 
 export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
