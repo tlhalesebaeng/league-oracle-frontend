@@ -192,6 +192,71 @@ export const getLeagueFixture = asyncHandler(async (req, res, next) => {
     });
 });
 
+export const getUpcomingFixtures = asyncHandler(async (req, res, next) => {
+    // Verify that the month is provided
+    if (!req.query || !req.query.month) {
+        const error = new AppError(
+            400,
+            'Month required! Please provide a month'
+        );
+        return next(error);
+    }
+
+    // Accept an integer between 0 and 11
+    const month = req.query.month;
+    const isInteger = !isNaN(Number(month)); // Check if month can be changed to a number
+    if (!isInteger || parseInt(month) < 0 || parseInt(month) > 11) {
+        const error = new AppError(
+            400,
+            'Invalid month! Please provide a valid month'
+        );
+        return next(error);
+    }
+
+    // Verify that the month is not in the past
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+    if (parseInt(month) < currentMonth) {
+        const error = new AppError(
+            400,
+            'Invalid month! Please provide a future or current month'
+        );
+        return next(error);
+    }
+
+    // Get the fixtures that are scheduled for this month
+    // for all the leagues by the logged in user
+    const leagues = await League.find({ creator: req.user._id });
+    if (!leagues) {
+        const error = new AppError(400, 'No leagues found!');
+        return next(error);
+    }
+
+    const currentYear = currentDate.getFullYear();
+
+    // End of the provided month (one millisecond before the next month starts)
+    const startOfNextMonth = new Date(currentYear, parseInt(month) + 1, 1);
+    const endOfProvidedMonth = new Date(startOfNextMonth.getTime() - 1);
+
+    const fixturesQueries = []; // Queries for all upcoming fixtures
+    leagues.forEach((league) => {
+        // Get the fixtures of this league that are in the provided month
+        const fixtures = Fixture.find({
+            league: league._id,
+            date: {
+                $gte: currentDate,
+                $lt: endOfProvidedMonth,
+            },
+        });
+        fixturesQueries.push(fixtures);
+    });
+
+    const fixtures = await Promise.all([...fixturesQueries]);
+    const upcomingFixtures = fixtures.flat();
+
+    res.status(200).json({ fixtures: upcomingFixtures });
+});
+
 export const updateLeagueFixture = asyncHandler(async (req, res, next) => {
     if (!req.params || !req.params.fixtureId) {
         const error = new AppError(

@@ -5,6 +5,7 @@ import {
     getLeagueFixture,
     updateLeagueFixture,
     deleteLeagueFixture,
+    getUpcomingFixtures,
 } from '../controllers/fixtureController.js';
 import { protect } from '../controllers/authController.js';
 import { verifyLeagueCreator } from '../controllers/leagueController.js';
@@ -15,6 +16,8 @@ fixtureRoutes
     .route('/')
     .get(getAllLeagueFixtures)
     .post(protect, verifyLeagueCreator, createLeagueFixtures);
+
+fixtureRoutes.route('/upcoming').get(protect, getUpcomingFixtures);
 
 fixtureRoutes
     .route('/:fixtureId')
