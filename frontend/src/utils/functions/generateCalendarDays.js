@@ -11,7 +11,8 @@ export const generateCalendarDays = (month) => {
 
     for (let i = firstDay - 1; i >= 0; i--) {
         const dayValue = previousMonthDay - i;
-        days.push({ type: 'inactive', value: `${dayValue}` });
+        const _id = Math.random() * dayValue;
+        days.push({ _id, type: 'inactive', value: `${dayValue}` });
     }
 
     // Add the days of the month
@@ -19,19 +20,22 @@ export const generateCalendarDays = (month) => {
     const currentDayValue = new Date(currentDate).getDate(); // The value of the current day
     const currentMonth = new Date(currentDate).getMonth();
     for (let i = 1; i <= lastDayValue; i++) {
+        const _id = Math.random() * i * i;
+
         // Disable the days that are before the current day
         if (i < currentDayValue && month === currentMonth) {
-            days.push({ type: 'inactive', value: `${i}` });
+            days.push({ _id, type: 'inactive', value: `${i}` });
             continue;
         }
 
-        days.push({ value: `${i}` });
+        days.push({ _id, value: `${i}` });
     }
 
     // Add the first few days of the next month
     const lastDay = new Date(currentYear, month, lastDayValue).getDay();
     for (let i = 1; i < 7 - lastDay; i++) {
-        days.push({ type: 'inactive', value: `${i}` });
+        const _id = Math.random() * i * i;
+        days.push({ _id, type: 'inactive', value: `${i}` });
     }
 
     return days;

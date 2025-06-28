@@ -76,6 +76,7 @@ const UpcomingFixtures = (props) => {
 
                                 return (
                                     <li
+                                        key={day._id}
                                         className={stylesClass}
                                         onClick={() => onDayClick(day.fixtures)}
                                     >
