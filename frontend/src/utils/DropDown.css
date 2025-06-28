@@ -1,0 +1,83 @@
+.drop-down {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.drop-down__selector {
+    height: 36px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.drop-down__selector:hover {
+    cursor: pointer;
+}
+
+.drop-down__selector p {
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.drop-down__selector img {
+    height: 5px;
+}
+
+.hide-options {
+    display: none;
+}
+
+.drop-down__options {
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 46px;
+    left: 0px;
+    z-index: 300;
+}
+
+.drop-down__options ul {
+    width: 100%;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.drop-down__options ul li {
+    padding: 5px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.15s;
+}
+
+.drop-down__options ul li:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+}
+
+.drop-down__options ul li img {
+    height: 14px;
+    width: 14px;
+}
+
+.drop-down__options ul li div {
+    height: 1px;
+    width: 14px;
+}
+
+.drop-down__options ul li p {
+    margin: 0px 5px;
+    font-size: 14px;
+}
+
+.drop-down__options ul li .disabled {
+    color: rgba(0, 0, 0, 0.3);
+}
