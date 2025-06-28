@@ -5,9 +5,11 @@ import { Navigate } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
 import MyLeagues from '../../components/league/MyLeagues.jsx';
+import Dashboard from '../../components/app/dashboard/Dashboard.jsx';
 
 const Home = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
+    const user = useSelector((state) => state.auth.user);
 
     const { request, error, isLoading } = useFetch();
     const [leagues, setLeagues] = useState([]);
@@ -35,7 +37,7 @@ const Home = () => {
         <div className="layout-content">
             <MyLeagues loading={isLoading} leagues={leagues} />
             <main>
-                <h2>Home Page</h2>
+                <Dashboard user={user} />
             </main>
         </div>
     );

@@ -1,0 +1,97 @@
+.upcoming-fixtures__card {
+    width: 60%;
+}
+
+.upcoming-fixtures {
+    width: 100%;
+}
+
+.upcoming-fixtures__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upcoming-fixtures__heading section {
+    height: 34px;
+    width: 30%;
+}
+
+.upcoming-fixtures__no-calendar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upcoming-fixtures__loading-spinner {
+    width: 48px;
+    height: 48px;
+}
+
+.upcoming-fixtures__loading-spinner .spinner div {
+    width: 5px;
+    height: 12.5px;
+    background: rgba(0, 0, 0, 0.4);
+    transform-origin: 2.5px 20px;
+}
+
+.upcoming-fixtures__calendar {
+    margin-top: 20px;
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.upcoming-fixtures__calendar-header {
+    display: flex;
+}
+
+.upcoming-fixtures__calendar-header li {
+    height: 30px;
+    width: 14.3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(34, 133, 245, 0.1);
+}
+
+.upcoming-fixtures__calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 14.3%);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.upcoming-fixtures__calendar-days li {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.upcoming-fixtures__calendar-days li:hover {
+    cursor: pointer;
+}
+
+.upcoming-fixtures__calendar-days li div {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(34, 133, 245);
+}
+
+.upcoming-fixtures__calendar-days .inactive {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.upcoming-fixtures__calendar-days .inactive:hover {
+    cursor: default;
+}
