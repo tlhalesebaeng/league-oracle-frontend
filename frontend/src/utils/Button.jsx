@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import Spinner from '../components/app/Spinner';
 import './Button.css';
 
-const Button = ({ onClick, children, type, disabled, loading }) => {
+const Button = memo(({ onClick, children, type, disabled, loading }) => {
     // classname for a disabled button, this helps to remove the active pseudoclass on disabled buttons
     let className = '';
     if (disabled) className = 'disabled-btn ';
@@ -21,6 +22,6 @@ const Button = ({ onClick, children, type, disabled, loading }) => {
             {!loading && children}
         </button>
     );
-};
+});
 
 export default Button;
