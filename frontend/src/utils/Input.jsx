@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import './Input.css';
 
-const Input = memo(function Input(props) {
+const Input = memo((props) => {
     if (props.kind === 'text-area') {
         return (
             <>
