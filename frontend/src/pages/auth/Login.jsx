@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -20,74 +20,98 @@ const Login = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState({});
     const { error, setError, request, isLoading } = useFetch();
-    const [passwordToggle, setPasswordToggle] = useState({
-        type: 'password',
-        isShown: false,
-    }); // password toggle state
+    const [passwordToggle, setPasswordToggle] = useState('password'); // Password eye image toggle state
 
     useEffect(() => {
-        dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
+        // Hide the login and get started buttons
+        dispatch(uiActions.hideAuthButtons());
     }, []);
 
-    const handleInputChange = (type, value) => {
-        setError(''); // reset the error if any
+    // Function that handles any change that occurs on the input fields (typing)
+    const handleInputChange = useCallback((type, value) => {
+        // Reset errors if any (To give the user an opportunity to try again)
+        setError('');
+
+        // Persist the input changes to the data state variable
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
-    };
+    }, []);
 
-    const handlePasswordToggle = () => {
+    // Function that is ran when we click the eye image on password input fields
+    const handlePasswordToggle = useCallback(() => {
         setPasswordToggle((prevState) => {
-            const newState = {};
-            if (prevState.type === 'password') newState['type'] = 'text';
-            else newState['type'] = 'password';
-            newState['isShown'] = !prevState.isShown;
-            return newState;
+            if (prevState === 'password') {
+                // The current input type is password i.e. the password text is hidden
+
+                return 'text'; // Show the password
+            } else {
+                // The current input type is text i.e. the password text is shown
+
+                return 'password'; // Hide the password
+            }
         });
-    };
+    }, []);
 
-    const handleLogin = async (event) => {
-        event.preventDefault(); // prevent browser reload
+    // Function the handles login button click
+    const handleLogin = useCallback(async (event) => {
+        // Prevent browser reload
+        event.preventDefault();
 
+        // Send the request
         const response = await request('/auth/login', 'post', data);
 
         if (response && response.data) {
+            // Add the user details to the auth state
             dispatch(authActions.authenticate(response.data.user));
+
+            // Go to home page
             navigate('/home');
         }
-    };
+    }, []);
 
-    // input data validation (no need for state because every input change reloads the component)
+    // Input data validation (no need for state because every input change reloads the component)
     let disabled = false;
     if (!data.email || !data.password || !isValidEmail(data.email)) {
         disabled = true;
     }
 
-    const description = 'Enter your details below to access your account';
-
-    const inputFields = [
-        {
+    // Object with details and functions need for the email input field
+    const emailInputObject = useMemo(
+        () => ({
             type: 'email',
             label: 'Email',
             placeholder: 'email@example.com',
             value: data.email,
             inputChangeHandler: (event) =>
                 handleInputChange('email', event.target.value),
-        },
-        {
-            type: passwordToggle.type,
+        }),
+        [data.email]
+    );
+
+    // Object with details and functions need for the password input field
+    const passwordInputObject = useMemo(
+        () => ({
+            type: passwordToggle,
             label: 'Password',
             placeholder: 'Enter your password',
             value: data.password,
-            imgSrc: passwordToggle.isShown ? closedEye : openEye,
+            imgSrc: passwordToggle === 'text' ? closedEye : openEye,
             imageClickHandler: handlePasswordToggle,
             inputChangeHandler: (event) =>
                 handleInputChange('password', event.target.value),
-        },
-    ];
+        }),
+        [data.password, passwordToggle]
+    );
+
+    // All input fields shown on the screen
+    const inputFields = [emailInputObject, passwordInputObject];
+
+    // Page instructions
+    const instruction = 'Enter your details below to access your account';
 
     return (
         <main>
             <Card>
-                <AuthForm heading="Welcome back" description={description}>
+                <AuthForm heading="Welcome back" description={instruction}>
                     {inputFields.map((field) => (
                         <section key={field.label}>
                             <Input
