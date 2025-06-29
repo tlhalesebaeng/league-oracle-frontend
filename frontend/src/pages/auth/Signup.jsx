@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -23,55 +23,73 @@ const Signup = () => {
     const [passwordToggle, setPasswordToggle] = useState({
         passwordType: 'password',
         confirmType: 'password',
-        passwordIsShown: false,
-        confirmIsShown: false,
-    }); // password and confirm password toggle state
+    }); // Password and confirm password eye image toggle state
 
     useEffect(() => {
-        dispatch(uiActions.hideAuthButtons()); // hide the login and get started buttons
+        // Hide the login and get started buttons
+        dispatch(uiActions.hideAuthButtons());
     }, []);
 
-    const handleInputChange = (type, value) => {
-        setError(''); // reset the error if any
+    // Function that handles any change that occurs on the input fields (typing)
+    const handleInputChange = useCallback((type, value) => {
+        // Reset errors if any (To give the user an opportunity to try again)
+        setError('');
+
+        // Persist the input changes to the data state variable
         setData((prevData) => ({ ...prevData, [type]: value.trim() }));
-    };
+    }, []);
 
-    const handlePasswordToggle = (type) => {
-        if (type === 'password') {
-            setPasswordToggle((prevState) => {
-                const newState = { ...prevState };
-                if (prevState.passwordType === 'password')
-                    newState['passwordType'] = 'text';
-                else newState['passwordType'] = 'password';
-                newState['passwordIsShown'] = !prevState.passwordIsShown;
+    // Function that is ran when we click the eye image on password input fields
+    const handlePasswordToggle = useCallback((type) => {
+        setPasswordToggle((prevState) => {
+            // Create a new object with previous state fields (to avoid bugs caused by state mutation)
+            const newState = { ...prevState };
+
+            if (type === 'password') {
+                // The main password input eye image was clicked..
+
+                if (prevState.passwordType === 'password') {
+                    // The current input type is password i.e. the password text is hidden
+
+                    newState.passwordType = 'text'; // Show the password
+                } else {
+                    // The current input type is text i.e. the password text is shown
+
+                    newState.passwordType = 'password'; // Hide the password
+                }
+
+                return newState; // Set the state
+            } else {
+                // The confirm password input eye image was clicked... (Do the same thing to confirm password input field)
+
+                if (prevState.confirmType === 'password') {
+                    newState.confirmType = 'text';
+                } else {
+                    newState.confirmType = 'password';
+                }
+
                 return newState;
-            });
-        }
+            }
+        });
+    }, []);
 
-        if (type === 'confirm-password') {
-            setPasswordToggle((prevState) => {
-                const newState = { ...prevState };
-                if (prevState.confirmType === 'password')
-                    newState['confirmType'] = 'text';
-                else newState['confirmType'] = 'password';
-                newState['confirmIsShown'] = !prevState.confirmIsShown;
-                return newState;
-            });
-        }
-    };
+    const handleSignup = useCallback(async (event) => {
+        // Prevent browser reload
+        event.preventDefault();
 
-    const handleSignup = async (event) => {
-        event.preventDefault(); // prevent browser reload
-
+        // Send the request
         const response = await request('/auth/signup', 'post', data);
 
         if (response && response.data) {
+            // Add the user details to the auth state
             dispatch(authActions.authenticate(response.data.user));
+
+            // Go to home page
             navigate('/home');
         }
-    };
+    }, []);
 
-    // input data validation (no need for state because every input change reloads the component)
+    // Input data validation (no need for state because every input change reloads the component)
     let disabled = false;
     if (
         !data.email ||
@@ -85,54 +103,86 @@ const Signup = () => {
         disabled = true;
     }
 
-    const desc = 'Fill in details below to create a new account';
-
-    const inputFields = [
-        {
+    // Object with details and functions need for the first name input field
+    const firstNameInputObject = useMemo(
+        () => ({
             type: 'text',
             label: 'Firstname',
             placeholder: 'Your first name',
             value: data.firstName,
             inputChangeHandler: (event) =>
                 handleInputChange('firstName', event.target.value),
-        },
-        {
+        }),
+        [data.firstName]
+    );
+
+    // Object with details and functions need for the last name input field
+    const lastNameInputObject = useMemo(
+        () => ({
             type: 'text',
             label: 'Lastname',
             placeholder: 'Your last name',
             value: data.lastName,
             inputChangeHandler: (event) =>
                 handleInputChange('lastName', event.target.value),
-        },
-        {
+        }),
+        [data.lastName]
+    );
+
+    // Object with details and functions need for the email input field
+    const emailInputObject = useMemo(
+        () => ({
             type: 'email',
             label: 'Email',
             placeholder: 'email@example.com',
             value: data.email,
             inputChangeHandler: (event) =>
                 handleInputChange('email', event.target.value),
-        },
-        {
+        }),
+        [data.email]
+    );
+
+    // Object with details and functions need for the password input field
+    const passwordInputObject = useMemo(
+        () => ({
             type: passwordToggle.passwordType,
             label: 'Password',
             placeholder: 'Enter your password',
             value: data.password,
-            imgSrc: passwordToggle.passwordIsShown ? closedEye : openEye,
+            imgSrc:
+                passwordToggle.passwordType === 'text' ? closedEye : openEye,
             imageClickHandler: () => handlePasswordToggle('password'),
             inputChangeHandler: (event) =>
                 handleInputChange('password', event.target.value),
-        },
-        {
+        }),
+        [data.password, passwordToggle.passwordType]
+    );
+
+    // Object with details and functions need for the confirm password input field
+    const confirmPasswordInputObject = useMemo(
+        () => ({
             type: passwordToggle.confirmType,
             label: 'Confirm password',
             placeholder: 'Confirm your password',
             value: data.passwordConfirm,
-            imgSrc: passwordToggle.confirmIsShown ? closedEye : openEye,
+            imgSrc: passwordToggle.confirmType === 'text' ? closedEye : openEye,
             imageClickHandler: () => handlePasswordToggle('confirm-password'),
             inputChangeHandler: (event) =>
                 handleInputChange('passwordConfirm', event.target.value),
-        },
+        }),
+        [data.passwordConfirm, passwordToggle.confirmType]
+    );
+
+    // All input fields shown on the screen
+    const inputFields = [
+        firstNameInputObject,
+        lastNameInputObject,
+        emailInputObject,
+        passwordInputObject,
+        confirmPasswordInputObject,
     ];
+
+    const desc = 'Fill in details below to create a new account';
 
     return (
         <main>
