@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import './Input.css';
 
-const Input = (props) => {
+const Input = memo(function Input(props) {
     if (props.kind === 'text-area') {
         return (
             <>
@@ -36,6 +37,6 @@ const Input = (props) => {
             )}
         </>
     );
-};
+});
 
 export default Input;
