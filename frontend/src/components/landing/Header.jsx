@@ -1,14 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
 import exampleStandingImg from '../../assets/example-standings.png';
 import './Header.css';
 
-const Header = ({ howItWorksRef }) => {
-    const navigate = useNavigate();
-    // this will scroll down to the how it works section
-    const handleScroll = () => {
-        howItWorksRef.current.scrollIntoView({ behavior: 'smooth' });
-    };
+const Header = ({ onScroll, onGetStarted }) => {
     return (
         <header className="landing-header">
             <section className="landing-header__details">
@@ -26,10 +20,8 @@ const Header = ({ howItWorksRef }) => {
                     free-to-use tool.
                 </p>
                 <div className="landing-header__buttons">
-                    <Button onClick={() => navigate('/signup')}>
-                        Get started
-                    </Button>
-                    <Button onClick={handleScroll} type="no-bg">
+                    <Button onClick={onGetStarted}>Get started</Button>
+                    <Button onClick={onScroll} type="no-bg">
                         How it works
                     </Button>
                 </div>
