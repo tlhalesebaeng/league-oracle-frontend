@@ -14,26 +14,31 @@ const CreateLeague = () => {
     const navigate = useNavigate();
     const { request, error, setError, isLoading } = useFetch();
 
+    // Make this page accessible to users that are logged in only (protect the route)
     if (!isAuth) return <Navigate to="/" />;
 
     useEffect(() => {
+        // Check if an error exist to avoid infinity loop
         if (error) {
+            // Show an error alert with the error
             dispatch(showAlert('error', error));
+
+            // Reset errors if any
             setError('');
         }
     }, [error]);
 
+    // Function that handles create button click (league form component)
     const handleCreate = async (event, teams, name) => {
+        // Prevent browser reload
         event.preventDefault();
 
-        const data = { name, teams }; // name refers to the league name
-        const response = await request('/leagues', 'post', data);
+        // Send the request
+        const response = await request('/leagues', 'post', { name, teams });
 
         if (response && response.data) {
-            navigate({
-                pathname: `/leagues/${response.data.league._id}`,
-                search: '?tab=standings',
-            });
+            // Navigate to a unique league page
+            navigate(`/leagues/${response.data.league._id}`);
         }
     };
 

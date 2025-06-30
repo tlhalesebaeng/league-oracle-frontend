@@ -6,7 +6,7 @@ import binImg from '../../assets/bin.png';
 import './LeagueForm.css';
 
 const LeagueForm = ({ onSubmit, loading }) => {
-    const [teams, setTeams] = useState([{ name: '' }, { name: '' }]); // each team should have a name property, this makes it easy to send the request
+    const [teams, setTeams] = useState([{ name: '' }, { name: '' }]); // Each team should have a name property, this makes it easy to send the request
     const [leagueName, setLeagueName] = useState('');
 
     const handleInputChange = (index, value) => {
@@ -18,16 +18,22 @@ const LeagueForm = ({ onSubmit, loading }) => {
     };
 
     const handleAddTeam = (event) => {
+        // Prevent browser reload
         event.preventDefault();
+
         setTeams((prevTeams) => [...prevTeams, { name: '' }]);
     };
 
     const handleDeleteTeam = (index) => {
-        // filter the team using the index only
+        // Filter the team using the index only
         setTeams((prevTeams) => prevTeams.filter((_, i) => i !== index));
     };
 
-    // check if there is an empty field in the teams array and disable the create button
+    const handleLeagueNameChange = (event) => {
+        setLeagueName(event.target.value);
+    };
+
+    // Check if there is an empty field in the teams array and disable the create button
     // but do so only if the league name is not empty
     let disabled = false;
     if (!leagueName) {
@@ -45,7 +51,7 @@ const LeagueForm = ({ onSubmit, loading }) => {
         <form className="league-form">
             <section className="league-form__name">
                 <Input
-                    onInputChange={(event) => setLeagueName(event.target.value)}
+                    onInputChange={handleLeagueNameChange}
                     label="League name"
                     placeholder="My ultimate league"
                     value={leagueName}
