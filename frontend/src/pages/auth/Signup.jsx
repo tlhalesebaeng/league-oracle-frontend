@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -19,6 +19,7 @@ const Signup = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [data, setData] = useState({});
+    const dataRef = useRef(data);
     const { error, setError, request, isLoading } = useFetch();
     const [passwordToggle, setPasswordToggle] = useState({
         passwordType: 'password',
@@ -29,6 +30,12 @@ const Signup = () => {
         // Hide the login and get started buttons
         dispatch(uiActions.hideAuthButtons());
     }, []);
+
+    // After every data change, update the dataref so that it holds the latest data state
+    // On every memoized function we can then use the dataref to get the latest data state
+    useEffect(() => {
+        dataRef.current = data;
+    }, [data]);
 
     // Function that handles any change that occurs on the input fields (typing)
     const handleInputChange = useCallback((type, value) => {
@@ -78,7 +85,7 @@ const Signup = () => {
         event.preventDefault();
 
         // Send the request
-        const response = await request('/auth/signup', 'post', data);
+        const response = await request('/auth/signup', 'post', dataRef.current);
 
         if (response && response.data) {
             // Add the user details to the auth state
