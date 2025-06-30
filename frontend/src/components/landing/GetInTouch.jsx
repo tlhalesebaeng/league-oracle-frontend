@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import Button from '../../utils/Button.jsx';
 import './GetInTouch.css';
 
-const GetInTouch = () => {
-    const navigate = useNavigate();
+const GetInTouch = ({ onGetInTouch }) => {
     return (
         <section className="get-in-touch">
             <h2>Get In Touch With Us</h2>
@@ -12,7 +10,7 @@ const GetInTouch = () => {
                 right back to you as soon as possible
             </p>
             <div className="btn-get-in-touch">
-                <Button onClick={() => navigate('/contact')} type="no-bg">
+                <Button onClick={onGetInTouch} type="no-bg">
                     Get in touch
                 </Button>
             </div>
