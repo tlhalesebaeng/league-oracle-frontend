@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,28 +18,30 @@ const Contact = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Hide the login and get started buttons
         dispatch(uiActions.showAuthButtons());
     }, []);
 
-    const handleContact = (event) => {
+    // Function that handles any change that occurs on the input fields (typing)
+    const handleInputChange = useCallback((type, value) => {
+        // Reset errors if any (To give the user an opportunity to try again)
+        setError('');
+
+        // Persist the input changes to the data state variable
+        setData((prevData) => ({ ...prevData, [type]: value }));
+    }, []);
+
+    // Function the handles contact button click
+    const handleContact = useCallback((event) => {
+        // Prevent browser reload
         event.preventDefault();
-        // send the message to the contact route
 
+        // Show a success alert
         dispatch(showAlert('success', 'Message sent'));
+
+        // Navigate to the root route (this will redirect to home page if the user is logged in)
         navigate('/');
-        setError('An error occurred');
-    };
-
-    const handleInputChange = (type, value) => {
-        setError(''); // reset request errors if any
-        setData((prevData) => {
-            if (type === 'message' || type === 'subject') {
-                return { ...prevData, [type]: value };
-            }
-
-            return { ...prevData, [type]: value.trim() };
-        });
-    };
+    }, []);
 
     // input data validation
     let disableSendMessage = false;
@@ -52,24 +54,32 @@ const Contact = () => {
         disableSendMessage = true;
     }
 
-    const inputFields = [
-        {
+    const emailInputObject = useMemo(
+        () => ({
             type: 'email',
             label: 'Email',
             placeholder: 'email@example.com',
             value: data.email,
             inputChangeHandler: (event) =>
                 handleInputChange('email', event.target.value),
-        },
-        {
+        }),
+        [data.email]
+    );
+
+    const subjectInputObject = useMemo(
+        () => ({
             type: 'text',
             label: 'Subject',
             placeholder: 'Your message subject',
             value: data.subject,
             inputChangeHandler: (event) =>
                 handleInputChange('subject', event.target.value),
-        },
-        {
+        }),
+        [data.subject]
+    );
+
+    const messageInputObject = useMemo(
+        () => ({
             type: 'text',
             kind: 'text-area',
             label: 'Message',
@@ -77,7 +87,14 @@ const Contact = () => {
             value: data.message,
             inputChangeHandler: (event) =>
                 handleInputChange('message', event.target.value),
-        },
+        }),
+        [data.message]
+    );
+
+    const inputFields = [
+        emailInputObject,
+        subjectInputObject,
+        messageInputObject,
     ];
 
     return (
