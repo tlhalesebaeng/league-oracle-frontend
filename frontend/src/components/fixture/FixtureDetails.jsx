@@ -66,8 +66,19 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     // Memoize the editData fields so that we can avoid rendering components that use them unnecessarily
     const date = useMemo(() => editData.date, [editData.date]);
     const time = useMemo(() => editData.time, [editData.time]);
-    const venue = useMemo(() => editData.venue, [editData.venue]);
-    const field = useMemo(() => editData.field, [editData.field]);
+
+    // The only things that change often here are the editData venue and field so we only use them as dependencies
+    const venueDetails = useMemo(
+        () => ({
+            onEdit: handleEditField,
+            leagueCreator: leagueData.creator,
+            fixtureVenue: fixture.venue,
+            fixtureField: fixture.field,
+            venue: editData.venue,
+            field: editData.field,
+        }),
+        [editData.venue, editData.field]
+    );
 
     // Disable the save button if any of the data in the edit data state
     //  is not the same as the data that came from the loader
@@ -75,14 +86,16 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     if (
         date === fixture.formattedDate &&
         time === fixture.time &&
-        venue === fixture.venue &&
-        field === fixture.field
+        venueDetails.venue === fixture.venue &&
+        venueDetails.field === fixture.field
     ) {
         disableSave = true;
     }
 
     // Disable the save button if there are any empty field
-    if (!date || !time || !venue || !field) disableSave = true;
+    if (!date || !time || !venueDetails.venue || !venueDetails.field) {
+        disableSave = true;
+    }
 
     return (
         <main>
@@ -99,13 +112,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
                 awayTeam={fixture.awayTeam}
             />
 
-            <FixtureVenue
-                onEdit={handleEditField}
-                editData={editData}
-                leagueCreator={leagueData.creator}
-                fixtureVenue={fixture.venue}
-                fixtureField={fixture.field}
-            />
+            <FixtureVenue venueDetails={venueDetails} />
 
             {error && <p className="error-message">{error}</p>}
             {isAuth && isCreator && (
