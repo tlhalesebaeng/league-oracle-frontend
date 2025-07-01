@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from '../../hooks/useFetch.js';
@@ -23,6 +23,11 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
         venue: data.fixture.venue,
         field: data.fixture.field,
     }); // TODO: date and time should be date and time pickers respectively and not edit fields
+    const editDataRef = useRef(null);
+
+    useEffect(() => {
+        editDataRef.current = editData;
+    }, [editData]);
 
     const { _id, awayTeam, homeTeam, formattedDate, time, venue, field } =
         data.fixture;
@@ -44,12 +49,12 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
     // check if the user is the league creator to be able to edit the fixture details
     const isCreator = league.creator === user._id;
 
-    const handleSaveChanges = async () => {
+    const handleSaveChanges = useCallback(async () => {
         // reset the error if any
         setError('');
 
         // ignore the date and time fields if their values are TBC
-        const filteredData = { ...editData };
+        const filteredData = { ...editDataRef.current };
         if (filteredData.date === 'TBC') filteredData.date = undefined;
         if (filteredData.time === 'TBC') filteredData.time = undefined;
 
@@ -68,7 +73,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
             // show the success alert
             dispatch(showAlert('success', 'Update successful'));
         }
-    };
+    }, []);
 
     // disable the save button if any of the data in the edit data state
     //  is not the same as the data that came from the loader
