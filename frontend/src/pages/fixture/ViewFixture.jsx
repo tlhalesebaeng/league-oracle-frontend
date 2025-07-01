@@ -1,10 +1,38 @@
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
+
 import { getSearchParams } from '../../utils/functions/searchParams.js';
-import FixtureDetails from '../../components/fixture/FixtureDetails.jsx';
 import api from '../../utils/functions/axiosInstance.js';
 import { asyncHandler } from '../../utils/functions/asyncHandler.js';
+import FixtureDetails from '../../components/fixture/FixtureDetails.jsx';
 
 const ViewFixture = () => {
-    return <FixtureDetails />;
+    const routeData = useRouteLoaderData('fixture-route');
+    const navigate = useNavigate();
+
+    // Get the fixture from the route data
+    const fixture = routeData.fixture;
+
+    // Function ran when we click the cancel button (FixtureDetails component)
+    const handleCancelChanges = () => {
+        // Navigate the user back to the view league page
+        navigate(`/leagues/${fixture.league}`);
+    };
+
+    // Function ran when we click the add result button (FixtureDetails component)
+    const handleAddResult = () => {
+        navigate({
+            pathname: '/results/add',
+            search: `?fixtureId=${fixture._id}&leagueId=${fixture.league}`,
+        });
+    };
+
+    return (
+        <FixtureDetails
+            onCancel={handleCancelChanges}
+            onAddResult={handleAddResult}
+            routeData={routeData}
+        />
+    );
 };
 
 export const fixtureDataLoader = asyncHandler(async ({ request, params }) => {

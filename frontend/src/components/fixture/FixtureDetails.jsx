@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from '../../hooks/useFetch.js';
@@ -11,12 +10,10 @@ import FixtureVenue from './FixtureVenue.jsx';
 import Button from '../../utils/Button.jsx';
 import './FixtureDetails.css';
 
-const FixtureDetails = () => {
+const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const routeData = useRouteLoaderData('fixture-route');
     const { request, error, setError, isLoading } = useFetch();
 
     const [data, setData] = useState({ ...routeData });
@@ -47,13 +44,6 @@ const FixtureDetails = () => {
     // check if the user is the league creator to be able to edit the fixture details
     const isCreator = league.creator === user._id;
 
-    const handleAddResult = () => {
-        navigate({
-            pathname: '/results/add',
-            search: `?fixtureId=${_id}&leagueId=${league._id}`,
-        }); // TODO: Create a route to add a new result
-    };
-
     const handleSaveChanges = async () => {
         // reset the error if any
         setError('');
@@ -78,11 +68,6 @@ const FixtureDetails = () => {
             // show the success alert
             dispatch(showAlert('success', 'Update successful'));
         }
-    };
-
-    // this navigates the user back to the view league page
-    const handleCancelChanges = () => {
-        navigate(`/leagues/${league._id}`);
     };
 
     // disable the save button if any of the data in the edit data state
@@ -130,11 +115,12 @@ const FixtureDetails = () => {
                 fixtureVenue={venue}
                 fixtureField={field}
             />
+
             {error && <p className="error-message">{error}</p>}
             {isAuth && isCreator && (
                 <section className="fixture-details__buttons">
                     <div className="fixture-details__btn-add">
-                        <Button onClick={handleAddResult}>Add result</Button>
+                        <Button onClick={onAddResult}>Add result</Button>
                     </div>
                     <div className="fixture-details__btn-save">
                         <Button
@@ -146,7 +132,7 @@ const FixtureDetails = () => {
                         </Button>
                     </div>
                     <div className="fixture-details__btn-cancel">
-                        <Button onClick={handleCancelChanges} type="no-bg">
+                        <Button onClick={onCancel} type="no-bg">
                             Cancel
                         </Button>
                     </div>
