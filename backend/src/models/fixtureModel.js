@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { formatDate, formatTime } from '../utils/formatData.js';
 
 const fixtureSchema = new Schema(
     {
@@ -35,41 +36,21 @@ const fixtureSchema = new Schema(
     { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
 
+// Virtual property that formats the time of the fixture
 fixtureSchema.virtual('time').get(function () {
     const date = this.date;
     if (date) {
-        let hours = date.getHours().toString();
-        let minutes = date.getMinutes().toString();
-
-        // format the hours and minutes properly
-        if (hours.length === 1) {
-            hours = `0${hours}`;
-        }
-        if (minutes.length === 1) {
-            minutes = `0${minutes}`;
-        }
-
-        return `${hours}:${minutes}`;
+        return formatTime(date);
     }
+
     return 'TBC';
 });
 
+// Virtual property that formats the date of the fixture
 fixtureSchema.virtual('formattedDate').get(function () {
     const date = this.date;
     if (date) {
-        const year = date.getFullYear();
-        let month = (date.getMonth() + 1).toString(); // 1 because months start from 0 in javascript date object
-        let day = date.getDate().toString();
-
-        if (month.length === 1) {
-            month = `0${month}`;
-        }
-
-        if (day.length === 1) {
-            day = `0${day}`;
-        }
-
-        return `${year}-${month}-${day}`;
+        return formatDate(date);
     }
 
     return 'TBC';
