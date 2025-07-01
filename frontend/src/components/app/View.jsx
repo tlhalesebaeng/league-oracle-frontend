@@ -1,3 +1,4 @@
+import { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { uiActions } from '../../store/ui/ui-slice.js';
@@ -15,16 +16,19 @@ const View = () => {
     const dispatch = useDispatch();
 
     // Function ran when the results tab is clicked (Tablist component)
-    const handleChangeTab = (tabName) => {
+    const handleChangeTab = useCallback((tabName) => {
         dispatch(uiActions.setTab(tabName)); // Set the active tab to be the given tab name
-    };
+    }, []);
 
     // List of all the tabs
-    const tabList = [
-        { _id: 'tab-1', name: 'Standings' },
-        { _id: 'tab-2', name: 'Fixtures' },
-        { _id: 'tab-3', name: 'Results' },
-    ];
+    const tabList = useMemo(
+        () => [
+            { _id: 'tab-1', name: 'Standings' },
+            { _id: 'tab-2', name: 'Fixtures' },
+            { _id: 'tab-3', name: 'Results' },
+        ],
+        []
+    );
 
     // Determine which component to show based on the active tab
     let component = null;
