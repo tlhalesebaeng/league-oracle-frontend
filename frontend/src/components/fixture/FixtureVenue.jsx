@@ -31,8 +31,6 @@ const FixtureVenue = (venueDetails) => {
             />
         );
     } else {
-        console.log(details);
-        console.log(details.fixtureVenue, details.fixtureField);
         venue = <p>{details.fixtureVenue}</p>;
         field = <p>{details.fixtureField}</p>;
     }
