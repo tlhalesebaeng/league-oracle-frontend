@@ -1,6 +1,8 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
+
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
@@ -9,6 +11,7 @@ const StandingDetails = memo(() => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { league } = useRouteLoaderData('league-route');
     const params = useParams();
 
@@ -25,14 +28,16 @@ const StandingDetails = memo(() => {
         }
     }
 
-    // check if the user is the league creator to be able to edit the league
+    // Check whether the user is the league creator so that we can allow editting the league if so
     const isCreator = league.creator === user._id;
 
+    // Function ran when the league name is clicked
     const handleLeagueNameClick = () => {
-        // navigate to the leagues page
-        navigate(`/leagues/${league._id}`);
+        // Change the tab to Standings
+        dispatch(uiActions.setTab('Standings'));
     };
 
+    // Function ran when the edit button is clicked
     const handleEditLeague = () => {
         navigate({
             pathname: '/leagues/edit',
@@ -53,7 +58,7 @@ const StandingDetails = memo(() => {
                 )}
             </div>
             {team && <h3>{team.name} page</h3>}
-            {!team && <p>{'10-20-2020'}</p>}
+            {!team && <p>{league.createdAt || '10-20-2020'}</p>}
         </section>
     );
 });
