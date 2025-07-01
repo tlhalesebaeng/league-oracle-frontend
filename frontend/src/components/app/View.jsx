@@ -1,6 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-
-import { uiActions } from '../../store/ui/ui-slice.js';
+import { useSelector } from 'react-redux';
 
 import StandingDetails from '../league/StandingDetails.jsx';
 import Standings from '../league/Standings.jsx';
@@ -10,21 +8,8 @@ import ResultList from '../result/ResultList.jsx';
 import './View.css';
 
 // This is a shared component for standings, fixtures and results
-const View = () => {
+const View = ({ tabList, onChangeTab }) => {
     const activeTab = useSelector((state) => state.ui.tab); // The currently selected tab
-    const dispatch = useDispatch();
-
-    // Function ran when the results tab is clicked (Tablist component)
-    const handleChangeTab = (tabName) => {
-        dispatch(uiActions.setTab(tabName)); // Set the active tab to be the given tab name
-    };
-
-    // List of all the tabs
-    const tabList = [
-        { _id: 'tab-1', name: 'Standings' },
-        { _id: 'tab-2', name: 'Fixtures' },
-        { _id: 'tab-3', name: 'Results' },
-    ];
 
     // Determine which component to show based on the active tab
     let component = null;
@@ -39,7 +24,7 @@ const View = () => {
                 <TabList
                     activeTab={activeTab}
                     tabList={tabList}
-                    onChangeTab={handleChangeTab}
+                    onChangeTab={onChangeTab}
                 />
             </div>
             {component}
