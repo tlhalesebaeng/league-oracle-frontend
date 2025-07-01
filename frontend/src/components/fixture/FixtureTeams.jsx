@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import './FixtureTeams.css';
 
-const FixtureTeams = ({ leagueId, homeTeam, awayTeam }) => {
+const FixtureTeams = memo(({ leagueId, homeTeam, awayTeam }) => {
     return (
         <section className="fixture-teams">
             <Link to={`/leagues/${leagueId}/teams/${homeTeam._id}`}>
@@ -13,6 +14,6 @@ const FixtureTeams = ({ leagueId, homeTeam, awayTeam }) => {
             </Link>
         </section>
     );
-};
+});
 
 export default FixtureTeams;
