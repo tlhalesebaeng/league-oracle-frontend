@@ -1,4 +1,4 @@
-import TabItem from './TabItem';
+import TabItem from './TabItem.jsx';
 import './TabList.css';
 
 const TabList = ({ tabList, activeTab, onChangeTab }) => {
