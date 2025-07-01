@@ -3,6 +3,7 @@ import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { getSearchParams } from '../../utils/functions/searchParams.js';
 import api from '../../utils/functions/axiosInstance.js';
 import { asyncHandler } from '../../utils/functions/asyncHandler.js';
+
 import FixtureDetails from '../../components/fixture/FixtureDetails.jsx';
 
 const ViewFixture = () => {
@@ -11,6 +12,13 @@ const ViewFixture = () => {
 
     // Get the fixture from the route data
     const fixture = routeData.fixture;
+
+    // Derive the league data
+    const leagueData = {
+        _id: fixture.league,
+        creator: routeData.creator,
+        name: routeData.name,
+    };
 
     // Function ran when we click the cancel button (FixtureDetails component)
     const handleCancelChanges = () => {
@@ -31,6 +39,8 @@ const ViewFixture = () => {
             onCancel={handleCancelChanges}
             onAddResult={handleAddResult}
             routeData={routeData}
+            leagueData={leagueData}
+            fixture={fixture}
         />
     );
 };
