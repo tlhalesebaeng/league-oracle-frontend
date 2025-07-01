@@ -25,6 +25,8 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
     }); // TODO: date and time should be date and time pickers respectively and not edit fields
     const editDataRef = useRef(null);
 
+    // After every editData change, update the editDataRef so that it holds the latest data state
+    // On every memoized function we can then use it to get the latest editData state
     useEffect(() => {
         editDataRef.current = editData;
     }, [editData]);
@@ -46,19 +48,19 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
         });
     };
 
-    // check if the user is the league creator to be able to edit the fixture details
+    // Check if the user is the league creator to be able to edit the fixture details
     const isCreator = league.creator === user._id;
 
     const handleSaveChanges = useCallback(async () => {
-        // reset the error if any
+        // Reset the error if any
         setError('');
 
-        // ignore the date and time fields if their values are TBC
+        // Ignore the date and time fields if their values are TBC
         const filteredData = { ...editDataRef.current };
         if (filteredData.date === 'TBC') filteredData.date = undefined;
         if (filteredData.time === 'TBC') filteredData.time = undefined;
 
-        // send the request with the editted data
+        // Send the request with the editted data
         const response = await request(
             `/fixtures/${_id}`,
             'patch',
@@ -67,15 +69,15 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
         );
 
         if (response) {
-            // set the data to be the response of this data
+            // Set the data to be the response of this data
             setData({ ...response.data });
 
-            // show the success alert
+            // Show the success alert
             dispatch(showAlert('success', 'Update successful'));
         }
     }, []);
 
-    // disable the save button if any of the data in the edit data state
+    // Disable the save button if any of the data in the edit data state
     //  is not the same as the data that came from the loader
     let disableSave = false;
     if (
@@ -87,7 +89,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
         disableSave = true;
     }
 
-    // disable the save button if there are any empty field
+    // Disable the save button if there are any empty field
     if (
         !editData.date ||
         !editData.time ||
