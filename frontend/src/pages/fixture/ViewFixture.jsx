@@ -8,15 +8,16 @@ const ViewFixture = () => {
 };
 
 export const fixtureDataLoader = asyncHandler(async ({ request, params }) => {
-    // get the league id from the url
+    // Get the league id from the url
     const searchParams = getSearchParams(request);
     const leagueId = searchParams.get('leagueId');
 
-    // get the league fixture
+    // Get the league fixture
     const response = await api.get(`/fixtures/${params.fixtureId}`, {
         params: { leagueId },
     });
 
+    // Make the league fixture available to the route components
     return response.data;
 });
 
