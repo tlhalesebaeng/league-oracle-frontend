@@ -10,24 +10,16 @@ import FixtureVenue from './FixtureVenue.jsx';
 import Button from '../../utils/Button.jsx';
 import './FixtureDetails.css';
 
-const FixtureDetails = ({
-    onCancel,
-    onAddResult,
-    routeData,
-    leagueData,
-    fixture,
-}) => {
+const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
     const { request, error, setError, isLoading } = useFetch();
-
-    const [data, setData] = useState({ ...routeData });
     const [editData, setEditData] = useState({
-        date: data.fixture.formattedDate,
-        time: data.fixture.time,
-        venue: data.fixture.venue,
-        field: data.fixture.field,
+        date: fixture.formattedDate,
+        time: fixture.time,
+        venue: fixture.venue,
+        field: fixture.field,
     }); // TODO: date and time should be date and time pickers respectively and not edit fields
     const editDataRef = useRef(null);
 
@@ -66,9 +58,6 @@ const FixtureDetails = ({
         );
 
         if (response) {
-            // Set the data to be the response of this data
-            setData({ ...response.data });
-
             // Show the success alert
             dispatch(showAlert('success', 'Update successful'));
         }
