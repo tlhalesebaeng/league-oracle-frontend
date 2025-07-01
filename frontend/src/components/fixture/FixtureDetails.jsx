@@ -10,7 +10,7 @@ import FixtureVenue from './FixtureVenue.jsx';
 import Button from '../../utils/Button.jsx';
 import './FixtureDetails.css';
 
-const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
+const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -34,12 +34,6 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
     const { _id, awayTeam, homeTeam, formattedDate, time, venue, field } =
         data.fixture;
 
-    const league = {
-        _id: data.fixture.league,
-        creator: data.creator,
-        name: data.name,
-    };
-
     const handleEditField = (field, value) => {
         setEditData((prevData) => {
             const newData = { ...prevData };
@@ -49,7 +43,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
     };
 
     // Check if the user is the league creator to be able to edit the fixture details
-    const isCreator = league.creator === user._id;
+    const isCreator = leagueData.creator === user._id;
 
     const handleSaveChanges = useCallback(async () => {
         // Reset the error if any
@@ -65,7 +59,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
             `/fixtures/${_id}`,
             'patch',
             filteredData,
-            { params: { leagueId: league._id } }
+            { params: { leagueId: leagueData._id } }
         );
 
         if (response) {
@@ -104,13 +98,13 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
             <FixtureHeader
                 onEdit={handleEditField}
                 editData={editData}
-                league={league}
+                league={leagueData}
                 fixtureDate={formattedDate}
                 fixtureTime={time}
             />
 
             <FixtureTeams
-                leagueId={league._id}
+                leagueId={leagueData._id}
                 homeTeam={homeTeam}
                 awayTeam={awayTeam}
             />
@@ -118,7 +112,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData }) => {
             <FixtureVenue
                 onEdit={handleEditField}
                 editData={editData}
-                leagueCreator={league.creator}
+                leagueCreator={leagueData.creator}
                 fixtureVenue={venue}
                 fixtureField={field}
             />
