@@ -10,7 +10,13 @@ import FixtureVenue from './FixtureVenue.jsx';
 import Button from '../../utils/Button.jsx';
 import './FixtureDetails.css';
 
-const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
+const FixtureDetails = ({
+    onCancel,
+    onAddResult,
+    routeData,
+    leagueData,
+    fixture,
+}) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch();
@@ -30,9 +36,6 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
     useEffect(() => {
         editDataRef.current = editData;
     }, [editData]);
-
-    const { _id, awayTeam, homeTeam, formattedDate, time, venue, field } =
-        data.fixture;
 
     const handleEditField = (field, value) => {
         setEditData((prevData) => {
@@ -56,7 +59,7 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
 
         // Send the request with the editted data
         const response = await request(
-            `/fixtures/${_id}`,
+            `/fixtures/${fixture._id}`,
             'patch',
             filteredData,
             { params: { leagueId: leagueData._id } }
@@ -75,10 +78,10 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
     //  is not the same as the data that came from the loader
     let disableSave = false;
     if (
-        editData.date === formattedDate &&
-        editData.time === time &&
-        editData.venue === venue &&
-        editData.field === field
+        editData.date === fixture.formattedDate &&
+        editData.time === fixture.time &&
+        editData.venue === fixture.venue &&
+        editData.field === fixture.field
     ) {
         disableSave = true;
     }
@@ -99,22 +102,22 @@ const FixtureDetails = ({ onCancel, onAddResult, routeData, leagueData }) => {
                 onEdit={handleEditField}
                 editData={editData}
                 league={leagueData}
-                fixtureDate={formattedDate}
-                fixtureTime={time}
+                fixtureDate={fixture.formattedDate}
+                fixtureTime={fixture.time}
             />
 
             <FixtureTeams
                 leagueId={leagueData._id}
-                homeTeam={homeTeam}
-                awayTeam={awayTeam}
+                homeTeam={fixture.homeTeam}
+                awayTeam={fixture.awayTeam}
             />
 
             <FixtureVenue
                 onEdit={handleEditField}
                 editData={editData}
                 leagueCreator={leagueData.creator}
-                fixtureVenue={venue}
-                fixtureField={field}
+                fixtureVenue={fixture.venue}
+                fixtureField={fixture.field}
             />
 
             {error && <p className="error-message">{error}</p>}
