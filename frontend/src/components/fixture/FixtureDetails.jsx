@@ -37,13 +37,13 @@ const FixtureDetails = ({
         editDataRef.current = editData;
     }, [editData]);
 
-    const handleEditField = (field, value) => {
+    const handleEditField = useCallback((field, value) => {
         setEditData((prevData) => {
             const newData = { ...prevData };
             newData[field] = value;
             return newData;
         });
-    };
+    }, []);
 
     // Check if the user is the league creator to be able to edit the fixture details
     const isCreator = leagueData.creator === user._id;
