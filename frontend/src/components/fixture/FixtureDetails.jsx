@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from '../../hooks/useFetch.js';
@@ -63,33 +63,31 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
         }
     }, []);
 
+    // Memoize the editData fields so that we can avoid rendering components that use them unnecessarily
+    const date = useMemo(() => editData.date, [editData.date]);
+    const time = useMemo(() => editData.time, [editData.time]);
+    const venue = useMemo(() => editData.venue, [editData.venue]);
+    const field = useMemo(() => editData.field, [editData.field]);
+
     // Disable the save button if any of the data in the edit data state
     //  is not the same as the data that came from the loader
     let disableSave = false;
     if (
-        editData.date === fixture.formattedDate &&
-        editData.time === fixture.time &&
-        editData.venue === fixture.venue &&
-        editData.field === fixture.field
+        date === fixture.formattedDate &&
+        time === fixture.time &&
+        venue === fixture.venue &&
+        field === fixture.field
     ) {
         disableSave = true;
     }
 
     // Disable the save button if there are any empty field
-    if (
-        !editData.date ||
-        !editData.time ||
-        !editData.venue ||
-        !editData.field
-    ) {
-        disableSave = true;
-    }
+    if (!date || !time || !venue || !field) disableSave = true;
 
     return (
         <main>
             <FixtureHeader
                 onEdit={handleEditField}
-                editData={editData}
                 league={leagueData}
                 fixtureDate={fixture.formattedDate}
                 fixtureTime={fixture.time}

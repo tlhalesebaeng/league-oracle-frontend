@@ -1,15 +1,17 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 import EditField from '../app/EditField.jsx';
 import './FixtureHeader.css';
 
-const FixtureHeader = (props) => {
+const FixtureHeader = memo((props) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
 
     // get the data in this way to make code readable
-    const { league, fixtureDate, fixtureTime, onEdit, editData } = props;
+    const { league, fixtureDate, fixtureTime, onEdit } = props;
 
     // check if the user is the league creator to be able to edit the fixture date and time
     const isCreator = league.creator === user._id;
@@ -23,14 +25,14 @@ const FixtureHeader = (props) => {
                     onInputChange={(value) => onEdit('date', value)}
                     tag="span"
                     type="date"
-                    value={editData.date}
+                    value={fixtureDate}
                 />
                 |
                 <EditField
                     onInputChange={(value) => onEdit('time', value)}
                     tag="span"
                     type="time"
-                    value={editData.time}
+                    value={fixtureTime}
                 />
             </div>
         );
@@ -52,6 +54,6 @@ const FixtureHeader = (props) => {
             </div>
         </section>
     );
-};
+});
 
 export default FixtureHeader;
