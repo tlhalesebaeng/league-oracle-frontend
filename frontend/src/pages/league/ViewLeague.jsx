@@ -10,24 +10,12 @@ import View from '../../components/app/View.jsx';
 const Leagues = () => {
     const dispatch = useDispatch();
 
-    // Function ran when the results tab is clicked (Tablist component)
-    const handleChangeTab = (tabName) => {
-        dispatch(uiActions.setTab(tabName)); // Set the active tab to be the given tab name
-    };
-
-    // List of all the tabs
-    const tabList = [
-        { _id: 'tab-1', name: 'Standings' },
-        { _id: 'tab-2', name: 'Fixtures' },
-        { _id: 'tab-3', name: 'Results' },
-    ];
-
     useEffect(() => {
         // Show the login and get started buttons
         dispatch(uiActions.showAuthButtons());
     }, []);
 
-    return <View tabList={tabList} onChangeTab={handleChangeTab} />;
+    return <View />;
 };
 
 // Loader function to get league, fixtures and results data
