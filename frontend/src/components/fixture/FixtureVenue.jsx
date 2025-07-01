@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import EditField from '../app/EditField.jsx';
 import './FixtureVenue.css';
 
-const FixtureVenue = (venueDetails) => {
+const FixtureVenue = memo((venueDetails) => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
 
@@ -41,6 +42,6 @@ const FixtureVenue = (venueDetails) => {
             {field}
         </section>
     );
-};
+});
 
 export default FixtureVenue;

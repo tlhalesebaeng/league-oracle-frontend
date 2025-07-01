@@ -38,7 +38,6 @@ const ViewFixture = () => {
         <FixtureDetails
             onCancel={handleCancelChanges}
             onAddResult={handleAddResult}
-            routeData={routeData}
             leagueData={leagueData}
             fixture={fixture}
         />
