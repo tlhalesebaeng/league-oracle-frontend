@@ -116,14 +116,10 @@ export const updateLeague = asyncHandler(async (req, res, next) => {
 
     const { name } = req.body;
 
-    const league = await League.findByIdAndUpdate(
-        req.params.leagueId,
-        { name },
-        {
-            new: true,
-            runValidators: true,
-        }
-    );
+    const league = await League.findByIdAndUpdate(req.params.leagueId, {
+        new: true,
+        runValidators: true,
+    });
 
     res.status(200).json({ league });
 });
