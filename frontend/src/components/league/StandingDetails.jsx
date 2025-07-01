@@ -1,10 +1,11 @@
-import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
 
 import Button from '../../utils/Button.jsx';
 import './StandingDetails.css';
 
-const StandingDetails = () => {
+const StandingDetails = memo(() => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
@@ -55,6 +56,6 @@ const StandingDetails = () => {
             {!team && <p>{'10-20-2020'}</p>}
         </section>
     );
-};
+});
 
 export default StandingDetails;
