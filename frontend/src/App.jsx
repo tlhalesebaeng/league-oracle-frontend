@@ -27,6 +27,7 @@ const appRouter = createBrowserRouter([
         path: '/',
         element: <RootLayout />,
         errorElement: <ErrorPage />,
+        hydrateFallbackElement: <></>,
         children: [
             {
                 index: true,
