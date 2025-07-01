@@ -1,30 +1,24 @@
 import TabItem from './TabItem';
 import './TabList.css';
 
-const TabList = ({ onStandings, onFixtures, onResults, tab }) => {
-    const determineHandler = (tabName) => {
-        if (tabName === 'standings') return onStandings;
-        else if (tabName === 'fixtures') return onFixtures;
-        else if (tabName === 'results') return onResults;
-    };
-
-    const tabs = ['Standings', 'Fixtures', 'Results'];
+const TabList = ({ tabList, activeTab, onChangeTab }) => {
     return (
         <section className="tab-list">
             <ul>
-                {tabs.map((tabName) => {
-                    const lowercaseTabName = tabName.toLowerCase();
-                    const style =
-                        tab === lowercaseTabName ? 'active' : undefined;
-                    const click = determineHandler(lowercaseTabName);
+                {tabList.map((tab) => {
+                    // Check if the current tab is active
+                    const isActive = activeTab === tab.name;
+
+                    // Add the active style if its active
+                    const activeStyle = isActive ? 'active' : undefined;
 
                     return (
                         <TabItem
-                            onClick={click}
-                            className={style}
-                            key={tabName}
+                            onClick={() => onChangeTab(tab.name)}
+                            className={activeStyle}
+                            key={tab._id}
                         >
-                            {tabName}
+                            {tab.name}
                         </TabItem>
                     );
                 })}

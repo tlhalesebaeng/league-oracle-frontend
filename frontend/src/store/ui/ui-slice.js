@@ -6,7 +6,7 @@ const uiSlice = createSlice({
         authButtonsShown: false,
         leaguesModalShown: false,
         confirmModalShown: false,
-        tab: 'standings',
+        tab: 'Standings',
     },
     reducers: {
         showAuthButtons(state) {
