@@ -1,26 +1,33 @@
+import { lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ViewLeague, { leagueDataLoader } from './pages/league/ViewLeague.jsx';
-import EditLeague, {
-    editLeagueDataLoader,
-} from './pages/league/EditLeague.jsx';
-import ViewFixture, {
-    fixtureDataLoader,
-} from './pages/fixture/ViewFixture.jsx';
-import EditResult, {
-    editResultDataLoader,
-} from './pages/result/EditResult.jsx';
-import AddResult, { addResultDataLoader } from './pages/result/AddResult.jsx';
 
 import RootLayout from './components/app/RootLayout.jsx';
-import Signup from './pages/auth/Signup.jsx';
-import Login from './pages/auth/Login.jsx';
-import Home from './pages/app/Home.jsx';
-import Landing from './pages/app/Landing.jsx';
-import About from './pages/app/About.jsx';
-import ViewTeam from './pages/team/ViewTeam.jsx';
-import CreateLeague from './pages/league/CreateLeague.jsx';
-import ErrorPage from './pages/app/ErrorPage.jsx';
-import Contact from './pages/app/Contact.jsx';
+
+// App main components
+const About = lazy(() => import('./pages/app/About.jsx'));
+const Home = lazy(() => import('./pages/app/Home.jsx'));
+const Contact = lazy(() => import('./pages/app/Contact.jsx'));
+const Landing = lazy(() => import('./pages/app/Landing.jsx'));
+const ErrorPage = lazy(() => import('./pages/app/ErrorPage.jsx'));
+
+// Auth routes components
+const Login = lazy(() => import('./pages/auth/Login.jsx'));
+const Signup = lazy(() => import('./pages/auth/Signup.jsx'));
+
+// League routes components
+const ViewLeague = lazy(() => import('./pages/league/ViewLeague.jsx'));
+const EditLeague = lazy(() => import('./pages/league/EditLeague.jsx'));
+const CreateLeague = lazy(() => import('./pages/league/CreateLeague.jsx'));
+
+// Team routes components
+const ViewTeam = lazy(() => import('./pages/team/ViewTeam.jsx'));
+
+// Fixture routes components
+const ViewFixture = lazy(() => import('./pages/fixture/ViewFixture.jsx'));
+
+// Result routes components
+const EditResult = lazy(() => import('./pages/result/EditResult.jsx'));
+const AddResult = lazy(() => import('./pages/result/AddResult.jsx'));
 
 const appRouter = createBrowserRouter([
     {
@@ -43,7 +50,10 @@ const appRouter = createBrowserRouter([
                     {
                         id: 'league-route',
                         path: ':leagueId',
-                        loader: leagueDataLoader,
+                        loader: (meta) =>
+                            import('./pages/league/ViewLeague.jsx').then(
+                                (module) => module.leagueDataLoader(meta)
+                            ),
                         children: [
                             {
                                 index: true,
@@ -61,7 +71,10 @@ const appRouter = createBrowserRouter([
                     },
                     {
                         path: 'edit',
-                        loader: editLeagueDataLoader,
+                        loader: (meta) =>
+                            import('./pages/league/EditLeague.jsx').then(
+                                (module) => module.editLeagueDataLoader(meta)
+                            ),
                         element: <EditLeague />,
                     },
                 ],
@@ -69,7 +82,10 @@ const appRouter = createBrowserRouter([
             {
                 id: 'fixture-route',
                 path: 'fixtures',
-                loader: fixtureDataLoader,
+                loader: (meta) =>
+                    import('./pages/fixture/ViewFixture.jsx').then((module) =>
+                        module.fixtureDataLoader(meta)
+                    ),
                 children: [
                     {
                         path: ':fixtureId',
@@ -84,12 +100,18 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'edit',
                         element: <EditResult />,
-                        loader: editResultDataLoader,
+                        loader: (meta) =>
+                            import('./pages/result/EditResult.jsx').then(
+                                (module) => module.editResultDataLoader(meta)
+                            ),
                     },
                     {
                         path: 'add',
                         element: <AddResult />,
-                        loader: addResultDataLoader,
+                        loader: (meta) =>
+                            import('./pages/result/AddResult.jsx').then(
+                                (module) => module.addResultDataLoader(meta)
+                            ),
                     },
                 ],
             },
