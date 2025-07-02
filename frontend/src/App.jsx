@@ -1,7 +1,8 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from './components/app/RootLayout.jsx';
+import PageSpinner from './components/app/PageSpinner.jsx';
 
 // App main components
 const About = lazy(() => import('./pages/app/About.jsx'));
@@ -29,6 +30,10 @@ const ViewFixture = lazy(() => import('./pages/fixture/ViewFixture.jsx'));
 const EditResult = lazy(() => import('./pages/result/EditResult.jsx'));
 const AddResult = lazy(() => import('./pages/result/AddResult.jsx'));
 
+const Suspend = ({ children }) => {
+    return <Suspense fallback={<PageSpinner />}>{children}</Suspense>;
+};
+
 const appRouter = createBrowserRouter([
     {
         path: '/',
@@ -38,11 +43,19 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Landing />,
+                element: (
+                    <Suspend>
+                        <Landing />
+                    </Suspend>
+                ),
             },
             {
                 path: 'home',
-                element: <Home />,
+                element: (
+                    <Suspend>
+                        <Home />
+                    </Suspend>
+                ),
             },
             {
                 path: 'leagues',
@@ -57,17 +70,29 @@ const appRouter = createBrowserRouter([
                         children: [
                             {
                                 index: true,
-                                element: <ViewLeague />,
+                                element: (
+                                    <Suspend>
+                                        <ViewLeague />
+                                    </Suspend>
+                                ),
                             },
                             {
                                 path: 'teams/:teamId',
-                                element: <ViewTeam />,
+                                element: (
+                                    <Suspend>
+                                        <ViewTeam />
+                                    </Suspend>
+                                ),
                             },
                         ],
                     },
                     {
                         path: 'create',
-                        element: <CreateLeague />,
+                        element: (
+                            <Suspend>
+                                <CreateLeague />
+                            </Suspend>
+                        ),
                     },
                     {
                         path: 'edit',
@@ -75,7 +100,11 @@ const appRouter = createBrowserRouter([
                             import('./pages/league/EditLeague.jsx').then(
                                 (module) => module.editLeagueDataLoader(meta)
                             ),
-                        element: <EditLeague />,
+                        element: (
+                            <Suspend>
+                                <EditLeague />
+                            </Suspend>
+                        ),
                     },
                 ],
             },
@@ -89,7 +118,11 @@ const appRouter = createBrowserRouter([
                 children: [
                     {
                         path: ':fixtureId',
-                        element: <ViewFixture />,
+                        element: (
+                            <Suspend>
+                                <ViewFixture />
+                            </Suspend>
+                        ),
                     },
                 ],
             },
@@ -99,7 +132,11 @@ const appRouter = createBrowserRouter([
                 children: [
                     {
                         path: 'edit',
-                        element: <EditResult />,
+                        element: (
+                            <Suspend>
+                                <EditResult />
+                            </Suspend>
+                        ),
                         loader: (meta) =>
                             import('./pages/result/EditResult.jsx').then(
                                 (module) => module.editResultDataLoader(meta)
@@ -107,7 +144,11 @@ const appRouter = createBrowserRouter([
                     },
                     {
                         path: 'add',
-                        element: <AddResult />,
+                        element: (
+                            <Suspend>
+                                <AddResult />
+                            </Suspend>
+                        ),
                         loader: (meta) =>
                             import('./pages/result/AddResult.jsx').then(
                                 (module) => module.addResultDataLoader(meta)
@@ -117,19 +158,35 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'contact',
-                element: <Contact />,
+                element: (
+                    <Suspend>
+                        <Contact />
+                    </Suspend>
+                ),
             },
             {
                 path: 'about',
-                element: <About />,
+                element: (
+                    <Suspend>
+                        <About />
+                    </Suspend>
+                ),
             },
             {
                 path: 'login',
-                element: <Login />,
+                element: (
+                    <Suspend>
+                        <Login />
+                    </Suspend>
+                ),
             },
             {
                 path: 'signup',
-                element: <Signup />,
+                element: (
+                    <Suspend>
+                        <Signup />
+                    </Suspend>
+                ),
             },
         ],
     },
