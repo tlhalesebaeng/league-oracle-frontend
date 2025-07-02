@@ -6,10 +6,10 @@ import api from '../../utils/functions/axiosInstance.js';
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
 import { asyncHandler } from '../../utils/functions/asyncHandler.js';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import ResultDetails from '../../components/result/ResultDetails.jsx';
 import Card from '../../components/app/Card.jsx';
-
 const AddResult = () => {
     const routeData = useLoaderData();
     const navigate = useNavigate();
@@ -45,6 +45,9 @@ const AddResult = () => {
         if (response) {
             // navigate to the leagues page
             navigate(`/leagues/${league._id}`);
+
+            // Set the tab to Standings
+            dispatch(uiActions.setTab('Standings'));
 
             // show the success alert
             dispatch(showAlert('success', 'Result successfully added'));
