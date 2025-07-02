@@ -7,6 +7,7 @@ const ViewTeam = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // Show the login and get started buttons
         dispatch(uiActions.showAuthButtons());
     }, []);
 
