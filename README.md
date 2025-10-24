@@ -1,26 +1,17 @@
-# ⚽ League Oracle
+# ⚽ League Oracle - Frontend
 
-A full-stack web application for managing soccer leagues, fixtures, and match results. Built using the **MERN Stack** (MongoDB, Express.js, React, Node.js).
+The frontend of league oracle web application. League oracle is a platform where you can manage your soccer leagues, fixtures, and match results.
 
 ## 🚀 Features
 
--   User authentication (signup/login)
--   Create leagues
--   View other leagues details
--   Schdule fixtures
--   Add match results
--   Responsive and user-friendly UI
+-   Secure authentication and authorization
+-   Reliable management of your leagues
+-   Accessibility of any available league
+-   Flexible scheduling of fixtures
+-   Ability to add match results with ease
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack - Frontend
 
-**Frontend:**
-
--   React with javascript
--   Axios for requests
--   Styles with css
-
-**Backend:**
-
--   Node.js
--   Express.js
--   MongoDB & Mongoose
+-   HTML
+-   CSS
+-   Javascript + React
