@@ -17,12 +17,12 @@ const EditResult = () => {
     const { request, error, isLoading } = useFetch();
 
     const result = routeData.result;
-    const league = { _id: result.league, name: routeData.name };
+    const league = { id: result.league, name: routeData.name };
 
     const handleSaveResult = async (scores) => {
         // send the request
         const response = await request(
-            `/results/${result._id}?leagueId=${league._id}`,
+            `/results/${result.id}?leagueId=${league.id}`,
             'patch',
             {
                 homeTeamScore: scores.homeScore,
@@ -35,7 +35,7 @@ const EditResult = () => {
             dispatch(showAlert('success', 'Result updated successfully'));
 
             // navigate to the league page
-            navigate(`/leagues/${league._id}`);
+            navigate(`/leagues/${league.id}`);
         }
     };
 

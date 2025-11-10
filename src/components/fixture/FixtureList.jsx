@@ -36,12 +36,12 @@ const FixtureList = () => {
             const homeTeam = fixture.homeTeam;
             const awayTeam = fixture.awayTeam;
             const id = params.teamId;
-            return homeTeam._id === id || awayTeam._id === id;
+            return homeTeam.id === id || awayTeam.id === id;
         });
     }
 
     // check if the user is the league creator to be able to edit the league
-    const isCreator = league.creator === user._id;
+    const isCreator = league.creator === user.id;
 
     const handleGenerateFixtures = () => {
         // verify the league creator and generate league fixtures if there are no results
@@ -54,7 +54,7 @@ const FixtureList = () => {
 
         // send the request (we will only support home and away fixtures for now)
         const response = await request(
-            `/fixtures?leagueId=${league._id}&fixtureType=homeAndAway`,
+            `/fixtures?leagueId=${league.id}&fixtureType=homeAndAway`,
             'post'
         );
 
@@ -87,8 +87,8 @@ const FixtureList = () => {
                     fixtures.length !== 0 &&
                     fixtures.map((fixture) => (
                         <FixtureItem
-                            leagueId={league._id}
-                            key={fixture._id}
+                            leagueId={league.id}
+                            key={fixture.id}
                             fixture={fixture}
                         />
                     ))}

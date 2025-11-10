@@ -14,7 +14,7 @@ const FixtureHeader = memo((props) => {
     const { league, fixtureDate, fixtureTime, onEdit } = props;
 
     // check if the user is the league creator to be able to edit the fixture date and time
-    const isCreator = league.creator === user._id;
+    const isCreator = league.creator === user.id;
 
     // allow editing the date and time when the user is logged in and is the league creator
     let paragraph = null;
@@ -47,7 +47,7 @@ const FixtureHeader = memo((props) => {
     return (
         <section className="fixture-header">
             <div className="fixture-header__container">
-                <h2 onClick={() => navigate(`/leagues/${league._id}`)}>
+                <h2 onClick={() => navigate(`/leagues/${league.id}`)}>
                     {league.name}
                 </h2>
                 {paragraph}

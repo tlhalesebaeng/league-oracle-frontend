@@ -7,7 +7,7 @@ const TeamScore = ({ score, team, leagueId, onInputChange, placeholder }) => {
         <section className="team-score">
             <Link
                 to={{
-                    pathname: `/leagues/${leagueId}/teams/${team._id}`,
+                    pathname: `/leagues/${leagueId}/teams/${team.id}`,
                 }}
             >
                 {team.name}{' '}

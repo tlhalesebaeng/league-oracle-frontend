@@ -10,7 +10,7 @@ const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
             <p className="result-list__date">{result.formattedDate || 'TBC'}</p>
             <section className="result-list__teams">
                 <Link
-                    to={`/leagues/${result.league}/teams/${result.homeTeam._id}`}
+                    to={`/leagues/${result.league}/teams/${result.homeTeam.id}`}
                 >
                     {result.homeTeam.name}
                 </Link>
@@ -19,14 +19,14 @@ const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
                     <span>{result.awayTeamScore}</span>
                 </p>
                 <Link
-                    to={`/leagues/${result.league}/teams/${result.awayTeam._id}`}
+                    to={`/leagues/${result.league}/teams/${result.awayTeam.id}`}
                 >
                     {result.awayTeam.name}
                 </Link>
             </section>
             {isAuth && isCreator && (
                 <section className="result-list__edit-btn">
-                    <Button onClick={() => onEdit(result._id)} type="no-bg">
+                    <Button onClick={() => onEdit(result.id)} type="no-bg">
                         Edit
                     </Button>
                 </section>

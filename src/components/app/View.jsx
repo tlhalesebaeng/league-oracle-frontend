@@ -23,9 +23,9 @@ const View = () => {
     // List of all the tabs
     const tabList = useMemo(
         () => [
-            { _id: 'tab-1', name: 'Standings' },
-            { _id: 'tab-2', name: 'Fixtures' },
-            { _id: 'tab-3', name: 'Results' },
+            { id: 'tab-1', name: 'Standings' },
+            { id: 'tab-2', name: 'Fixtures' },
+            { id: 'tab-3', name: 'Results' },
         ],
         []
     );

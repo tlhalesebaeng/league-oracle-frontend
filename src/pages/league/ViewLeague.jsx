@@ -26,12 +26,12 @@ export const leagueDataLoader = asyncHandler(async ({ params }) => {
 
     // Query for requesting fixtures using the league id
     const fixturesPromise = api.get('/fixtures', {
-        params: { leagueId: league._id },
+        params: { leagueId: league.id },
     });
 
     // Query for requesting results using the league id
     const resultsPromise = api.get('/results', {
-        params: { leagueId: league._id },
+        params: { leagueId: league.id },
     });
 
     // Await the queries at the same time

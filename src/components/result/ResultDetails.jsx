@@ -14,11 +14,11 @@ const ResultDetails = (props) => {
     const { homeTeam, homeTeamScore, awayTeam, awayTeamScore } = props.result;
 
     const handleNameClick = () => {
-        navigate(`/leagues/${props.league._id}`);
+        navigate(`/leagues/${props.league.id}`);
     };
 
     const handleCancelChanges = () => {
-        navigate(`/leagues/${props.league._id}`);
+        navigate(`/leagues/${props.league.id}`);
     };
 
     const handleScoreChange = (field, value) => {
@@ -50,14 +50,14 @@ const ResultDetails = (props) => {
                 {props.league.name}
             </h2>
             <TeamScore
-                leagueId={props.league._id}
+                leagueId={props.league.id}
                 team={homeTeam}
                 placeholder={homeTeamScore}
                 score={scores.homeScore}
                 onInputChange={(value) => handleScoreChange('homeScore', value)}
             />
             <TeamScore
-                leagueId={props.league._id}
+                leagueId={props.league.id}
                 team={awayTeam}
                 placeholder={awayTeamScore}
                 score={scores.awayScore}

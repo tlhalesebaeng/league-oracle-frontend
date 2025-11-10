@@ -20,13 +20,13 @@ const QuickActions = () => {
 
     const quickActions = [
         {
-            _id: 'action1',
+            id: 'action1',
             imageSrc: plusImg,
             action: 'Create League',
             onClick: () => navigate('/leagues/create'),
         },
         {
-            _id: 'action2',
+            id: 'action2',
             imageSrc: searchImg,
             action: 'Search Leagues',
             onClick: handleSearchLeagues,
@@ -39,7 +39,7 @@ const QuickActions = () => {
                 <h3>Quick Actions</h3>
                 <ul>
                     {quickActions.map((quickAction) => (
-                        <li onClick={quickAction.onClick} key={quickAction._id}>
+                        <li onClick={quickAction.onClick} key={quickAction.id}>
                             <img src={quickAction.imageSrc} />
                             <p>{quickAction.action}</p>
                         </li>

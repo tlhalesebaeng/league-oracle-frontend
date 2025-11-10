@@ -15,7 +15,7 @@ const ViewFixture = () => {
 
     // Derive the league data
     const leagueData = {
-        _id: fixture.league,
+        id: fixture.league,
         creator: routeData.creator,
         name: routeData.name,
     };
@@ -30,7 +30,7 @@ const ViewFixture = () => {
     const handleAddResult = () => {
         navigate({
             pathname: '/results/add',
-            search: `?fixtureId=${fixture._id}&leagueId=${fixture.league}`,
+            search: `?fixtureId=${fixture.id}&leagueId=${fixture.league}`,
         });
     };
 

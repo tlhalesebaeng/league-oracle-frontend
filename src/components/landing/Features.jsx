@@ -11,7 +11,7 @@ const Features = ({ featuresList }) => {
             </p>
             <ul>
                 {featuresList.map((feature) => (
-                    <Card key={feature._id}>
+                    <Card key={feature.id}>
                         <li>
                             <img src={feature.imgSrc} />
                             <h3>{feature.title}</h3>

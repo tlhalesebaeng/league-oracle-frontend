@@ -6,7 +6,7 @@ const EditTeams = ({ teams, onInputChange, onDeleteTeam }) => {
     return (
         <section className="edit-teams">
             {teams.map((leagueTeam, index) => (
-                <div key={leagueTeam._id} className="edit-teams__input">
+                <div key={leagueTeam.id} className="edit-teams__input">
                     <Input
                         onInputChange={(event) =>
                             onInputChange(index, event.target.value)

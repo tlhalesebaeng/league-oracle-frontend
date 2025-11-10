@@ -18,7 +18,7 @@ const ResultList = () => {
     const params = useParams();
 
     // check if the user is the league creator to be able to edit the result
-    const isCreator = league.creator === user._id;
+    const isCreator = league.creator === user.id;
 
     if (params.teamId) {
         // we are looking at the team so we should only show results for this team
@@ -26,7 +26,7 @@ const ResultList = () => {
             const homeTeam = result.homeTeam;
             const awayTeam = result.awayTeam;
             const id = params.teamId;
-            return homeTeam._id === id || awayTeam._id === id;
+            return homeTeam.id === id || awayTeam.id === id;
         });
     }
 
@@ -44,7 +44,7 @@ const ResultList = () => {
     const handleEditResult = (resultId) => {
         navigate({
             pathname: '/results/edit',
-            search: `?resultId=${resultId}&leagueId=${league._id}`,
+            search: `?resultId=${resultId}&leagueId=${league.id}`,
         });
     };
 
@@ -67,7 +67,7 @@ const ResultList = () => {
                     results.length !== 0 &&
                     results.map((result) => (
                         <ResultItem
-                            key={result._id}
+                            key={result.id}
                             result={result}
                             {...resultProps}
                         />

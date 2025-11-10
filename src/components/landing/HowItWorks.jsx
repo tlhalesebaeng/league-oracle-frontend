@@ -3,7 +3,7 @@ import Card from '../app/Card.jsx';
 import './HowItWorks.css';
 
 const HowItWorks = ({ ref, stepsList }) => {
-    const [shownStep, setShownStep] = useState(stepsList[0]._id);
+    const [shownStep, setShownStep] = useState(stepsList[0].id);
 
     return (
         <section ref={ref} className="how-it-works">
@@ -11,13 +11,13 @@ const HowItWorks = ({ ref, stepsList }) => {
             <ul>
                 {stepsList.map((step, index) => {
                     // Check if the current step is shown
-                    const showDesc = step._id === shownStep;
+                    const showDesc = step.id === shownStep;
 
                     return (
                         <Card
                             className={showDesc ? ' shown' : ''}
-                            onClick={() => setShownStep(step._id)}
-                            key={step._id}
+                            onClick={() => setShownStep(step.id)}
+                            key={step.id}
                         >
                             <li>
                                 <div className="how-it-works__top-part">

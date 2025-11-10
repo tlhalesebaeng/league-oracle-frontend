@@ -26,7 +26,7 @@ const AddResult = () => {
     };
 
     // construct the league object
-    const league = { _id: fixture.league, name: routeData.name };
+    const league = { id: fixture.league, name: routeData.name };
 
     const handleAddResult = async (scores) => {
         // convert fields to integers and use properties that the backend expects
@@ -37,14 +37,14 @@ const AddResult = () => {
 
         // send the request
         const response = await request(
-            `/results?fixtureId=${fixture._id}&leagueId=${league._id}`,
+            `/results?fixtureId=${fixture.id}&leagueId=${league.id}`,
             'post',
             data
         );
 
         if (response) {
             // navigate to the leagues page
-            navigate(`/leagues/${league._id}`);
+            navigate(`/leagues/${league.id}`);
 
             // Set the tab to Standings
             dispatch(uiActions.setTab('Standings'));

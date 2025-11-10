@@ -119,7 +119,7 @@ const Dashboard = ({ user }) => {
                             {shownFixture.map((fixture) => (
                                 <FixtureItem
                                     leagueId={fixture.league}
-                                    key={fixture._id}
+                                    key={fixture.id}
                                     fixture={fixture}
                                 />
                             ))}

@@ -8,21 +8,21 @@ const ConfirmModal = ({ oldItems, newItems, onConfirm }) => {
     const dispatch = useDispatch();
 
     // We use 4 here because of the assumption that the characters of the new different items
-    // Cannot exceed 4 character i.e no _id of t100 can exist, we cannot have 100 teams in a league
-    const differentItems = newItems.filter((item) => item._id.length <= 4); // different items that are not there in old items
+    // Cannot exceed 4 character i.e no id of t100 can exist, we cannot have 100 teams in a league
+    const differentItems = newItems.filter((item) => item.id.length <= 4); // different items that are not there in old items
 
     const deletedItems = []; // Items that are no longer there in the new items array
     const renamedItems = []; // Items that have different names but same id
     oldItems.forEach((item) => {
         let found = false;
         for (let i = 0; i < newItems.length; i++) {
-            if (item._id === newItems[i]._id) {
+            if (item.id === newItems[i].id) {
                 found = true;
 
                 if (item.name !== newItems[i].name) {
                     // The name was changed
                     const nameChanges = {
-                        _id: item._id,
+                        id: item.id,
                         oldName: item.name,
                         newName: newItems[i].name,
                     };
@@ -52,20 +52,20 @@ const ConfirmModal = ({ oldItems, newItems, onConfirm }) => {
             <h2>Confirm changes</h2>
             <ul className="edit-teams-modal__changes">
                 {differentItems.map((item) => (
-                    <li key={item._id}>
+                    <li key={item.id}>
                         <p>ADDED :</p>
                         <span>{item.name}</span>
                     </li>
                 ))}
                 {renamedItems.map((item) => (
-                    <li key={item._id}>
+                    <li key={item.id}>
                         <p>RENAMED :</p>
                         <span>{item.oldName}</span> to{' '}
                         <span>{item.newName}</span>
                     </li>
                 ))}
                 {deletedItems.map((item) => (
-                    <li key={item._id}>
+                    <li key={item.id}>
                         <p>DELETED :</p>
                         <span>{item.name}</span>
                     </li>

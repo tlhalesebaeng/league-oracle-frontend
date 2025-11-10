@@ -12,7 +12,7 @@ const Footer = () => {
     // List of all the links shown on the footer and their titles
     const footerDetails = [
         {
-            _id: 'footer-detail-1',
+            id: 'footer-detail-1',
             title: 'Information',
             links: [
                 { to: '/about', name: 'About' },
@@ -20,7 +20,7 @@ const Footer = () => {
             ],
         },
         {
-            _id: 'footer-detail-2',
+            id: 'footer-detail-2',
             title: 'Quick Access',
             links: [
                 { to: '/login', name: 'Login' },
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
                 {footerDetails.map((detail) => {
                     return (
-                        <div className="footer-details__links" key={detail._id}>
+                        <div className="footer-details__links" key={detail.id}>
                             <h3>{detail.title}</h3>
                             {detail.links.map((link) => (
                                 <Link key={link.name} to={link.to}>

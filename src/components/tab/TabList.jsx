@@ -16,7 +16,7 @@ const TabList = ({ tabList, activeTab, onChangeTab }) => {
                         <TabItem
                             onClick={() => onChangeTab(tab.name)}
                             className={activeStyle}
-                            key={tab._id}
+                            key={tab.id}
                         >
                             {tab.name}
                         </TabItem>

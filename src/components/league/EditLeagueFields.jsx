@@ -40,7 +40,7 @@ const EditLeagueFields = () => {
         // of the old team because we cannot have teams of similar names
         setLeagueTeams((prevTeams) => [
             ...prevTeams,
-            { _id: `t${prevTeams.length}` }, // we need this dummy id to help react to render a list properly
+            { id: `t${prevTeams.length}` }, // we need this dummy id to help react to render a list properly
         ]);
     };
 
@@ -55,7 +55,7 @@ const EditLeagueFields = () => {
         // add the league name changes to the request data
         if (leagueName !== league.name) {
             requestData.push({
-                url: `/leagues/${league._id}`,
+                url: `/leagues/${league.id}`,
                 method: 'patch',
                 data: { name: leagueName },
             });
@@ -65,7 +65,7 @@ const EditLeagueFields = () => {
         const renamedTeams = data.renamed;
         for (let i = 0; i < renamedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league._id}/teams/${renamedTeams[i]._id}`,
+                url: `/leagues/${league.id}/teams/${renamedTeams[i].id}`,
                 method: 'patch',
                 data: { name: renamedTeams[i].newName },
             });
@@ -75,7 +75,7 @@ const EditLeagueFields = () => {
         const addedTeams = data.added;
         for (let i = 0; i < addedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league._id}/teams/`,
+                url: `/leagues/${league.id}/teams/`,
                 method: 'post',
                 data: { name: addedTeams[i].name },
             });
@@ -85,7 +85,7 @@ const EditLeagueFields = () => {
         const deletedTeams = data.deleted;
         for (let i = 0; i < deletedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league._id}/teams/${deletedTeams[i]._id}`,
+                url: `/leagues/${league.id}/teams/${deletedTeams[i].id}`,
                 method: 'delete',
             });
         }
@@ -122,7 +122,7 @@ const EditLeagueFields = () => {
     };
 
     const handleCancelChanges = () => {
-        navigate(`/leagues/${league._id}`);
+        navigate(`/leagues/${league.id}`);
     };
 
     const handleCloseModal = () => {
@@ -164,8 +164,8 @@ const EditLeagueFields = () => {
     }
 
     // add league name change to the list of items
-    const oldItems = [...league.teams, { _id: league._id, name: league.name }];
-    const newItems = [...leagueTeams, { _id: league._id, name: leagueName }];
+    const oldItems = [...league.teams, { id: league.id, name: league.name }];
+    const newItems = [...leagueTeams, { id: league.id, name: leagueName }];
 
     return (
         <>

@@ -38,7 +38,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     }, []);
 
     // Check if the user is the league creator to be able to edit the fixture details
-    const isCreator = leagueData.creator === user._id;
+    const isCreator = leagueData.creator === user.id;
 
     const handleSaveChanges = useCallback(async () => {
         // Reset the error if any
@@ -51,10 +51,10 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
 
         // Send the request with the editted data
         const response = await request(
-            `/fixtures/${fixture._id}`,
+            `/fixtures/${fixture.id}`,
             'patch',
             filteredData,
-            { params: { leagueId: leagueData._id } }
+            { params: { leagueId: leagueData.id } }
         );
 
         if (response) {
@@ -107,7 +107,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
             />
 
             <FixtureTeams
-                leagueId={leagueData._id}
+                leagueId={leagueData.id}
                 homeTeam={fixture.homeTeam}
                 awayTeam={fixture.awayTeam}
             />

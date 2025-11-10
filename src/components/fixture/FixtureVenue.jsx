@@ -11,7 +11,7 @@ const FixtureVenue = memo((venueDetails) => {
     const details = venueDetails.venueDetails;
 
     // check if the user is the league creator to be able to edit the fixture venue and field
-    const isCreator = details.leagueCreator === user._id;
+    const isCreator = details.leagueCreator === user.id;
 
     // allow editing the venue and field when the user is logged in and is the league creator
     let venue = null;

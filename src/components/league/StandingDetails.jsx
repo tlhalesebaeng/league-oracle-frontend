@@ -21,7 +21,7 @@ const StandingDetails = memo(() => {
         const teams = league.teams;
         for (let i = 0; i < teams.length; i++) {
             // TODO: Improve this (linear) search algorithm
-            if (teams[i]._id === params.teamId) {
+            if (teams[i].id === params.teamId) {
                 team = teams[i];
                 break;
             }
@@ -29,7 +29,7 @@ const StandingDetails = memo(() => {
     }
 
     // Check whether the user is the league creator so that we can allow editting the league if so
-    const isCreator = league.creator === user._id;
+    const isCreator = league.creator === user.id;
 
     // Function ran when the league name is clicked
     const handleLeagueNameClick = () => {
@@ -41,7 +41,7 @@ const StandingDetails = memo(() => {
     const handleEditLeague = () => {
         navigate({
             pathname: '/leagues/edit',
-            search: `?leagueId=${league._id}`,
+            search: `?leagueId=${league.id}`,
         });
     };
 

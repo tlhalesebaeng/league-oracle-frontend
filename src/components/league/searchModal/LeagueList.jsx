@@ -17,10 +17,10 @@ const LeagueList = ({ leagues }) => {
         <ul className="league-list">
             {leagues.map((league) => (
                 <LeagueItem
-                    key={league._id}
+                    key={league.id}
                     name={league.name}
                     dateCreated={league.created}
-                    onShowLeague={() => handleShowLeague(league._id)}
+                    onShowLeague={() => handleShowLeague(league.id)}
                 />
             ))}
         </ul>

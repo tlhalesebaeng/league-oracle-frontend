@@ -38,7 +38,7 @@ const CreateLeague = () => {
 
         if (response && response.data) {
             // Navigate to a unique league page
-            navigate(`/leagues/${response.data.league._id}`);
+            navigate(`/leagues/${response.data.league.id}`);
         }
     };
 

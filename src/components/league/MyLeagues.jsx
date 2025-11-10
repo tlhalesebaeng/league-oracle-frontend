@@ -55,8 +55,8 @@ const MyLeagues = ({ leagues, loading }) => {
                     const name = shortenName(league.name);
                     return (
                         <li
-                            onClick={() => navigate(`/leagues/${league._id}`)}
-                            key={league._id}
+                            onClick={() => navigate(`/leagues/${league.id}`)}
+                            key={league.id}
                         >
                             {name}
                         </li>
