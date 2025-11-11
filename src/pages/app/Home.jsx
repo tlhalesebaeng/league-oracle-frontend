@@ -23,7 +23,7 @@ const Home = () => {
 
         const getMyLeague = async () => {
             const response = await request('/leagues/mine', 'get');
-            if (response) setLeagues(response.data.leagues);
+            if (response) setLeagues(response.data);
         };
 
         getMyLeague();
