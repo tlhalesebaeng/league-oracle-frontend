@@ -54,13 +54,13 @@ const FixtureList = () => {
 
         // send the request (we will only support home and away fixtures for now)
         const response = await request(
-            `/fixtures?leagueId=${league.id}&fixtureType=homeAndAway`,
+            `/fixtures?leagueId=${league.id}`,
             'post'
         );
 
         if (response) {
             // set fixtures to be the newly created fixtures
-            setRouteFixtures(response.data.fixtures);
+            setRouteFixtures(response.data);
 
             // show success alert
             dispatch(showAlert('success', 'Season fixtures generated'));
