@@ -21,7 +21,7 @@ const StandingDetails = memo(() => {
         const teams = league.teams;
         for (let i = 0; i < teams.length; i++) {
             // TODO: Improve this (linear) search algorithm
-            if (teams[i].id === params.teamId) {
+            if (teams[i].id === parseInt(params.teamId)) {
                 team = teams[i];
                 break;
             }
