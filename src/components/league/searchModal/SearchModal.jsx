@@ -30,7 +30,7 @@ const SearchModal = () => {
                 );
 
                 if (response) {
-                    const responseLeagues = response.data.leagues;
+                    const responseLeagues = response.data;
                     if (responseLeagues.length) setLeagues(responseLeagues);
                     else setNoLeagues(true);
                 }
