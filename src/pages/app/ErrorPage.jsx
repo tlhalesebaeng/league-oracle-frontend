@@ -26,7 +26,7 @@ const ErrorPage = () => {
     }
 
     if (import.meta.env.VITE_ENVIRONMENT === 'development') {
-        console.log(error);
+        console.log(routeError);
     }
 
     return (
