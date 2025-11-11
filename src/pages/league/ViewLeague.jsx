@@ -22,7 +22,7 @@ const Leagues = () => {
 export const leagueDataLoader = asyncHandler(async ({ params }) => {
     // Send the request to get the league data
     const leagueResponse = await api.get(`/leagues/${params.leagueId}`);
-    const { league } = leagueResponse.data; // Full league data
+    const league = leagueResponse.data; // Full league data
 
     // Query for requesting fixtures using the league id
     const fixturesPromise = api.get('/fixtures', {
@@ -41,8 +41,8 @@ export const leagueDataLoader = asyncHandler(async ({ params }) => {
     ]);
 
     // Extract fixtures and results
-    const { fixtures } = fixturesResponse.data;
-    const { results } = resultsResponse.data;
+    const fixtures = fixturesResponse.data;
+    const results = resultsResponse.data;
 
     // Make the league, fixtures and results data available to the route components
     return { league, fixtures, results };

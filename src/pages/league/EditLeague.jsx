@@ -23,7 +23,7 @@ export const editLeagueDataLoader = asyncHandler(async ({ request }) => {
     // get the league data
     const response = await api.get(`/leagues/${leagueId}`);
 
-    return response.data.league;
+    return response.data;
 });
 
 export default EditLeague;
