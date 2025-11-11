@@ -10,27 +10,17 @@ const ViewFixture = () => {
     const routeData = useRouteLoaderData('fixture-route');
     const navigate = useNavigate();
 
-    // Get the fixture from the route data
-    const fixture = routeData.fixture;
-
-    // Derive the league data
-    const leagueData = {
-        id: fixture.league,
-        creator: routeData.creator,
-        name: routeData.name,
-    };
-
     // Function ran when we click the cancel button (FixtureDetails component)
     const handleCancelChanges = () => {
         // Navigate the user back to the view league page
-        navigate(`/leagues/${fixture.league}`);
+        navigate(`/leagues/${routeData.league.id}`);
     };
 
     // Function ran when we click the add result button (FixtureDetails component)
     const handleAddResult = () => {
         navigate({
             pathname: '/results/add',
-            search: `?fixtureId=${fixture.id}&leagueId=${fixture.league}`,
+            search: `?fixtureId=${routeData.fixture.id}&leagueId=${routeData.league.id}`,
         });
     };
 
@@ -38,24 +28,30 @@ const ViewFixture = () => {
         <FixtureDetails
             onCancel={handleCancelChanges}
             onAddResult={handleAddResult}
-            leagueData={leagueData}
-            fixture={fixture}
+            leagueData={routeData.league}
+            fixture={routeData.fixture}
         />
     );
 };
 
 export const fixtureDataLoader = asyncHandler(async ({ request, params }) => {
-    // Get the league id from the url
+    // Get the league id from the search query
     const searchParams = getSearchParams(request);
     const leagueId = searchParams.get('leagueId');
 
-    // Get the league fixture
-    const response = await api.get(`/fixtures/${params.fixtureId}`, {
-        params: { leagueId },
-    });
+    // Query for getting a fixture
+    const fixtureQuery = api.get(`/fixtures/${params.fixtureId}`);
+
+    // Query for getting the league using the league id
+    const leagueQuery = api.get(`/leagues/${leagueId}`);
+
+    const [fixtureResponse, leagueResponse] = await Promise.all([
+        fixtureQuery,
+        leagueQuery,
+    ]);
 
     // Make the league fixture available to the route components
-    return response.data;
+    return { fixture: fixtureResponse.data, league: leagueResponse.data };
 });
 
 export default ViewFixture;
