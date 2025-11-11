@@ -65,7 +65,7 @@ const EditLeagueFields = () => {
         const renamedTeams = data.renamed;
         for (let i = 0; i < renamedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league.id}/teams/${renamedTeams[i].id}`,
+                url: `/teams/${renamedTeams[i].id}`,
                 method: 'patch',
                 data: { name: renamedTeams[i].newName },
             });
@@ -75,7 +75,7 @@ const EditLeagueFields = () => {
         const addedTeams = data.added;
         for (let i = 0; i < addedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league.id}/teams/`,
+                url: `/teams?leagueId=${league.id}`,
                 method: 'post',
                 data: { name: addedTeams[i].name },
             });
@@ -85,7 +85,7 @@ const EditLeagueFields = () => {
         const deletedTeams = data.deleted;
         for (let i = 0; i < deletedTeams.length; i++) {
             requestData.push({
-                url: `/leagues/${league.id}/teams/${deletedTeams[i].id}`,
+                url: `/teams/${deletedTeams[i].id}`,
                 method: 'delete',
             });
         }
