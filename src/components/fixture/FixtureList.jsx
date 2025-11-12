@@ -36,7 +36,7 @@ const FixtureList = () => {
             const homeTeam = fixture.homeTeam;
             const awayTeam = fixture.awayTeam;
             const id = params.teamId;
-            return homeTeam.id === id || awayTeam.id === id;
+            return homeTeam.id === parseInt(id) || awayTeam.id === parseInt(id);
         });
     }
 
