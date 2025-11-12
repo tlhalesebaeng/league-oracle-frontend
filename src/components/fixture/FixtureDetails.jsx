@@ -53,8 +53,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
         const response = await request(
             `/fixtures/${fixture.id}`,
             'patch',
-            filteredData,
-            { params: { leagueId: leagueData.id } }
+            filteredData
         );
 
         if (response) {
