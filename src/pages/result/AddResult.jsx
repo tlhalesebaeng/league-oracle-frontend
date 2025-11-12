@@ -17,6 +17,7 @@ const AddResult = () => {
     const { request, error, isLoading } = useFetch();
 
     const fixture = routeData.fixture;
+    const league = routeData.league;
     // construct the result object from the fixture as needed by the result details component
     const result = {
         homeTeam: fixture.homeTeam,
@@ -24,9 +25,6 @@ const AddResult = () => {
         homeTeamScore: '', // set this two to open strings since we are adding a new result
         awayTeamScore: '',
     };
-
-    // construct the league object
-    const league = { id: fixture.league, name: routeData.name };
 
     const handleAddResult = async (scores) => {
         // convert fields to integers and use properties that the backend expects
@@ -37,7 +35,7 @@ const AddResult = () => {
 
         // send the request
         const response = await request(
-            `/results?fixtureId=${fixture.id}&leagueId=${league.id}`,
+            `/results?fixtureId=${fixture.id}`,
             'post',
             data
         );
@@ -77,12 +75,16 @@ export const addResultDataLoader = asyncHandler(async ({ request }) => {
     const leagueId = searchParams.get('leagueId');
     const fixtureId = searchParams.get('fixtureId');
 
-    // send the request
-    const response = await api.get(`/fixtures/${fixtureId}`, {
-        params: {
-            leagueId,
-        },
-    });
+    // Query for requesting league data
+    const leagueQuery = api.get(`/leagues/${leagueId}`);
 
-    return response.data;
+    // Query for requesting fixture data
+    const fixtureQuery = api.get(`/fixtures/${fixtureId}`);
+
+    const [leagueResponse, fixtureResponse] = await Promise.all([
+        leagueQuery,
+        fixtureQuery,
+    ]);
+
+    return { league: leagueResponse.data, fixture: fixtureResponse.data };
 });
