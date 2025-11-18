@@ -14,4 +14,5 @@ The frontend of league oracle web application. League oracle is a platform where
 
 -   HTML
 -   CSS
--   Javascript + React
+-   React.js
+-   Vitest
