@@ -23,7 +23,7 @@ const Standing = (props) => {
             value: props.loses,
             class: 'league-standings__loses-field',
         },
-        { id: 'i7', value: props.goalsFoward },
+        { id: 'i7', value: props.goalsForward },
         { id: 'i8', value: props.goalsAgainst },
         { id: 'i9', value: props.goalDifference },
         {
