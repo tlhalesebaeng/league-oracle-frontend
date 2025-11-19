@@ -1,6 +1,6 @@
 .my-leagues {
     width: 230px;
-    padding: 10px;
+    padding: 40px 10px 10px;
     background-color: rgb(245, 248, 250);
     border-right: 1px solid rgba(0, 0, 0, 0.15);
     box-sizing: border-box;

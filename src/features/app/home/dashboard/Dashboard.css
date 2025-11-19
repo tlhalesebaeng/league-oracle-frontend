@@ -1,12 +1,13 @@
 .dashboard {
     width: 100%;
-    padding: 20px 100px;
+    padding: 40px 100px;
     box-sizing: border-box;
 }
 
 .dashboard-message h2 {
-    margin: 5px 0px;
+    margin-bottom: 5px;
     font-size: 30px;
+    line-height: 30px;
 }
 
 .dashboard-details {
