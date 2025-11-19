@@ -192,7 +192,7 @@ const Signup = () => {
     const desc = 'Fill in details below to create a new account';
 
     return (
-        <main>
+        <main className="center wrapper-spacing">
             <Card>
                 <AuthForm
                     onSubmit={handleSignup}

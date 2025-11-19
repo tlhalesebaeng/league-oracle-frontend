@@ -116,7 +116,7 @@ const Login = () => {
     const instruction = 'Enter your details below to access your account';
 
     return (
-        <main>
+        <main className="center">
             <Card>
                 <AuthForm heading="Welcome back" description={instruction}>
                     {inputFields.map((field) => (
