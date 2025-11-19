@@ -37,8 +37,8 @@ const View = () => {
     else component = <ResultList />;
 
     return (
-        <main>
-            <div className="view__header">
+        <main className="center wrapper-spacing column">
+            <div className="column">
                 <StandingDetails />
                 <TabList
                     activeTab={activeTab}
