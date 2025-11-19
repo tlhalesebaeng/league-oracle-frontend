@@ -90,6 +90,11 @@ h3 {
     align-items: center;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
 .wrapper-spacing {
     padding-top: 50px;
     padding-bottom: 50px;
