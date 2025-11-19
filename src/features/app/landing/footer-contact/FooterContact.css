@@ -1,0 +1,46 @@
+.footer-details__contact p {
+    font-size: 16px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.footer-details__contact-email {
+    margin: 8px 0px;
+}
+
+.footer-details__contact-button {
+    width: 140px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.footer-copyright {
+    margin: 30px 100px 0px 100px;
+    padding: 40px 0px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.footer-copyright p {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Responsiveness */
+
+@media (max-width: 750px) {
+    .footer-copyright {
+        margin: 30px 30px 0px 30px;
+        padding: 40px 50px;
+    }
+
+    .footer-copyright p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 630px) {
+    .footer-copyright {
+        padding: 40px 30px;
+    }
+}

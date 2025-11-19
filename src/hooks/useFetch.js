@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import api from '../utils/functions/axiosInstance.js';
+import api from '../utils/axiosInstance.js';
 
 // an object with functions for performing http requests
 const functions = {

@@ -1,0 +1,13 @@
+.instructions-list {
+    width: 70%;
+    margin-top: 30px;
+    list-style: none;
+}
+
+/* Responsiveness */
+
+@media (max-width: 750px) {
+    .instructions-list {
+        width: 80%;
+    }
+}

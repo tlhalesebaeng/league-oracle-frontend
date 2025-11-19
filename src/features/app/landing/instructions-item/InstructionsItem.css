@@ -1,0 +1,64 @@
+.instructions-item__card {
+    margin: 20px 0px;
+    align-items: start;
+}
+
+.instructions-item__card:hover {
+    cursor: pointer;
+}
+
+.instructions-item__title {
+    display: flex;
+    align-items: center;
+}
+
+.instructions-item__title h3 {
+    color: black;
+    margin: 0px 20px;
+}
+
+.instructions-item__title p {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: rgb(34, 133, 245);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shown {
+    background-color: rgb(34, 133, 245);
+}
+
+.shown .instructions-item__description {
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.shown h3 {
+    color: rgb(255, 255, 255);
+}
+
+.shown .instructions-item__title p {
+    color: rgb(34, 133, 245);
+    background-color: rgb(255, 255, 255);
+}
+
+/* Responsiveness */
+
+@media (max-width: 750px) {
+    .instructions-item__card {
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    .shown {
+        background-color: rgb(34, 133, 245);
+    }
+}

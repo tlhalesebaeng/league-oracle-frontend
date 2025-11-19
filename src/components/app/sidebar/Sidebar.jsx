@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { sidebarActions } from '../../../store/ui/sidebar-slice.js';
 import { useLogout } from '../../../hooks/useLogout.js';
 
-import Button from '../../../utils/Button.jsx';
+import Button from '../button/Button.jsx';
 import SidebarLinks from './SidebarLinks.jsx';
 import closeImg from '../../../assets/close.png';
 import './Sidebar.css';
-import Logout from '../Logout.jsx';
+import Logout from '../logout/Logout.jsx';
 
 const Sidebar = () => {
     const isAuth = useSelector((state) => state.auth.isAuthenticated);

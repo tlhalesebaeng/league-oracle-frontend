@@ -1,0 +1,27 @@
+.core-features {
+    width: 100%;
+    margin: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.core-features h2 {
+    font-size: 35px;
+    line-height: 35px;
+}
+
+.core-features__message {
+    width: 50%;
+    margin: 20px 0px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* responsiveness */
+
+@media (max-width: 750px) {
+    .core-features__message {
+        width: 300px;
+    }
+}

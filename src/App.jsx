@@ -1,34 +1,38 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import RootLayout from './components/app/RootLayout.jsx';
-import PageSpinner from './components/app/PageSpinner.jsx';
+import RootLayout from './components/root-layout/main/RootLayout.jsx';
+import PageSpinner from './components/app/page-spinner/PageSpinner.jsx';
 
 // App main components
-const About = lazy(() => import('./pages/app/About.jsx'));
-const Home = lazy(() => import('./pages/app/Home.jsx'));
-const Contact = lazy(() => import('./pages/app/Contact.jsx'));
-const Landing = lazy(() => import('./pages/app/Landing.jsx'));
-const ErrorPage = lazy(() => import('./pages/app/ErrorPage.jsx'));
+const About = lazy(() => import('./features/app/about/About.jsx'));
+const Home = lazy(() => import('./features/app/home/Home.jsx'));
+const Contact = lazy(() => import('./features/app/contact/Contact.jsx'));
+const Landing = lazy(() => import('./features/app/landing/Landing.jsx'));
+const ErrorPage = lazy(() => import('./features/app/errors/ErrorPage.jsx'));
 
 // Auth routes components
-const Login = lazy(() => import('./pages/auth/Login.jsx'));
-const Signup = lazy(() => import('./pages/auth/Signup.jsx'));
+const Login = lazy(() => import('./features/auth/login/Login.jsx'));
+const Signup = lazy(() => import('./features/auth/signup/Signup.jsx'));
 
 // League routes components
-const ViewLeague = lazy(() => import('./pages/league/ViewLeague.jsx'));
-const EditLeague = lazy(() => import('./pages/league/EditLeague.jsx'));
-const CreateLeague = lazy(() => import('./pages/league/CreateLeague.jsx'));
+const ViewLeague = lazy(() => import('./features/view-league/ViewLeague.jsx'));
+const EditLeague = lazy(() => import('./features/edit-league/EditLeague.jsx'));
+const CreateLeague = lazy(() =>
+    import('./features/create-league/CreateLeague.jsx')
+);
 
 // Team routes components
-const ViewTeam = lazy(() => import('./pages/team/ViewTeam.jsx'));
+const ViewTeam = lazy(() => import('./features/view-team/ViewTeam.jsx'));
 
 // Fixture routes components
-const ViewFixture = lazy(() => import('./pages/fixture/ViewFixture.jsx'));
+const ViewFixture = lazy(() =>
+    import('./features/view-fixture/ViewFixture.jsx')
+);
 
 // Result routes components
-const EditResult = lazy(() => import('./pages/result/EditResult.jsx'));
-const AddResult = lazy(() => import('./pages/result/AddResult.jsx'));
+const EditResult = lazy(() => import('./features/edit-result/EditResult.jsx'));
+const AddResult = lazy(() => import('./features/add-result/AddResult.jsx'));
 
 const Suspend = ({ children }) => {
     return <Suspense fallback={<PageSpinner />}>{children}</Suspense>;
@@ -64,9 +68,9 @@ const appRouter = createBrowserRouter([
                         id: 'league-route',
                         path: ':leagueId',
                         loader: (meta) =>
-                            import('./pages/league/ViewLeague.jsx').then(
-                                (module) => module.leagueDataLoader(meta)
-                            ),
+                            import(
+                                './features/view-league/ViewLeague.jsx'
+                            ).then((module) => module.leagueDataLoader(meta)),
                         children: [
                             {
                                 index: true,
@@ -97,8 +101,10 @@ const appRouter = createBrowserRouter([
                     {
                         path: 'edit',
                         loader: (meta) =>
-                            import('./pages/league/EditLeague.jsx').then(
-                                (module) => module.editLeagueDataLoader(meta)
+                            import(
+                                './features/edit-league/EditLeague.jsx'
+                            ).then((module) =>
+                                module.editLeagueDataLoader(meta)
                             ),
                         element: (
                             <Suspend>
@@ -112,8 +118,8 @@ const appRouter = createBrowserRouter([
                 id: 'fixture-route',
                 path: 'fixtures',
                 loader: (meta) =>
-                    import('./pages/fixture/ViewFixture.jsx').then((module) =>
-                        module.fixtureDataLoader(meta)
+                    import('./features/view-fixture/ViewFixture.jsx').then(
+                        (module) => module.fixtureDataLoader(meta)
                     ),
                 children: [
                     {
@@ -138,8 +144,10 @@ const appRouter = createBrowserRouter([
                             </Suspend>
                         ),
                         loader: (meta) =>
-                            import('./pages/result/EditResult.jsx').then(
-                                (module) => module.editResultDataLoader(meta)
+                            import(
+                                './features/edit-result/EditResult.jsx'
+                            ).then((module) =>
+                                module.editResultDataLoader(meta)
                             ),
                     },
                     {
@@ -150,7 +158,7 @@ const appRouter = createBrowserRouter([
                             </Suspend>
                         ),
                         loader: (meta) =>
-                            import('./pages/result/AddResult.jsx').then(
+                            import('./features/add-result/AddResult.jsx').then(
                                 (module) => module.addResultDataLoader(meta)
                             ),
                     },

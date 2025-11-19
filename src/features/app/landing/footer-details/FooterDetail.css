@@ -1,0 +1,23 @@
+.footer-details__links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-details__links h3 {
+    margin-bottom: 8px;
+}
+
+.footer-details__links div {
+    margin: 8px 0px;
+}
+
+.footer-details__links a {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.footer-details__links a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
