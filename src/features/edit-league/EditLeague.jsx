@@ -7,7 +7,7 @@ import { asyncHandler } from '../../utils/asyncHandler.js';
 // this page should be protected and only accessible to league creators
 const EditLeague = () => {
     return (
-        <main>
+        <main className="center wrapper-spacing">
             <Card className="large-width">
                 <EditLeagueFields />
             </Card>

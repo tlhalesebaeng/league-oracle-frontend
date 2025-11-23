@@ -53,7 +53,7 @@ const AddResult = () => {
     };
 
     return (
-        <main>
+        <main className="center wrapper-spacing">
             <Card>
                 <ResultDetails
                     result={result}

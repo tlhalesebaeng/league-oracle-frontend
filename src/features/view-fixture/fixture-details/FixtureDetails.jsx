@@ -97,7 +97,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     }
 
     return (
-        <main>
+        <main className="center wrapper-spacing column">
             <FixtureHeader
                 onEdit={handleEditField}
                 league={leagueData}

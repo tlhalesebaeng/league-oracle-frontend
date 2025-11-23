@@ -98,7 +98,7 @@ const Contact = () => {
     ];
 
     return (
-        <main>
+        <main className="center wrapper-spacing">
             <ContactForm>
                 {inputFields.map((field) => (
                     <section key={field.label}>

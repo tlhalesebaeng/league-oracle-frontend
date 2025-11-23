@@ -43,7 +43,7 @@ const CreateLeague = () => {
     };
 
     return (
-        <main>
+        <main className="center wrapper-spacing">
             <Card className="large-width">
                 <h1>Create new league</h1>
                 <LeagueForm onSubmit={handleCreate} loading={isLoading} />

@@ -20,7 +20,7 @@ const About = () => {
     ];
 
     return (
-        <main>
+        <main className="wrapper-spacing">
             <div className="about">
                 <h2>About League Oracle Project</h2>
                 {aboutList.map((aboutItem) => (
