@@ -55,12 +55,12 @@ const Dashboard = ({ user }) => {
         const selectedMonthDays = generateCalendarDays(index);
 
         const fixtures = await request(
-            `/fixtures/upcoming?month=${index}`,
+            `/fixtures/upcoming?month=${index + 1}`,
             'get'
         );
 
         if (fixtures.data) {
-            const upcomingFixtures = fixtures.data.fixtures;
+            const upcomingFixtures = fixtures.data;
 
             const updatedMonthDays = addFixtures(
                 upcomingFixtures,
