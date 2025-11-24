@@ -1,4 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { uiActions } from '../../../../store/ui/ui-slice.js';
 
 import Button from '../../../../components/app/button/Button.jsx';
 import Spinner from '../../../../components/app/spinner/Spinner.jsx';
@@ -6,9 +9,16 @@ import './MyLeagues.css';
 
 const MyLeagues = ({ leagues, loading }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleCreate = () => {
         navigate('/leagues/create');
+    };
+
+    const handleShowLeague = (leagueId) => {
+        // Set the tab to be standing and navigate to the leagues page
+        dispatch(uiActions.setTab('Standings'));
+        navigate(`/leagues/${leagueId}`);
     };
 
     // this will short long names (24+ character) by adding dots after some characters
@@ -55,7 +65,7 @@ const MyLeagues = ({ leagues, loading }) => {
                     const name = shortenName(league.name);
                     return (
                         <li
-                            onClick={() => navigate(`/leagues/${league.id}`)}
+                            onClick={() => handleShowLeague(league.id)}
                             key={league.id}
                         >
                             {name}
