@@ -29,6 +29,7 @@ const FixtureList = () => {
 
     const league = routeData.league;
     let fixtures = routeFixtures;
+    const results = routeData.results;
 
     if (params.teamId) {
         // we are looking at a team so we should only show fixtures for this team
@@ -71,6 +72,13 @@ const FixtureList = () => {
         setShowModal(false);
     };
 
+    // Define a boolean to determine whether we should map through the list of fixtures
+    const showFixtures = fixtures && fixtures.length !== 0;
+
+    // Define a boolean to determine if the generate fixtures button should be showed
+    const showGenerateButton =
+        isAuth && isCreator && !params.teamId && results.length === 0;
+
     return (
         <>
             {showModal && <Backdrop onClose={handleCloseModal} />}
@@ -83,8 +91,7 @@ const FixtureList = () => {
                 </Modal>
             )}
             <ul className="fixture-list">
-                {fixtures &&
-                    fixtures.length !== 0 &&
+                {showFixtures &&
                     fixtures.map((fixture) => (
                         <FixtureItem
                             leagueId={league.id}
@@ -92,11 +99,11 @@ const FixtureList = () => {
                             fixture={fixture}
                         />
                     ))}
-                {(!fixtures || fixtures.length === 0) && (
+                {!showFixtures && (
                     <li className="no-fixtures">
                         <p>No fixtures found</p>
                         {error && <p className="error-message">{error}</p>}
-                        {isAuth && isCreator && !params.teamId && (
+                        {showGenerateButton && (
                             <div className="no-fixture__btn-generate">
                                 <Button
                                     disabled={isLoading}
