@@ -4,6 +4,17 @@
     align-items: center;
 }
 
+.fixture-venue div {
+    display: flex;
+    align-items: center;
+}
+
+.fixture-venue__name {
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
 .fixture-venue img {
     height: 14px;
     width: 14px;

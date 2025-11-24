@@ -38,8 +38,18 @@ const FixtureVenue = memo((venueDetails) => {
 
     return (
         <section className="fixture-venue">
-            {venue}
-            {field}
+            <div>
+                {isAuth && isCreator && details.fixtureVenue === 'TBC' && (
+                    <p className="fixture-venue__name">Venue:</p>
+                )}
+                {venue}
+            </div>
+            <div>
+                {isAuth && isCreator && details.fixtureField === 'TBC' && (
+                    <p className="fixture-venue__name">Field:</p>
+                )}
+                {field}
+            </div>
         </section>
     );
 });
