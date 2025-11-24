@@ -7,7 +7,7 @@ const ResultItem = ({ result, onEdit, isCreator, isAuth }) => {
     // and function definitions are put in the component that renders this component
     return (
         <li className="result-list__item">
-            <p className="result-list__date">{result.formattedDate || 'TBC'}</p>
+            <p className="result-list__date">{result.date}</p>
             <section className="result-list__teams">
                 <Link
                     to={`/leagues/${result.league}/teams/${result.homeTeam.id}`}
