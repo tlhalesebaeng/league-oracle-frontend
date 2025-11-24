@@ -16,7 +16,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     const dispatch = useDispatch();
     const { request, error, setError, isLoading } = useFetch();
     const [editData, setEditData] = useState({
-        date: fixture.formattedDate,
+        date: fixture.date,
         time: fixture.time,
         venue: fixture.venue,
         field: fixture.field,
@@ -44,10 +44,11 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
         // Reset the error if any
         setError('');
 
-        // Ignore the date and time fields if their values are TBC
+        // Ignore all the fields that are similar to the fixture fields
         const filteredData = { ...editDataRef.current };
-        if (filteredData.date === 'TBC') filteredData.date = undefined;
-        if (filteredData.time === 'TBC') filteredData.time = undefined;
+        for (const key in filteredData) {
+            if (filteredData[key] === fixture[key]) delete filteredData[key];
+        }
 
         // Send the request with the editted data
         const response = await request(
@@ -83,7 +84,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
     //  is not the same as the data that came from the loader
     let disableSave = false;
     if (
-        date === fixture.formattedDate &&
+        date === fixture.date &&
         time === fixture.time &&
         venueDetails.venue === fixture.venue &&
         venueDetails.field === fixture.field
@@ -101,8 +102,8 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
             <FixtureHeader
                 onEdit={handleEditField}
                 league={leagueData}
-                fixtureDate={fixture.date}
-                fixtureTime={fixture.time}
+                fixtureDate={date}
+                fixtureTime={time}
             />
 
             <FixtureTeams
