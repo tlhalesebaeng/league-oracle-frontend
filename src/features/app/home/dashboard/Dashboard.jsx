@@ -30,12 +30,12 @@ const Dashboard = ({ user }) => {
         // Get the fixtures of the current month
         const updateDays = async () => {
             const fixtures = await request(
-                `/fixtures/upcoming?month=${currentMonth}`,
+                `/fixtures/upcoming?month=${currentMonth + 1}`,
                 'get'
             );
 
             if (fixtures.data) {
-                const upcomingFixtures = fixtures.data.fixtures;
+                const upcomingFixtures = fixtures.data;
 
                 const updatedMonthDays = addFixtures(
                     upcomingFixtures,
