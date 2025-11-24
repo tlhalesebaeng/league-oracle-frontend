@@ -101,7 +101,7 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
             <FixtureHeader
                 onEdit={handleEditField}
                 league={leagueData}
-                fixtureDate={fixture.formattedDate}
+                fixtureDate={fixture.date}
                 fixtureTime={fixture.time}
             />
 
