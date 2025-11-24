@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useFetch } from '../../hooks/useFetch.js';
 import { showAlert } from '../../store/ui/alert-slice.js';
+import { uiActions } from '../../store/ui/ui-slice.js';
 
 import Card from '../../components/app/card/Card.jsx';
 import LeagueForm from './form/LeagueForm.jsx';
@@ -37,7 +38,8 @@ const CreateLeague = () => {
         const response = await request('/leagues', 'post', { name, teams });
 
         if (response && response.data) {
-            // Navigate to a unique league page
+            // Set the tab to stadings and navigate to a unique league page
+            dispatch(uiActions.setTab('Standings'));
             navigate(`/leagues/${response.data.id}`);
         }
     };
