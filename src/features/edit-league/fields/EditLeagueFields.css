@@ -35,3 +35,26 @@
         margin-left: 5px;
     }
 }
+
+@media (max-width: 400px) {
+    .edit-league__buttons {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .edit-league__buttons .btn-add-team,
+    .edit-league__buttons .edit-league__changes .btn-save-league,
+    .edit-league__buttons .edit-league__changes .btn-cancel-edit-league {
+        height: 35px;
+        width: 100%;
+    }
+
+    .edit-league__buttons .edit-league__changes {
+        margin-top: 16px;
+    }
+
+    .edit-league__buttons .edit-league__changes .btn-save-league {
+        margin-left: 0px;
+        margin-right: 20px;
+    }
+}
