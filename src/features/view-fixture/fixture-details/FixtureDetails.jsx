@@ -120,19 +120,21 @@ const FixtureDetails = ({ onCancel, onAddResult, leagueData, fixture }) => {
                     <div className="fixture-details__btn-add">
                         <Button onClick={onAddResult}>Add result</Button>
                     </div>
-                    <div className="fixture-details__btn-save">
-                        <Button
-                            disabled={isLoading || disableSave}
-                            onClick={handleSaveChanges}
-                            loading={isLoading}
-                        >
-                            Save
-                        </Button>
-                    </div>
-                    <div className="fixture-details__btn-cancel">
-                        <Button onClick={onCancel} type="no-bg">
-                            Cancel
-                        </Button>
+                    <div className="fixture-details_primary-buttons">
+                        <div className="fixture-details__btn-save">
+                            <Button
+                                disabled={isLoading || disableSave}
+                                onClick={handleSaveChanges}
+                                loading={isLoading}
+                            >
+                                Save
+                            </Button>
+                        </div>
+                        <div className="fixture-details__btn-cancel">
+                            <Button onClick={onCancel} type="no-bg">
+                                Cancel
+                            </Button>
+                        </div>
                     </div>
                 </section>
             )}

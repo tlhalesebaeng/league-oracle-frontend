@@ -6,6 +6,10 @@
     justify-content: center;
 }
 
+.fixture-details_primary-buttons {
+    display: flex;
+}
+
 .fixture-details__buttons .fixture-details__btn-add,
 .fixture-details__buttons .fixture-details__btn-save,
 .fixture-details__buttons .fixture-details__btn-cancel {
