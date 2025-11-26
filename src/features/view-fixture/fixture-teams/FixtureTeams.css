@@ -16,3 +16,21 @@
 .fixture-teams a {
     text-decoration: none;
 }
+
+@media (max-width: 500px) {
+    .fixture-teams {
+        flex-direction: column;
+    }
+
+    .fixture-teams p {
+        margin: 10px 0px;
+        position: static;
+        transform: none;
+    }
+
+    .fixture-teams a,
+    .fixture-teams p {
+        display: flex;
+        justify-content: center;
+    }
+}
