@@ -61,7 +61,7 @@
 
 @media (max-width: 600px) {
     .landing-header {
-        margin-top: 0px;
+        margin-top: 50px;
     }
 
     .landing-header__details {
