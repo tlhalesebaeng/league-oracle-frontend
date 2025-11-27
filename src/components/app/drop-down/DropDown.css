@@ -1,11 +1,10 @@
 .drop-down {
-    height: 100%;
-    width: 100%;
     position: relative;
 }
 
 .drop-down__selector {
     height: 36px;
+    width: 150px;
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
@@ -33,7 +32,7 @@
 }
 
 .drop-down__options {
-    width: 100%;
+    width: 150px;
     padding: 5px 10px;
     box-sizing: border-box;
     position: absolute;

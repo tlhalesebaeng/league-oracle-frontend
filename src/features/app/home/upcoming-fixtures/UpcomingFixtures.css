@@ -13,8 +13,8 @@
 }
 
 .upcoming-fixtures__heading section {
+    justify-self: end;
     height: 34px;
-    width: 30%;
 }
 
 .upcoming-fixtures__no-calendar {
