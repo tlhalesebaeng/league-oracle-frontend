@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../../../store/ui/ui-slice.js';
 import { sidebarActions } from '../../../../store/ui/sidebar-slice.js';
 
 import Button from '../../../../components/app/button/Button.jsx';
-import Spinner from '../../../../components/app/spinner/Spinner.jsx';
 import './MyLeagues.css';
 
-const MyLeagues = ({ leagues, loading, type }) => {
+const MyLeagues = ({ type }) => {
+    const leagues = useRouteLoaderData('home-route');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -41,16 +41,6 @@ const MyLeagues = ({ leagues, loading, type }) => {
 
         return result;
     };
-
-    if (loading) {
-        return (
-            <aside className={`my-leagues no-leagues ${type}`}>
-                <div className="my-leagues__spinner spinner__wrapper">
-                    <Spinner />
-                </div>
-            </aside>
-        );
-    }
 
     if (!leagues || leagues.length === 0) {
         return (
