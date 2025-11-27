@@ -55,3 +55,25 @@
         margin-right: 20px;
     }
 }
+
+@media (max-width: 500px) {
+    .dashboard-details__actions div ul {
+        flex-direction: column;
+    }
+
+    .dashboard-details__actions div ul li img {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard-details__actions div ul li {
+        margin: 10px 0px;
+        flex-direction: column;
+    }
+
+    .dashboard-details__actions div ul li img {
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
+}
