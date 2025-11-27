@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { uiActions } from '../../../../store/ui/ui-slice.js';
+import { sidebarActions } from '../../../../store/ui/sidebar-slice.js';
 
 import Button from '../../../../components/app/button/Button.jsx';
 import Spinner from '../../../../components/app/spinner/Spinner.jsx';
@@ -18,6 +19,7 @@ const MyLeagues = ({ leagues, loading, type }) => {
     const handleShowLeague = (leagueId) => {
         // Set the tab to be standing and navigate to the leagues page
         dispatch(uiActions.setTab('Standings'));
+        dispatch(sidebarActions.hideSidebar());
         navigate(`/leagues/${leagueId}`);
     };
 
