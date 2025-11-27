@@ -7,7 +7,7 @@ import Button from '../../../../components/app/button/Button.jsx';
 import Spinner from '../../../../components/app/spinner/Spinner.jsx';
 import './MyLeagues.css';
 
-const MyLeagues = ({ leagues, loading }) => {
+const MyLeagues = ({ leagues, loading, type }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -38,7 +38,7 @@ const MyLeagues = ({ leagues, loading }) => {
 
     if (loading) {
         return (
-            <aside className="my-leagues no-leagues">
+            <aside className={`my-leagues no-leagues ${type}`}>
                 <div className="my-leagues__spinner spinner__wrapper">
                     <Spinner />
                 </div>
@@ -48,7 +48,7 @@ const MyLeagues = ({ leagues, loading }) => {
 
     if (!leagues || leagues.length === 0) {
         return (
-            <aside className="my-leagues no-leagues">
+            <aside className={`my-leagues no-leagues ${type}`}>
                 <p>No leagues found</p>
                 <section>
                     <Button onClick={handleCreate}>Create</Button>
@@ -58,7 +58,7 @@ const MyLeagues = ({ leagues, loading }) => {
     }
 
     return (
-        <aside className="my-leagues">
+        <aside className={`my-leagues ${type}`}>
             <h3>My leagues</h3>
             <ul>
                 {leagues.map((league) => {

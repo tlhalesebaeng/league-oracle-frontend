@@ -35,7 +35,11 @@ const Home = () => {
     // the styles for layout content class are stored in the RootLayout.css
     return (
         <div className="layout-content">
-            <MyLeagues loading={isLoading} leagues={leagues} />
+            <MyLeagues
+                type="my-leagues__home"
+                loading={isLoading}
+                leagues={leagues}
+            />
             <main>
                 <Dashboard user={user} />
             </main>
