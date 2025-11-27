@@ -1,8 +1,11 @@
-.my-leagues {
+.my-leagues__home {
     width: 230px;
     padding: 40px 10px 10px;
     background-color: rgb(245, 248, 250);
     border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.my-leagues {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
