@@ -33,3 +33,25 @@
     width: 30px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 1000px) {
+    .dashboard-details__actions {
+        margin-right: 0px;
+        margin-bottom: 50px;
+    }
+
+    .dashboard-details__actions div ul {
+        display: flex;
+    }
+
+    .dashboard-details__actions div ul li {
+        width: 100%;
+        margin: 10px;
+        flex-direction: row;
+    }
+
+    .dashboard-details__actions div ul li img {
+        margin-bottom: 0px;
+        margin-right: 20px;
+    }
+}

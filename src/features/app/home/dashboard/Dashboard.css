@@ -48,3 +48,9 @@
         padding-right: 50px;
     }
 }
+
+@media (max-width: 1000px) {
+    .dashboard-details__main {
+        flex-direction: column;
+    }
+}
