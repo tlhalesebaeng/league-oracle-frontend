@@ -1,0 +1,34 @@
+.dashboard-details__actions {
+    margin-right: 50px;
+    padding: 20px;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.dashboard-details__actions div {
+    width: 100%;
+}
+
+.dashboard-details__actions div ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.dashboard-details__actions div ul li {
+    margin: 20px 0px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+.dashboard-details__actions div ul li:hover {
+    cursor: pointer;
+}
+
+.dashboard-details__actions div ul li img {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
