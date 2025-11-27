@@ -18,6 +18,7 @@
     margin: 20px 0px;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 5px;
@@ -30,5 +31,5 @@
 .dashboard-details__actions div ul li img {
     height: 30px;
     width: 30px;
-    margin-right: 10px;
+    margin-bottom: 10px;
 }
