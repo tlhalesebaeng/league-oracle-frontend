@@ -20,6 +20,10 @@ const MyLeagues = ({ leagues, loading, type }) => {
         // Set the tab to be standing and navigate to the leagues page
         dispatch(uiActions.setTab('Standings'));
         dispatch(sidebarActions.hideSidebar());
+
+        // This is not declarative and its not recommeded to do this, but i cant find a better easy way :(
+        document.getElementsByTagName('body')[0].style.overflow = 'visible';
+
         navigate(`/leagues/${leagueId}`);
     };
 
