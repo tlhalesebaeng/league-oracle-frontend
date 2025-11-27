@@ -95,3 +95,9 @@
 .upcoming-fixtures__calendar-days .inactive:hover {
     cursor: default;
 }
+
+@media (max-width: 1000px) {
+    .upcoming-fixtures__card {
+        width: 100%;
+    }
+}
