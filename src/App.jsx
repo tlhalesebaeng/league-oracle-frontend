@@ -54,7 +54,12 @@ const appRouter = createBrowserRouter([
                 ),
             },
             {
+                id: 'home-route',
                 path: 'home',
+                loader: (meta) =>
+                    import('./features/app/home/Home.jsx').then((module) =>
+                        module.homeDataLoader(meta)
+                    ),
                 element: (
                     <Suspend>
                         <Home />
