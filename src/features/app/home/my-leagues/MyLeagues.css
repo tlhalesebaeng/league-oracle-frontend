@@ -57,3 +57,11 @@
     background: rgba(0, 0, 0, 0.4);
     transform-origin: 1.45px 11.6px;
 }
+
+/* Responsiveness */
+
+@media (max-width: 750px) {
+    .my-leagues__home {
+        display: none;
+    }
+}
