@@ -20,10 +20,12 @@ const Leagues = () => {
 
 // Loader function to get league, fixtures and results data
 export const leagueDataLoader = asyncHandler(async ({ params }) => {
-    // Query for requesting the league using the league id
     const leaguePromise = api.get(`/leagues/${params.leagueId}`);
 
-    // Query for requesting fixtures using the league id
+    const leagueTeamsPromise = api.get('/teams', {
+        params: { leagueId: params.leagueId },
+    });
+
     const fixturesPromise = api.get('/fixtures', {
         params: { leagueId: params.leagueId },
     });
@@ -34,14 +36,20 @@ export const leagueDataLoader = asyncHandler(async ({ params }) => {
     });
 
     // Await the queries at the same time
-    const [fixturesResponse, resultsResponse, leagueResponse] =
-        await Promise.all([fixturesPromise, resultsPromise, leaguePromise]);
+    const [fixturesResponse, resultsResponse, leagueResponse, teamsResponse] =
+        await Promise.all([
+            fixturesPromise,
+            resultsPromise,
+            leaguePromise,
+            leagueTeamsPromise,
+        ]);
 
     // Make the league, fixtures and results data available to the route components
     return {
         league: leagueResponse.data,
         fixtures: fixturesResponse.data,
         results: resultsResponse.data,
+        teams: teamsResponse.data,
     };
 });
 

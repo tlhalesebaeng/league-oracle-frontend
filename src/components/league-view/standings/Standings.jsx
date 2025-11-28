@@ -5,7 +5,7 @@ import './Standings.css';
 const Standings = () => {
     const data = useRouteLoaderData('league-route');
     const leagueId = data.league.id;
-    const standings = data.league.teams;
+    const standings = data.teams;
 
     // TODO: cache this function using useCallback
     const sortStandings = () => {
