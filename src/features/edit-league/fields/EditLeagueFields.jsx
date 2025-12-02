@@ -15,13 +15,13 @@ import ConfirmModal from '../../../modals/confirmation/ConfirmModal.jsx';
 import './EditLeagueFields.css';
 
 const EditLeagueFields = () => {
-    const league = useLoaderData();
+    const data = useLoaderData();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { request, error, isLoading } = useFetch();
-    const [leagueName, setLeagueName] = useState(league.name);
+    const [leagueName, setLeagueName] = useState(data.league.name);
     const showModal = useSelector((state) => state.ui.confirmModalShown);
-    const [leagueTeams, setLeagueTeams] = useState([...(league.teams || [])]);
+    const [leagueTeams, setLeagueTeams] = useState([...(data.teams || [])]);
 
     const handleInputChange = (index, value) => {
         setLeagueTeams((prevTeams) => {
@@ -53,9 +53,9 @@ const EditLeagueFields = () => {
         const requestData = []; // holds a list of all the requests we will make
 
         // add the league name changes to the request data
-        if (leagueName !== league.name) {
+        if (leagueName !== data.league.name) {
             requestData.push({
-                url: `/leagues/${league.id}`,
+                url: `/leagues/${data.league.id}`,
                 method: 'patch',
                 data: { name: leagueName },
             });
@@ -75,7 +75,7 @@ const EditLeagueFields = () => {
         const addedTeams = data.added;
         for (let i = 0; i < addedTeams.length; i++) {
             requestData.push({
-                url: `/teams?leagueId=${league.id}`,
+                url: `/teams?leagueId=${data.league.id}`,
                 method: 'post',
                 data: { name: addedTeams[i].name },
             });
@@ -103,7 +103,7 @@ const EditLeagueFields = () => {
 
         if (!errorOccured) {
             // set the teams to be the new teams
-            league.teams = [...leagueTeams];
+            data.teams = [...leagueTeams];
 
             // all request were successful, show a success alert
             dispatch(showAlert('success', 'All changes succeeded'));
@@ -122,7 +122,7 @@ const EditLeagueFields = () => {
     };
 
     const handleCancelChanges = () => {
-        navigate(`/leagues/${league.id}`);
+        navigate(`/leagues/${data.league.id}`);
     };
 
     const handleCloseModal = () => {
@@ -147,11 +147,11 @@ const EditLeagueFields = () => {
     if (!disableSave) {
         let changeFound = false;
         // here we are sure that the lengths are equal since we disable save when lengths are not equal
-        if (league.name !== leagueName) changeFound = true;
-        else if (league.teams.length !== leagueTeams.length) changeFound = true;
+        if (data.league.name !== leagueName) changeFound = true;
+        else if (data.teams.length !== leagueTeams.length) changeFound = true;
         else {
             for (let i = 0; i < leagueTeams.length; i++) {
-                if (league.teams[i].name !== leagueTeams[i].name) {
+                if (data.teams[i].name !== leagueTeams[i].name) {
                     changeFound = true;
                     break;
                 }
@@ -164,8 +164,11 @@ const EditLeagueFields = () => {
     }
 
     // add league name change to the list of items
-    const oldItems = [...league.teams, { id: league.id, name: league.name }];
-    const newItems = [...leagueTeams, { id: league.id, name: leagueName }];
+    const oldItems = [
+        ...data.teams,
+        { id: data.league.id, name: data.league.name },
+    ];
+    const newItems = [...leagueTeams, { id: data.league.id, name: leagueName }];
 
     return (
         <>
@@ -182,7 +185,7 @@ const EditLeagueFields = () => {
             <EditField
                 onInputChange={(value) => setLeagueName(value)}
                 tag="h2"
-                placeholder={league.name}
+                placeholder={data.league.name}
                 value={leagueName}
             />
 
