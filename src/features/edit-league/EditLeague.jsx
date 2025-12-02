@@ -21,9 +21,16 @@ export const editLeagueDataLoader = asyncHandler(async ({ request }) => {
     const leagueId = searchParams.get('leagueId');
 
     // get the league data
-    const response = await api.get(`/leagues/${leagueId}`);
+    const leaguePromise = api.get(`/leagues/${leagueId}`);
 
-    return response.data;
+    const leagueTeamsPromise = api.get('/teams', { params: { leagueId } });
+
+    const [leagueResponse, teamsResponse] = await Promise.all([
+        leaguePromise,
+        leagueTeamsPromise,
+    ]);
+
+    return { league: leagueResponse.data, teams: teamsResponse.data };
 });
 
 export default EditLeague;
